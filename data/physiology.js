@@ -510,7 +510,7 @@ const MS = [
           ['C3 活化（產生 C3a 和 C3b）','C5 活化：C5a（趨化素/過敏毒素）+ C5b（啟動 MAC 形成）','C1q 結合 IgG/IgM','Mannose-binding lectin（MBL）活化'], 1,
           '三途徑（Classical/Lectin/Alternative）均活化 C3 convertase → C3a（過敏毒素）+ C3b（調理素）→ C5 convertase → C5a（趨化/過敏毒素）+ C5b → C5b-9 = MAC（Membrane attack complex）→ 細胞溶解。'),
         Q('「第四型過敏反應（Type IV，遲發型過敏，DTH）」的主要效應細胞為何？',
-          ['IgE 與肥大細胞（Mast cell）','CD4⁺ T 細胞（Th1）與巨噬細胞','IgG 與 NK cell（ADCC）','IgM 與補體'), 1,
+          ['IgE 與肥大細胞（Mast cell）','CD4⁺ T 細胞（Th1）與巨噬細胞','IgG 與 NK cell（ADCC）','IgM 與補體'], 1,
           'Type IV（Cell-mediated）：T 細胞介導，24-72 小時發生，無抗體參與。Th1 → IFN-γ → 活化巨噬細胞 → 肉芽腫形成（結核病、接觸性皮膚炎、移植排斥）。不能被 Antihistamine 抑制。'),
         Q('MHC class I（HLA class I）分子主要呈現哪類抗原給哪種 T 細胞？',
           ['外源性抗原（細胞外病原體）→ 給 CD4⁺ T 細胞','內源性抗原（細胞內合成的蛋白質，如病毒、腫瘤）→ 給 CD8⁺ 細胞毒 T 細胞（CTL）','在 B 細胞表面表達，直接活化 B 細胞','只在 NK cell 上表達'], 1,
@@ -902,5 +902,5 @@ const MS = [
 ]; // end of MS array
 
 // Export for MedLingo game engine
-if (typeof window !== 'undefined') window.ML_PH = MS;
-if (typeof module !== 'undefined') module.exports = MS;
+if (typeof window !== 'undefined') window.ML_PH = { id: 'ph', ms: MS };
+if (typeof module !== 'undefined') module.exports = { id: 'ph', ms: MS };
