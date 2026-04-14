@@ -2,8 +2,8 @@
   "name": "MedLingo 醫師國考練習",
   "short_name": "MedLingo",
   "description": "台灣醫師一階國考遊戲化練習平台",
-  "start_url": "/medlingo/",
-  "scope": "/medlingo/",
+  "start_url": "/Medlingo/",
+  "scope": "/Medlingo/",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#FFF9F2",
@@ -35,7 +35,7 @@
     {
       "name": "繼續練習",
       "short_name": "練習",
-      "url": "/medlingo/",
+      "url": "/Medlingo/",
       "icons": [{ "src": "icons/icon.svg", "sizes": "any" }]
     }
   ]
