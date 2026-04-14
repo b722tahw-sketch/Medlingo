@@ -1,6 +1,6 @@
 // MedLingo Service Worker
 // 版本號：每次更新資源時務必修改
-const CACHE_VERSION = 'medlingo-v1.0.2';
+const CACHE_VERSION = 'medlingo-v1.0.3';
 const STATIC_CACHE  = `${CACHE_VERSION}-static`;
 const DATA_CACHE    = `${CACHE_VERSION}-data`;
 

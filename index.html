@@ -817,10 +817,17 @@ function App(){
   </>;
 }
 
-// PWA Service Worker：主動清除舊快取（避免手機快取到壞版本）
+// PWA Service Worker：清除舊快取後重新註冊最新版
 if('serviceWorker' in navigator){
+  // 1. 清除所有 Cache Storage（確保拿到最新 index.html）
+  if('caches' in window){
+    caches.keys().then(keys=>Promise.all(keys.map(k=>caches.delete(k))));
+  }
+  // 2. 登出舊 SW 後重新註冊
   navigator.serviceWorker.getRegistrations().then(regs=>{
-    regs.forEach(r=>r.unregister());
+    Promise.all(regs.map(r=>r.unregister())).then(()=>{
+      navigator.serviceWorker.register('./sw.js').catch(()=>{});
+    });
   });
 }
 
