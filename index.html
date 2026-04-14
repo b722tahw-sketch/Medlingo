@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>MedLingo 醫師國考</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#7950F2">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="MedLingo">
+<link rel="apple-touch-icon" href="icons/icon.svg">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.5/babel.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{
+  --primary:#7950F2;--primary-light:#9775FA;--primary-dark:#6741D9;
+  --bg:#FFF9F2;--card:#FFFFFF;--text:#1A1A2E;--muted:#6B7280;
+  --success:#10B981;--error:#EF4444;--boss:#E84855;--gold:#F59E0B;
+  --shadow:0 4px 20px rgba(121,80,242,.15);--radius:16px;
+  --font:'Microsoft JhengHei','PingFang TC',-apple-system,sans-serif;
+}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;
+  max-width:480px;margin:0 auto;overflow-x:hidden}
+#root{min-height:100vh;display:flex;flex-direction:column}
+button{font-family:inherit;cursor:pointer;border:none;outline:none}
+/* ── Screens ── */
+.screen{flex:1;display:flex;flex-direction:column;padding:16px;padding-bottom:80px;overflow-y:auto}
+.screen.quiz-screen{padding-bottom:20px}
+/* ── Header ── */
+.hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+.hdr-title{font-size:22px;font-weight:800;color:var(--primary)}
+.xp-badge{background:linear-gradient(135deg,#F59E0B,#EF4444);color:#fff;
+  padding:4px 12px;border-radius:20px;font-size:13px;font-weight:700}
+/* ── World Map ── */
+.subjects-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.subject-card{background:var(--card);border-radius:var(--radius);padding:20px 14px;
+  text-align:center;box-shadow:var(--shadow);cursor:pointer;transition:.2s;border:3px solid transparent}
+.subject-card:active{transform:scale(.96)}
+.subject-card.locked{opacity:.5;cursor:not-allowed}
+.subject-card .s-em{font-size:36px;display:block;margin-bottom:8px}
+.subject-card .s-name{font-size:14px;font-weight:700}
+.subject-card .s-prog{font-size:11px;color:var(--muted);margin-top:4px}
+/* ── Milestone Map ── */
+.back-btn{background:none;color:var(--primary);font-size:15px;font-weight:600;
+  display:flex;align-items:center;gap:4px;margin-bottom:16px;padding:8px 0}
+.ms-path{display:flex;flex-direction:column;gap:0}
+.ms-node{display:flex;align-items:center;gap:14px;padding:12px 0;position:relative}
+.ms-node::before{content:'';position:absolute;left:27px;top:-12px;width:2px;height:12px;
+  background:#E5E7EB}
+.ms-node:first-child::before{display:none}
+.ms-circle{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;
+  justify-content:center;font-size:22px;flex-shrink:0;box-shadow:0 2px 10px rgba(0,0,0,.15);
+  cursor:pointer;transition:.2s;border:3px solid transparent}
+.ms-circle:active{transform:scale(.92)}
+.ms-circle.locked{background:#F3F4F6 !important;border-color:#E5E7EB;cursor:not-allowed}
+.ms-info{flex:1}
+.ms-info h3{font-size:16px;font-weight:700}
+.ms-info p{font-size:12px;color:var(--muted);margin-top:2px}
+.ms-medal{font-size:22px}
+/* ── Units Screen ── */
+.unit-list{display:flex;flex-direction:column;gap:10px}
+.unit-btn{background:var(--card);border-radius:14px;padding:16px;display:flex;
+  align-items:center;gap:14px;box-shadow:var(--shadow);cursor:pointer;transition:.2s}
+.unit-btn:active{transform:scale(.97)}
+.unit-em{font-size:28px;flex-shrink:0}
+.unit-txt h4{font-size:16px;font-weight:700}
+.unit-txt p{font-size:12px;color:var(--muted);margin-top:2px}
+.unit-score{margin-left:auto;font-size:13px;font-weight:700;background:var(--bg);
+  padding:4px 10px;border-radius:10px}
+.boss-btn{background:linear-gradient(135deg,#E84855,#C62E38);color:#fff !important}
+.boss-btn .unit-txt h4,.boss-btn .unit-txt p,.boss-btn .unit-score{color:#fff !important}
+/* ── Quiz ── */
+.quiz-hdr{display:flex;align-items:center;gap:10px;margin-bottom:20px}
+.q-progress{flex:1;height:8px;background:#E5E7EB;border-radius:4px;overflow:hidden}
+.q-progress-fill{height:100%;background:linear-gradient(90deg,var(--primary),var(--primary-light));
+  border-radius:4px;transition:.4s}
+.q-count{font-size:13px;color:var(--muted);white-space:nowrap}
+.q-type{font-size:11px;font-weight:700;padding:3px 10px;border-radius:10px;
+  background:rgba(121,80,242,.1);color:var(--primary)}
+.q-box{background:var(--card);border-radius:var(--radius);padding:22px;
+  box-shadow:var(--shadow);margin-bottom:20px;min-height:120px;display:flex;align-items:center}
+.q-box p{font-size:17px;font-weight:600;line-height:1.55}
+.q-opts{display:flex;flex-direction:column;gap:10px}
+.q-opt{background:var(--card);border-radius:12px;padding:14px 16px;font-size:15px;
+  text-align:left;box-shadow:0 2px 8px rgba(0,0,0,.08);cursor:pointer;
+  transition:.18s;line-height:1.45;font-weight:500}
+.q-opt:active{transform:scale(.98)}
+.q-opt.correct{background:#D1FAE5;border:2px solid var(--success);color:#065F46}
+.q-opt.wrong{background:#FEE2E2;border:2px solid var(--error);color:#7F1D1D}
+.q-opt.reveal{background:#EDE9FE;border:2px solid var(--primary);color:var(--primary-dark)}
+.explain-box{background:var(--card);border-radius:var(--radius);padding:18px;
+  box-shadow:var(--shadow);margin-top:16px;border-left:4px solid var(--primary)}
+.explain-box h4{font-size:14px;font-weight:700;color:var(--primary);margin-bottom:8px}
+.explain-box p{font-size:14px;line-height:1.6;color:var(--text)}
+.next-btn{width:100%;background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+  color:#fff;padding:16px;border-radius:14px;font-size:17px;font-weight:700;
+  margin-top:16px;box-shadow:0 4px 15px rgba(121,80,242,.4)}
+.next-btn:active{transform:scale(.98)}
+/* ── Result ── */
+.result-hero{text-align:center;padding:24px 0}
+.result-em{font-size:72px;margin-bottom:8px}
+.result-score{font-size:48px;font-weight:900;color:var(--primary)}
+.result-label{font-size:16px;color:var(--muted);margin-top:4px}
+.result-stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:24px 0}
+.stat-card{background:var(--card);border-radius:14px;padding:16px;text-align:center;
+  box-shadow:var(--shadow)}
+.stat-card .sv{font-size:26px;font-weight:800;color:var(--primary)}
+.stat-card .sk{font-size:12px;color:var(--muted);margin-top:4px}
+.result-btns{display:flex;flex-direction:column;gap:10px}
+.btn-primary{background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+  color:#fff;padding:16px;border-radius:14px;font-size:17px;font-weight:700;
+  box-shadow:0 4px 15px rgba(121,80,242,.4)}
+.btn-secondary{background:var(--card);color:var(--primary);padding:14px;border-radius:14px;
+  font-size:16px;font-weight:700;box-shadow:var(--shadow)}
+.btn-primary:active,.btn-secondary:active{transform:scale(.97)}
+/* ── Review ── */
+.review-empty{text-align:center;padding:48px 0;color:var(--muted)}
+.review-card{background:var(--card);border-radius:var(--radius);padding:18px;
+  box-shadow:var(--shadow);margin-bottom:12px}
+.review-tag{display:inline-block;padding:3px 10px;border-radius:10px;font-size:11px;
+  font-weight:700;color:#fff;margin-bottom:10px}
+.review-q{font-size:15px;font-weight:600;margin-bottom:10px}
+.review-opts p{font-size:13px;padding:6px 8px;border-radius:8px;margin-bottom:4px}
+.review-opts .was-correct{background:#D1FAE5;color:#065F46}
+.review-opts .was-wrong{background:#FEE2E2;color:#7F1D1D}
+.review-opts .is-answer{background:#EDE9FE;color:var(--primary-dark);font-weight:700}
+.review-explain{margin-top:10px;padding-top:10px;border-top:1px solid #F3F4F6;
+  font-size:13px;color:var(--muted);line-height:1.6}
+/* ── Profile ── */
+.avatar-card{background:linear-gradient(135deg,var(--primary),var(--primary-dark));
+  border-radius:24px;padding:28px;text-align:center;color:#fff;margin-bottom:20px}
+.avatar-em{font-size:56px;display:block;margin-bottom:8px}
+.avatar-name{font-size:20px;font-weight:800}
+.avatar-level{font-size:14px;opacity:.85;margin-top:4px}
+.xp-bar-wrap{background:rgba(255,255,255,.2);border-radius:10px;height:10px;margin-top:12px}
+.xp-bar-fill{height:100%;background:#fff;border-radius:10px;transition:.6s}
+.xp-text{font-size:13px;margin-top:6px;opacity:.85}
+.stats-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:20px}
+.stats-card{background:var(--card);border-radius:14px;padding:14px;text-align:center;
+  box-shadow:var(--shadow)}
+.stats-card .sv{font-size:22px;font-weight:800;color:var(--primary)}
+.stats-card .sk{font-size:11px;color:var(--muted);margin-top:2px}
+.ach-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.ach-item{background:var(--card);border-radius:14px;padding:14px 8px;text-align:center;
+  box-shadow:var(--shadow);transition:.2s}
+.ach-item.locked{opacity:.35;filter:grayscale(1)}
+.ach-item .aem{font-size:28px}
+.ach-item .anm{font-size:10px;color:var(--muted);margin-top:4px}
+/* ── Bottom Tabs ── */
+.bottom-tabs{position:fixed;bottom:0;left:50%;transform:translateX(-50%);
+  width:100%;max-width:480px;background:var(--card);
+  border-top:1px solid #F3F4F6;display:flex;z-index:100;
+  box-shadow:0 -4px 20px rgba(0,0,0,.08);padding-bottom:env(safe-area-inset-bottom)}
+.tab-btn{flex:1;display:flex;flex-direction:column;align-items:center;padding:12px 0;
+  background:none;cursor:pointer;transition:.15s;font-size:10px;font-weight:600;color:var(--muted)}
+.tab-btn.active{color:var(--primary)}
+.tab-btn .tem{font-size:22px;margin-bottom:2px}
+/* ── Modal ── */
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;
+  align-items:center;justify-content:center;z-index:200;padding:20px}
+.modal{background:var(--card);border-radius:24px;padding:32px 24px;text-align:center;
+  max-width:340px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+.modal h2{font-size:22px;font-weight:800;margin:16px 0 8px}
+.modal p{color:var(--muted);font-size:15px;line-height:1.5}
+/* ── Toast ── */
+.toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%);
+  background:var(--text);color:#fff;padding:10px 20px;border-radius:20px;
+  font-size:14px;font-weight:600;z-index:300;animation:fadeInOut 2.5s forwards}
+@keyframes fadeInOut{0%{opacity:0;transform:translateX(-50%) translateY(10px)}
+  15%{opacity:1;transform:translateX(-50%) translateY(0)}
+  75%{opacity:1}100%{opacity:0}}
+/* ── Loading ── */
+.loading{display:flex;flex-direction:column;align-items:center;justify-content:center;
+  flex:1;gap:16px}
+.spinner{width:40px;height:40px;border:4px solid rgba(121,80,242,.2);
+  border-top-color:var(--primary);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+/* ── Section Titles ── */
+.section-title{font-size:13px;font-weight:700;color:var(--muted);text-transform:uppercase;
+  letter-spacing:.5px;margin:20px 0 10px}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const{useState,useEffect,useCallback,useRef}=React;
+
+// ═══════════════════════════════════════
+// Constants
+// ═══════════════════════════════════════
+const SAVE_KEY='ml_v45_final';
+const SUBJ=[
+  {id:'p',name:'藥理學',em:'💊',c:'#7950F2',file:'pharmacology',done:true},
+  {id:'ph',name:'生理學',em:'🫀',c:'#339AF0',file:'physiology',done:false},
+  {id:'a',name:'解剖學',em:'🦴',c:'#F76707',file:'anatomy',done:false},
+  {id:'b',name:'生化學',em:'🧪',c:'#51CF66',file:'biochemistry',done:false},
+  {id:'m',name:'微生物學',em:'🦠',c:'#F03E3E',file:'microbiology',done:false},
+  {id:'i',name:'免疫學',em:'🛡️',c:'#0CA678',file:'immunology',done:false},
+  {id:'pa',name:'病理學',em:'🔬',c:'#CC5DE8',file:'pathology',done:false},
+  {id:'pu',name:'公共衛生',em:'🏥',c:'#20C997',file:'public_health',done:false},
+  {id:'be',name:'行為科學',em:'🧠',c:'#4DABF7',file:'behavioral',done:false},
+];
+const AVATARS=[
+  {min:1,em:'🐰',title:'醫學新鮮人'},{min:11,em:'🐹',title:'努力的倉鼠'},
+  {min:21,em:'🦊',title:'解剖課倖存者'},{min:31,em:'🐱',title:'期末考戰士'},
+  {min:41,em:'🐶',title:'臨床實習生'},{min:51,em:'🐼',title:'備考衝刺王'},
+  {min:61,em:'🦆',title:'住院醫師候補'},{min:71,em:'🐨',title:'主治醫師候補'},
+  {min:81,em:'🐯',title:'資深主治醫師'},{min:91,em:'🐻',title:'神外主治醫師'},
+];
+const ACHV=[
+  {id:'first',em:'🌱',name:'初出茅廬',cond:s=>s.totalQ>=1},
+  {id:'q10',em:'⭐',name:'解題新星',cond:s=>s.correctQ>=10},
+  {id:'q50',em:'🏅',name:'五十題達人',cond:s=>s.correctQ>=50},
+  {id:'q100',em:'🎖️',name:'百題勇士',cond:s=>s.correctQ>=100},
+  {id:'q200',em:'🦸',name:'兩百題英雄',cond:s=>s.correctQ>=200},
+  {id:'xp500',em:'💫',name:'500XP',cond:s=>s.xp>=500},
+  {id:'xp2000',em:'🏆',name:'2000XP大師',cond:s=>s.xp>=2000},
+  {id:'perfect',em:'💎',name:'完美通關',cond:s=>s.hadPerfect},
+  {id:'boss1',em:'👹',name:'挑戰魔王',cond:s=>s.bossAttempts>=1},
+  {id:'boss_win',em:'🗡️',name:'魔王剋星',cond:s=>s.bossWins>=1},
+  {id:'boss_gold',em:'⚔️',name:'魔王金牌',cond:s=>s.bossGold>=1},
+  {id:'streak3',em:'🔥',name:'連勝三關',cond:s=>s.streak>=3},
+  {id:'ms5',em:'🗺️',name:'攻略半途',cond:s=>Object.values(s.mp||{}).filter(m=>m.bossScore>=60).length>=5},
+  {id:'ms10',em:'🌟',name:'全科制霸',cond:s=>Object.values(s.mp||{}).filter(m=>m.bossScore>=60).length>=10},
+  {id:'review',em:'📚',name:'複習達人',cond:s=>s.reviewDone>=1},
+];
+const DEF_SAVE={xp:0,totalQ:0,correctQ:0,mp:{},wrongQ:[],achievements:[],
+  bossAttempts:0,bossWins:0,bossGold:0,hadPerfect:false,reviewDone:0,streak:0};
+
+// ═══════════════════════════════════════
+// Helpers
+// ═══════════════════════════════════════
+function loadSave(){
+  try{const s=JSON.parse(localStorage.getItem(SAVE_KEY)||'{}');
+    return {...DEF_SAVE,...s};}catch{return{...DEF_SAVE};}
+}
+function saveSave(s){try{localStorage.setItem(SAVE_KEY,JSON.stringify(s));}catch{}}
+function getLevel(xp){return Math.floor(xp/100)+1;}
+function getAvatar(lv){
+  for(let i=AVATARS.length-1;i>=0;i--)if(lv>=AVATARS[i].min)return AVATARS[i];
+  return AVATARS[0];
+}
+function getMSStatus(mp,msId){
+  const ms=mp[msId];
+  if(!ms||ms.bossScore===undefined)return{medal:'',color:'#9CA3AF',pct:0};
+  const p=ms.bossScore;
+  if(p>=100)return{medal:'🥇',color:'#F59E0B',pct:100};
+  if(p>=80)return{medal:'🥈',color:'#9CA3AF',pct:p};
+  if(p>=60)return{medal:'🥉',color:'#CD7F32',pct:p};
+  return{medal:'',color:'#D1D5DB',pct:p};
+}
+function isUnlocked(mp,msId){
+  if(msId===1)return true;
+  const prev=mp[msId-1];
+  return prev&&prev.bossScore>=60;
+}
+function checkNewAchievements(save){
+  const newOnes=[];
+  for(const a of ACHV){
+    if(!save.achievements.includes(a.id)&&a.cond(save)){
+      newOnes.push(a.id);
+    }
+  }
+  return newOnes;
+}
+// Audio
+// 持久化 AudioContext（解決瀏覽器自動播放限制）
+let _audioCtx=null;
+function getAudioCtx(){
+  if(!_audioCtx){
+    try{_audioCtx=new(window.AudioContext||window.webkitAudioContext)();}catch{}
+  }
+  if(_audioCtx&&_audioCtx.state==='suspended'){
+    _audioCtx.resume().catch(()=>{});
+  }
+  return _audioCtx;
+}
+// 在頁面載入後，首次使用者互動時解鎖音效
+document.addEventListener('click',()=>{getAudioCtx();},{once:true});
+
+function playSound(type){
+  try{
+    const ctx=getAudioCtx();
+    if(!ctx)return;
+    const o=ctx.createOscillator(),g=ctx.createGain();
+    o.connect(g);g.connect(ctx.destination);
+    const t=ctx.currentTime;
+    if(type==='correct'){
+      o.frequency.setValueAtTime(523,t);
+      o.frequency.setValueAtTime(659,t+.1);
+      g.gain.setValueAtTime(.25,t);
+      g.gain.exponentialRampToValueAtTime(.01,t+.35);
+    }else if(type==='wrong'){
+      o.frequency.setValueAtTime(300,t);
+      o.frequency.setValueAtTime(220,t+.1);
+      g.gain.setValueAtTime(.2,t);
+      g.gain.exponentialRampToValueAtTime(.01,t+.4);
+    }else if(type==='win'){
+      o.frequency.setValueAtTime(523,t);
+      o.frequency.setValueAtTime(659,t+.12);
+      o.frequency.setValueAtTime(784,t+.24);
+      g.gain.setValueAtTime(.3,t);
+      g.gain.exponentialRampToValueAtTime(.01,t+.7);
+    }
+    o.start(t);
+    o.stop(t+.8);
+  }catch{}
+}
+// Load subject data
+const LOADED={};
+function loadSubject(subjId,file){
+  return new Promise((res,rej)=>{
+    const key='ML_'+subjId.toUpperCase();
+    if(LOADED[subjId]&&window[key]){res(window[key]);return;}
+    const s=document.createElement('script');
+    s.src='data/'+file+'.js';
+    s.onload=()=>{LOADED[subjId]=true;res(window[key]);};
+    s.onerror=()=>rej(new Error('無法載入'+file+'.js'));
+    document.head.appendChild(s);
+  });
+}
+
+// ═══════════════════════════════════════
+// Components
+// ═══════════════════════════════════════
+function Toast({msg}){return<div className="toast">{msg}</div>;}
+
+function LevelUpModal({avatar,level,onClose}){
+  return<div className="modal-bg" onClick={onClose}>
+    <div className="modal" onClick={e=>e.stopPropagation()}>
+      <div style={{fontSize:72}}>{avatar.em}</div>
+      <h2>升級啦！✨</h2>
+      <p>🌟 Hydi小公主真棒！有好好讀書耶 🌟<br/><br/>
+        現在是 <strong>Lv.{level}</strong><br/>{avatar.title}</p>
+      <button className="btn-primary" style={{marginTop:20,width:'100%'}} onClick={onClose}>繼續加油！</button>
+    </div>
+  </div>;
+}
+
+// ── World Map ──
+function WorldScreen({save,onSelectSubj}){
+  const lv=getLevel(save.xp);
+  const av=getAvatar(lv);
+  return<div className="screen">
+    <div className="hdr">
+      <span className="hdr-title">🏥 MedLingo</span>
+      <span className="xp-badge">⚡ {save.xp} XP</span>
+    </div>
+    <div style={{background:'linear-gradient(135deg,var(--primary),var(--primary-dark))',
+      borderRadius:20,padding:20,color:'#fff',marginBottom:20,textAlign:'center'}}>
+      <span style={{fontSize:48}}>{av.em}</span>
+      <div style={{fontWeight:800,fontSize:17,marginTop:6}}>Hydi — Lv.{lv}</div>
+      <div style={{opacity:.85,fontSize:13}}>{av.title}</div>
+    </div>
+    <div className="section-title">選擇科目</div>
+    <div className="subjects-grid">
+      {SUBJ.map(s=>{
+        const prog=Object.values(save.mp||{}).filter(m=>m.bossScore>=60).length;
+        return<div key={s.id} className={'subject-card'+(s.done?'':' locked')}
+          style={{borderColor:s.done?s.c:'transparent'}}
+          onClick={()=>s.done&&onSelectSubj(s)}>
+          <span className="s-em">{s.em}</span>
+          <div className="s-name">{s.name}</div>
+          <div className="s-prog">{s.done?'進行中':'即將開放'}</div>
+        </div>;
+      })}
+    </div>
+  </div>;
+}
+
+// ── Subject Map ──
+function SubjectMap({subj,subjectData,save,onSelectMS,onBack}){
+  const ms=subjectData?.ms||[];
+  return<div className="screen">
+    <button className="back-btn" onClick={onBack}>← 世界地圖</button>
+    <div style={{display:'flex',alignItems:'center',gap:10,marginBottom:20}}>
+      <span style={{fontSize:36}}>{subj.em}</span>
+      <div>
+        <div style={{fontWeight:800,fontSize:18}}>{subj.name}</div>
+        <div style={{color:'var(--muted)',fontSize:13}}>10個里程碑</div>
+      </div>
+    </div>
+    <div className="ms-path">
+      {ms.map((m,i)=>{
+        const unlocked=isUnlocked(save.mp,m.id);
+        const{medal,color}=getMSStatus(save.mp,m.id);
+        const mp=save.mp[m.id]||{};
+        return<div key={m.id} className="ms-node">
+          <div className="ms-circle" style={{background:unlocked?m.c:'#F3F4F6',
+            borderColor:unlocked?m.c:'#E5E7EB'}}
+            onClick={()=>unlocked&&onSelectMS(m)}>
+            {unlocked?m.em:'🔒'}
+          </div>
+          <div className="ms-info">
+            <h3>{m.title}</h3>
+            <p>里程碑 {m.id} {mp.bossScore!==undefined?`· 魔王最佳 ${mp.bossScore}%`:''}</p>
+          </div>
+          <span className="ms-medal">{medal}</span>
+        </div>;
+      })}
+    </div>
+  </div>;
+}
+
+// ── Units Screen ──
+function UnitsScreen({subj,ms,save,onSelectUnit,onBack}){
+  const mp=save.mp[ms.id]||{bossScore:undefined,u:{}};
+  return<div className="screen">
+    <button className="back-btn" onClick={onBack}>← {subj.name}</button>
+    <div style={{background:ms.c,borderRadius:20,padding:20,color:'#fff',marginBottom:20}}>
+      <span style={{fontSize:40}}>{ms.em}</span>
+      <div style={{fontWeight:800,fontSize:18,marginTop:8}}>{ms.title}</div>
+      <div style={{opacity:.85,fontSize:13}}>里程碑 {ms.id}</div>
+    </div>
+    <div className="section-title">練習單元</div>
+    <div className="unit-list">
+      {ms.u.map(u=>{
+        const sc=mp.u?.[u.id]?.score;
+        return<div key={u.id} className="unit-btn" onClick={()=>onSelectUnit(u.id,ms)}>
+          <span className="unit-em">{u.em}</span>
+          <div className="unit-txt">
+            <h4>{u.t}</h4>
+            <p>{u.qs.length} 題練習</p>
+          </div>
+          <span className="unit-score">{sc!==undefined?sc+'%':'未挑戰'}</span>
+        </div>;
+      })}
+      <div className="section-title" style={{marginTop:8}}>魔王關卡</div>
+      <div className="unit-btn boss-btn" onClick={()=>onSelectUnit('boss',ms)}>
+        <span className="unit-em">👹</span>
+        <div className="unit-txt">
+          <h4>魔王關卡</h4>
+          <p>{ms.boss?.length||0} 道臨床情境題</p>
+        </div>
+        <span className="unit-score">{mp.bossScore!==undefined?mp.bossScore+'%':'未挑戰'}</span>
+      </div>
+    </div>
+  </div>;
+}
+
+// ── Quiz Screen ──
+function QuizScreen({questions,unitId,mTitle,mColor,mId,subjId,save,onFinish}){
+  const[qi,setQi]=useState(0);
+  const[chosen,setChosen]=useState(null);
+  const[score,setScore]=useState(0);
+  const[wrong,setWrong]=useState([]);
+  const[showEx,setShowEx]=useState(false);
+  const q=questions[qi];
+  const isBoss=unitId==='boss';
+  const handleChoose=(idx)=>{
+    if(chosen!==null)return;
+    setChosen(idx);
+    setShowEx(true);
+    const ok=idx===q.a;
+    if(ok){setScore(p=>p+1);playSound('correct');}
+    else{
+      setWrong(p=>[...p,{q:q.q,o:q.o,ci:idx,a:q.a,e:q.e,mTitle,mColor}]);
+      playSound('wrong');
+    }
+  };
+  const handleNext=()=>{
+    setChosen(null);setShowEx(false);
+    if(qi+1>=questions.length){
+      const pct=Math.round(score/(questions.length)*100);
+      onFinish({score:pct,wrongItems:wrong,unitId,mId,subjId,isBoss,totalQ:questions.length,correctQ:score});
+    }else{setQi(p=>p+1);}
+  };
+  return<div className="screen quiz-screen">
+    <div className="quiz-hdr">
+      <div className="q-progress">
+        <div className="q-progress-fill" style={{width:`${((qi+1)/questions.length)*100}%`}}/>
+      </div>
+      <span className="q-count">{qi+1}/{questions.length}</span>
+      <span className="q-type" style={isBoss?{background:'#FEE2E2',color:'var(--boss)'}:{}}>{isBoss?'👹 魔王':'練習'}</span>
+    </div>
+    <div className="q-box"><p>{q.q}</p></div>
+    <div className="q-opts">
+      {q.o.map((opt,i)=>{
+        let cls='q-opt';
+        if(chosen!==null){
+          if(i===q.a)cls+=' correct';
+          else if(i===chosen&&chosen!==q.a)cls+=' wrong';
+        }
+        return<button key={i} className={cls} onClick={()=>handleChoose(i)}>
+          <span style={{fontWeight:700,marginRight:8}}>{['A','B','C','D'][i]}.</span>{opt}
+        </button>;
+      })}
+    </div>
+    {showEx&&<div className="explain-box">
+      <h4>📖 解析</h4>
+      <p>{q.e}</p>
+    </div>}
+    {chosen!==null&&<button className="next-btn" onClick={handleNext}>
+      {qi+1>=questions.length?'查看結果 →':'下一題 →'}
+    </button>}
+  </div>;
+}
+
+
+// ── Result Screen ──
+function ResultScreen({result,save,onContinue,onRetry,onHome}){
+  const{score,totalQ,correctQ,isBoss}=result;
+  const em=score>=100?'🎉':score>=80?'🌟':score>=60?'😊':'💪';
+  const xpGain=correctQ*10+(score===100?20:0);
+  return<div className="screen">
+    <div className="result-hero">
+      <div className="result-em">{em}</div>
+      <div className="result-score">{score}%</div>
+      <div className="result-label">{isBoss?'魔王挑戰':'單元練習'} 完成！</div>
+    </div>
+    <div className="result-stats">
+      <div className="stat-card"><div className="sv">{correctQ}</div><div className="sk">答對題數</div></div>
+      <div className="stat-card"><div className="sv">{totalQ-correctQ}</div><div className="sk">答錯題數</div></div>
+      <div className="stat-card"><div className="sv">+{xpGain}</div><div className="sk">獲得XP</div></div>
+      <div className="stat-card"><div className="sv">{save.xp+xpGain}</div><div className="sk">累計XP</div></div>
+    </div>
+    {score>=60&&isBoss&&<div style={{background:'#D1FAE5',borderRadius:14,padding:16,marginBottom:16,textAlign:'center',color:'#065F46',fontWeight:700}}>
+      🥉 通關成功！下一個里程碑已解鎖 🎊
+    </div>}
+    {score===100&&<div style={{background:'#EDE9FE',borderRadius:14,padding:16,marginBottom:16,textAlign:'center',color:'var(--primary-dark)',fontWeight:700}}>
+      💎 完美通關！+20 XP Bonus！
+    </div>}
+    <div className="result-btns">
+      <button className="btn-primary" onClick={onContinue}>繼續 →</button>
+      <button className="btn-secondary" onClick={onRetry}>重新挑戰 🔄</button>
+      <button className="btn-secondary" onClick={onHome}>回到地圖 🗺️</button>
+    </div>
+  </div>;
+}
+
+// ── Review Screen ──
+function ReviewScreen({save,onStartReview}){
+  const wq=save.wrongQ||[];
+  if(wq.length===0)return<div className="screen">
+    <div className="hdr"><span className="hdr-title">📝 複習模式</span></div>
+    <div className="review-empty">
+      <div style={{fontSize:64}}>✅</div>
+      <div style={{fontSize:18,fontWeight:700,marginTop:16}}>沒有錯題！</div>
+      <div style={{marginTop:8,color:'var(--muted)'}}>繼續答題，答錯的題目會出現在這裡</div>
+    </div>
+  </div>;
+  return<div className="screen">
+    <div className="hdr">
+      <span className="hdr-title">📝 複習模式</span>
+      <button className="btn-primary" style={{padding:'8px 16px',fontSize:14}}
+        onClick={onStartReview}>開始複習 ({wq.length})</button>
+    </div>
+    {wq.slice(0,20).map((w,i)=><div key={i} className="review-card">
+      <span className="review-tag" style={{background:w.mColor||'var(--primary)'}}>{w.mTitle}</span>
+      <div className="review-q">{w.q}</div>
+      <div className="review-opts">
+        {w.o.map((opt,j)=>{
+          let cls='';
+          if(j===w.a)cls='is-answer';
+          else if(j===w.ci)cls='was-wrong';
+          return<p key={j} className={cls}>
+            <span style={{fontWeight:700}}>{['A','B','C','D'][j]}.</span> {opt}
+          </p>;
+        })}
+      </div>
+      <div className="review-explain">💡 {w.e}</div>
+    </div>)}
+  </div>;
+}
+
+// ── Profile Screen ──
+function ProfileScreen({save}){
+  const lv=getLevel(save.xp);
+  const av=getAvatar(lv);
+  const xpInLevel=save.xp%100;
+  const acc=save.totalQ>0?Math.round(save.correctQ/save.totalQ*100):0;
+  return<div className="screen">
+    <div className="hdr"><span className="hdr-title">👤 個人檔案</span></div>
+    <div className="avatar-card">
+      <span className="avatar-em">{av.em}</span>
+      <div className="avatar-name">Hydi 小公主</div>
+      <div className="avatar-level">Lv.{lv} · {av.title}</div>
+      <div className="xp-bar-wrap">
+        <div className="xp-bar-fill" style={{width:`${xpInLevel}%`}}/>
+      </div>
+      <div className="xp-text">{xpInLevel}/100 XP → Lv.{lv+1}</div>
+    </div>
+    <div className="stats-row">
+      <div className="stats-card"><div className="sv">{save.totalQ}</div><div className="sk">作答題數</div></div>
+      <div className="stats-card"><div className="sv">{save.correctQ}</div><div className="sk">答對題數</div></div>
+      <div className="stats-card"><div className="sv">{acc}%</div><div className="sk">正確率</div></div>
+      <div className="stats-card"><div className="sv">{save.bossWins}</div><div className="sk">魔王通關</div></div>
+      <div className="stats-card"><div className="sv">{save.bossGold}</div><div className="sk">魔王金牌</div></div>
+      <div className="stats-card"><div className="sv">{save.streak}</div><div className="sk">連勝次數</div></div>
+    </div>
+    <div className="section-title">成就系統</div>
+    <div className="ach-grid">
+      {ACHV.map(a=>{
+        const unlocked=save.achievements.includes(a.id);
+        return<div key={a.id} className={'ach-item'+(unlocked?'':' locked')}>
+          <div className="aem">{a.em}</div>
+          <div className="anm">{a.name}</div>
+        </div>;
+      })}
+    </div>
+  </div>;
+}
+
+// ── Bottom Tabs ──
+function BottomTabs({tab,onChange}){
+  const tabs=[{id:'world',em:'🗺️',name:'地圖'},{id:'review',em:'📝',name:'複習'},{id:'profile',em:'👤',name:'檔案'}];
+  return<div className="bottom-tabs">
+    {tabs.map(t=><button key={t.id} className={'tab-btn'+(tab===t.id?' active':'')} onClick={()=>onChange(t.id)}>
+      <span className="tem">{t.em}</span>{t.name}
+    </button>)}
+  </div>;
+}
+
+// ═══════════════════════════════════════
+// Main App
+// ═══════════════════════════════════════
+function App(){
+  const[save,setSaveRaw]=useState(()=>loadSave());
+  const[tab,setTab]=useState('world');
+  const[scr,setScr]=useState('world'); // world|subjectmap|units|quiz|result
+  const[curSubj,setCurSubj]=useState(null);
+  const[curMS,setCurMS]=useState(null);
+  const[curUnit,setCurUnit]=useState(null);
+  const[subjectData,setSubjectData]=useState(null);
+  const[loading,setLoading]=useState(false);
+  const[quizQs,setQuizQs]=useState([]);
+  const[lastResult,setLastResult]=useState(null);
+  const[toast,setToast]=useState(null);
+  const[levelUpData,setLevelUpData]=useState(null);
+  const toastRef=useRef();
+
+  function setSave(fn){
+    setSaveRaw(prev=>{
+      const next=typeof fn==='function'?fn(prev):fn;
+      saveSave(next);return next;
+    });
+  }
+  function showToast(msg){
+    setToast(msg);
+    clearTimeout(toastRef.current);
+    toastRef.current=setTimeout(()=>setToast(null),2600);
+  }
+
+  // ── Navigate ──
+  const goWorld=()=>{setScr('world');setTab('world');};
+  const goSubjectMap=()=>setScr('subjectmap');
+  const goUnits=(ms)=>{setCurMS(ms);setScr('units');};
+
+  const handleSelectSubj=async(subj)=>{
+    setCurSubj(subj);setLoading(true);
+    try{
+      const data=await loadSubject(subj.id,subj.file);
+      setSubjectData(data);setScr('subjectmap');
+    }catch(e){showToast('❌ 題庫載入失敗，請檢查網路');console.error(e);}
+    setLoading(false);
+  };
+
+  const handleSelectUnit=(unitId,ms)=>{
+    let qs=[];
+    if(unitId==='boss'){qs=[...(ms.boss||[])];
+    }else{const u=ms.u.find(u=>u.id===unitId);qs=[...(u?.qs||[])];}
+    // Shuffle for boss
+    if(unitId==='boss')qs=qs.sort(()=>Math.random()-.5);
+    setQuizQs(qs);setCurUnit(unitId);setScr('quiz');
+  };
+
+  const handleQuizFinish=(result)=>{
+    const{score,wrongItems,unitId,mId,isBoss,totalQ,correctQ}=result;
+    const xpGain=correctQ*10+(score===100?20:0);
+    let newSave;
+    setSave(prev=>{
+      const mp={...prev.mp};
+      if(!mp[mId])mp[mId]={bossScore:undefined,u:{}};
+      if(unitId==='boss'){
+        if(mp[mId].bossScore===undefined||score>mp[mId].bossScore)mp[mId].bossScore=score;
+      }else{
+        if(!mp[mId].u)mp[mId].u={};
+        if(!mp[mId].u[unitId]||score>mp[mId].u[unitId].score)mp[mId].u[unitId]={score};
+      }
+      // WrongQ (max 60)
+      let wq=[...prev.wrongQ,...wrongItems].slice(-60);
+      const newXp=prev.xp+xpGain;
+      const newTotalQ=prev.totalQ+totalQ;
+      const newCorrectQ=prev.correctQ+correctQ;
+      const oldLv=getLevel(prev.xp);
+      const newLv=getLevel(newXp);
+      const newBossAttempts=prev.bossAttempts+(isBoss?1:0);
+      const newBossWins=prev.bossWins+(isBoss&&score>=60?1:0);
+      const newBossGold=prev.bossGold+(isBoss&&score===100?1:0);
+      const hadPerfect=prev.hadPerfect||score===100;
+      const newStreak=(score>=60)?prev.streak+1:0;
+      const updated={...prev,xp:newXp,totalQ:newTotalQ,correctQ:newCorrectQ,
+        mp,wrongQ:wq,bossAttempts:newBossAttempts,bossWins:newBossWins,
+        bossGold:newBossGold,hadPerfect,streak:newStreak};
+      // Achievements
+      const newOnes=checkNewAchievements(updated);
+      if(newOnes.length>0){
+        updated.achievements=[...updated.achievements,...newOnes];
+        const a=ACHV.find(a=>a.id===newOnes[0]);
+        if(a)showToast(`🏅 新成就解鎖：${a.em} ${a.name}`);
+      }
+      // Level up
+      if(newLv>oldLv){
+        const av=getAvatar(newLv);
+        setLevelUpData({avatar:av,level:newLv});
+      }
+      newSave=updated;
+      return updated;
+    });
+    setLastResult({...result,xpGain});
+    setScr('result');
+    if(score>=80)playSound('win');
+  };
+
+  const handleStartReview=()=>{
+    const wq=save.wrongQ;
+    if(!wq||wq.length===0)return;
+    const qs=wq.slice(-20).map(w=>({q:w.q,o:w.o,a:w.a,e:w.e}));
+    setQuizQs(qs);setCurUnit('review');
+    setLastResult(null);
+    setSave(prev=>({...prev,reviewDone:(prev.reviewDone||0)+1}));
+    setScr('quiz');
+  };
+
+  // ── Render ──
+  if(loading)return<div style={{flex:1,display:'flex',flexDirection:'column'}}>
+    <div className="loading"><div className="spinner"/><div>載入題庫中...</div></div>
+  </div>;
+
+  return<>
+    {/* Screens */}
+    {scr==='world'&&tab==='world'&&<WorldScreen save={save} onSelectSubj={handleSelectSubj}/>}
+    {scr==='world'&&tab==='review'&&<ReviewScreen save={save} onStartReview={handleStartReview}/>}
+    {scr==='world'&&tab==='profile'&&<ProfileScreen save={save}/>}
+
+    {scr==='subjectmap'&&curSubj&&subjectData&&
+      <SubjectMap subj={curSubj} subjectData={subjectData} save={save}
+        onSelectMS={goUnits} onBack={goWorld}/>}
+
+    {scr==='units'&&curMS&&
+      <UnitsScreen subj={curSubj} ms={curMS} save={save}
+        onSelectUnit={handleSelectUnit} onBack={goSubjectMap}/>}
+
+    {scr==='quiz'&&quizQs.length>0&&
+      <QuizScreen questions={quizQs} unitId={curUnit}
+        mTitle={curMS?.title||'複習'} mColor={curMS?.c||'var(--primary)'}
+        mId={curMS?.id} subjId={curSubj?.id}
+        save={save} onFinish={handleQuizFinish}/>}
+
+    {scr==='result'&&lastResult&&
+      <ResultScreen result={lastResult} save={save}
+        onContinue={goSubjectMap}
+        onRetry={()=>handleSelectUnit(curUnit,curMS)}
+        onHome={goWorld}/>}
+
+    {/* Bottom Tabs (hide during quiz) */}
+    {scr!=='quiz'&&<BottomTabs tab={scr==='world'?tab:scr} onChange={t=>{
+      if(t==='world'){goWorld();}else{setScr('world');setTab(t);}
+    }}/>}
+
+    {/* Modals */}
+    {levelUpData&&<LevelUpModal avatar={levelUpData.avatar} level={levelUpData.level}
+      onClose={()=>setLevelUpData(null)}/>}
+    {toast&&<Toast msg={toast}/>}
+
+    {/* PWA Install Prompt (basic) */}
+  </>;
+}
+
+// PWA Service Worker registration
+if('serviceWorker' in navigator){
+  window.addEventListener('load',()=>{
+    navigator.serviceWorker.register('sw.js').catch(()=>{});
+  });
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+</body>
+</html>
