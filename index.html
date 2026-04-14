@@ -187,7 +187,7 @@ button{font-family:inherit;cursor:pointer;border:none;outline:none}
 <div id="root"></div>
 <script type="text/babel">
 const{useState,useEffect,useCallback,useRef}=React;
-
+ 
 // ═══════════════════════════════════════
 // Constants
 // ═══════════════════════════════════════
@@ -229,7 +229,7 @@ const ACHV=[
 ];
 const DEF_SAVE={xp:0,totalQ:0,correctQ:0,mp:{},wrongQ:[],achievements:[],
   bossAttempts:0,bossWins:0,bossGold:0,hadPerfect:false,reviewDone:0,streak:0};
-
+ 
 // ═══════════════════════════════════════
 // Helpers
 // ═══════════════════════════════════════
@@ -295,12 +295,12 @@ function loadSubject(subjId,file){
     document.head.appendChild(s);
   });
 }
-
+ 
 // ═══════════════════════════════════════
 // Components
 // ═══════════════════════════════════════
 function Toast({msg}){return<div className="toast">{msg}</div>;}
-
+ 
 function LevelUpModal({avatar,level,onClose}){
   return<div className="modal-bg" onClick={onClose}>
     <div className="modal" onClick={e=>e.stopPropagation()}>
@@ -312,7 +312,7 @@ function LevelUpModal({avatar,level,onClose}){
     </div>
   </div>;
 }
-
+ 
 // ── World Map ──
 function WorldScreen({save,onSelectSubj}){
   const lv=getLevel(save.xp);
@@ -343,7 +343,7 @@ function WorldScreen({save,onSelectSubj}){
     </div>
   </div>;
 }
-
+ 
 // ── Subject Map ──
 function SubjectMap({subj,subjectData,save,onSelectMS,onBack}){
   const ms=subjectData?.ms||[];
@@ -377,7 +377,7 @@ function SubjectMap({subj,subjectData,save,onSelectMS,onBack}){
     </div>
   </div>;
 }
-
+ 
 // ── Units Screen ──
 function UnitsScreen({subj,ms,save,onSelectUnit,onBack}){
   const mp=save.mp[ms.id]||{bossScore:undefined,u:{}};
@@ -413,7 +413,7 @@ function UnitsScreen({subj,ms,save,onSelectUnit,onBack}){
     </div>
   </div>;
 }
-
+ 
 // ── Quiz Screen ──
 function QuizScreen({questions,unitId,mTitle,mColor,mId,subjId,save,onFinish}){
   const[qi,setQi]=useState(0);
@@ -447,7 +447,7 @@ function QuizScreen({questions,unitId,mTitle,mColor,mId,subjId,save,onFinish}){
         <div className="q-progress-fill" style={{width:`${((qi+1)/questions.length)*100}%`}}/>
       </div>
       <span className="q-count">{qi+1}/{questions.length}</span>
-      <span className="q-type" style={isBoss?{background:'#FEE2E2',color:var('--boss')}:{}}>{isBoss?'👹 魔王':'練習'}</span>
+      <span className="q-type" style={isBoss?{background:'#FEE2E2',color:'var(--boss)'}:{}}>{isBoss?'👹 魔王':'練習'}</span>
     </div>
     <div className="q-box"><p>{q.q}</p></div>
     <div className="q-opts">
@@ -471,9 +471,8 @@ function QuizScreen({questions,unitId,mTitle,mColor,mId,subjId,save,onFinish}){
     </button>}
   </div>;
 }
-
-const var_=n=>`var(${n})`;
-
+ 
+ 
 // ── Result Screen ──
 function ResultScreen({result,save,onContinue,onRetry,onHome}){
   const{score,totalQ,correctQ,isBoss}=result;
@@ -504,7 +503,7 @@ function ResultScreen({result,save,onContinue,onRetry,onHome}){
     </div>
   </div>;
 }
-
+ 
 // ── Review Screen ──
 function ReviewScreen({save,onStartReview}){
   const wq=save.wrongQ||[];
@@ -539,7 +538,7 @@ function ReviewScreen({save,onStartReview}){
     </div>)}
   </div>;
 }
-
+ 
 // ── Profile Screen ──
 function ProfileScreen({save}){
   const lv=getLevel(save.xp);
@@ -577,7 +576,7 @@ function ProfileScreen({save}){
     </div>
   </div>;
 }
-
+ 
 // ── Bottom Tabs ──
 function BottomTabs({tab,onChange}){
   const tabs=[{id:'world',em:'🗺️',name:'地圖'},{id:'review',em:'📝',name:'複習'},{id:'profile',em:'👤',name:'檔案'}];
@@ -587,7 +586,7 @@ function BottomTabs({tab,onChange}){
     </button>)}
   </div>;
 }
-
+ 
 // ═══════════════════════════════════════
 // Main App
 // ═══════════════════════════════════════
@@ -605,7 +604,7 @@ function App(){
   const[toast,setToast]=useState(null);
   const[levelUpData,setLevelUpData]=useState(null);
   const toastRef=useRef();
-
+ 
   function setSave(fn){
     setSaveRaw(prev=>{
       const next=typeof fn==='function'?fn(prev):fn;
@@ -617,12 +616,12 @@ function App(){
     clearTimeout(toastRef.current);
     toastRef.current=setTimeout(()=>setToast(null),2600);
   }
-
+ 
   // ── Navigate ──
   const goWorld=()=>{setScr('world');setTab('world');};
   const goSubjectMap=()=>setScr('subjectmap');
   const goUnits=(ms)=>{setCurMS(ms);setScr('units');};
-
+ 
   const handleSelectSubj=async(subj)=>{
     setCurSubj(subj);setLoading(true);
     try{
@@ -631,7 +630,7 @@ function App(){
     }catch(e){showToast('❌ 題庫載入失敗，請檢查網路');console.error(e);}
     setLoading(false);
   };
-
+ 
   const handleSelectUnit=(unitId,ms)=>{
     let qs=[];
     if(unitId==='boss'){qs=[...(ms.boss||[])];
@@ -640,7 +639,7 @@ function App(){
     if(unitId==='boss')qs=qs.sort(()=>Math.random()-.5);
     setQuizQs(qs);setCurUnit(unitId);setScr('quiz');
   };
-
+ 
   const handleQuizFinish=(result)=>{
     const{score,wrongItems,unitId,mId,isBoss,totalQ,correctQ}=result;
     const xpGain=correctQ*10+(score===100?20:0);
@@ -688,7 +687,7 @@ function App(){
     setScr('result');
     if(score>=80)playSound('win');
   };
-
+ 
   const handleStartReview=()=>{
     const wq=save.wrongQ;
     if(!wq||wq.length===0)return;
@@ -698,59 +697,59 @@ function App(){
     setSave(prev=>({...prev,reviewDone:(prev.reviewDone||0)+1}));
     setScr('quiz');
   };
-
+ 
   // ── Render ──
   if(loading)return<div style={{flex:1,display:'flex',flexDirection:'column'}}>
     <div className="loading"><div className="spinner"/><div>載入題庫中...</div></div>
   </div>;
-
+ 
   return<>
     {/* Screens */}
     {scr==='world'&&tab==='world'&&<WorldScreen save={save} onSelectSubj={handleSelectSubj}/>}
     {scr==='world'&&tab==='review'&&<ReviewScreen save={save} onStartReview={handleStartReview}/>}
     {scr==='world'&&tab==='profile'&&<ProfileScreen save={save}/>}
-
+ 
     {scr==='subjectmap'&&curSubj&&subjectData&&
       <SubjectMap subj={curSubj} subjectData={subjectData} save={save}
         onSelectMS={goUnits} onBack={goWorld}/>}
-
+ 
     {scr==='units'&&curMS&&
       <UnitsScreen subj={curSubj} ms={curMS} save={save}
         onSelectUnit={handleSelectUnit} onBack={goSubjectMap}/>}
-
+ 
     {scr==='quiz'&&quizQs.length>0&&
       <QuizScreen questions={quizQs} unitId={curUnit}
         mTitle={curMS?.title||'複習'} mColor={curMS?.c||'var(--primary)'}
         mId={curMS?.id} subjId={curSubj?.id}
         save={save} onFinish={handleQuizFinish}/>}
-
+ 
     {scr==='result'&&lastResult&&
       <ResultScreen result={lastResult} save={save}
         onContinue={goSubjectMap}
         onRetry={()=>handleSelectUnit(curUnit,curMS)}
         onHome={goWorld}/>}
-
+ 
     {/* Bottom Tabs (hide during quiz) */}
     {scr!=='quiz'&&<BottomTabs tab={scr==='world'?tab:scr} onChange={t=>{
       if(t==='world'){goWorld();}else{setScr('world');setTab(t);}
     }}/>}
-
+ 
     {/* Modals */}
     {levelUpData&&<LevelUpModal avatar={levelUpData.avatar} level={levelUpData.level}
       onClose={()=>setLevelUpData(null)}/>}
     {toast&&<Toast msg={toast}/>}
-
+ 
     {/* PWA Install Prompt (basic) */}
   </>;
 }
-
+ 
 // PWA Service Worker registration
 if('serviceWorker' in navigator){
   window.addEventListener('load',()=>{
     navigator.serviceWorker.register('sw.js').catch(()=>{});
   });
 }
-
+ 
 ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
 </script>
 </body>
