@@ -243,8 +243,8 @@ function getAvatar(lv){
   for(let i=AVATARS.length-1;i>=0;i--)if(lv>=AVATARS[i].min)return AVATARS[i];
   return AVATARS[0];
 }
-function getMSStatus(mp,msId){
-  const ms=mp[msId];
+function getMSStatus(mp,subjId,msId){
+  const ms=mp[subjId+'_'+msId];
   if(!ms||ms.bossScore===undefined)return{medal:'',color:'#9CA3AF',pct:0};
   const p=ms.bossScore;
   if(p>=100)return{medal:'🥇',color:'#F59E0B',pct:100};
@@ -252,9 +252,9 @@ function getMSStatus(mp,msId){
   if(p>=60)return{medal:'🥉',color:'#CD7F32',pct:p};
   return{medal:'',color:'#D1D5DB',pct:p};
 }
-function isUnlocked(mp,msId){
+function isUnlocked(mp,subjId,msId){
   if(msId===1)return true;
-  const prev=mp[msId-1];
+  const prev=mp[subjId+'_'+(msId-1)];
   return prev&&prev.bossScore>=60;
 }
 function checkNewAchievements(save){
@@ -431,9 +431,9 @@ function SubjectMap({subj,subjectData,save,onSelectMS,onBack}){
     </div>
     <div className="ms-path">
       {ms.map((m,i)=>{
-        const unlocked=isUnlocked(save.mp,m.id);
-        const{medal,color}=getMSStatus(save.mp,m.id);
-        const mp=save.mp[m.id]||{};
+        const unlocked=isUnlocked(save.mp,subj.id,m.id);
+        const{medal,color}=getMSStatus(save.mp,subj.id,m.id);
+        const mp=save.mp[subj.id+'_'+m.id]||{};
         return<div key={m.id} className="ms-node">
           <div className="ms-circle" style={{background:unlocked?m.c:'#F3F4F6',
             borderColor:unlocked?m.c:'#E5E7EB'}}
@@ -453,7 +453,7 @@ function SubjectMap({subj,subjectData,save,onSelectMS,onBack}){
 
 // ── Units Screen ──
 function UnitsScreen({subj,ms,save,onSelectUnit,onBack}){
-  const mp=save.mp[ms.id]||{bossScore:undefined,u:{}};
+  const mp=save.mp[subj.id+'_'+ms.id]||{bossScore:undefined,u:{}};
   return<div className="screen">
     <button className="back-btn" onClick={onBack}>← {subj.name}</button>
     <div style={{background:ms.c,borderRadius:20,padding:20,color:'#fff',marginBottom:20}}>
@@ -714,17 +714,18 @@ function App(){
   };
 
   const handleQuizFinish=(result)=>{
-    const{score,wrongItems,unitId,mId,isBoss,totalQ,correctQ}=result;
+    const{score,wrongItems,unitId,mId,subjId,isBoss,totalQ,correctQ}=result;
     const xpGain=correctQ*10+(score===100?20:0);
     let newSave;
     setSave(prev=>{
       const mp={...prev.mp};
-      if(!mp[mId])mp[mId]={bossScore:undefined,u:{}};
+      const mpKey=subjId+'_'+mId;
+      if(!mp[mpKey])mp[mpKey]={bossScore:undefined,u:{}};
       if(unitId==='boss'){
-        if(mp[mId].bossScore===undefined||score>mp[mId].bossScore)mp[mId].bossScore=score;
+        if(mp[mpKey].bossScore===undefined||score>mp[mpKey].bossScore)mp[mpKey].bossScore=score;
       }else{
-        if(!mp[mId].u)mp[mId].u={};
-        if(!mp[mId].u[unitId]||score>mp[mId].u[unitId].score)mp[mId].u[unitId]={score};
+        if(!mp[mpKey].u)mp[mpKey].u={};
+        if(!mp[mpKey].u[unitId]||score>mp[mpKey].u[unitId].score)mp[mpKey].u[unitId]={score};
       }
       // WrongQ (max 60)
       let wq=[...prev.wrongQ,...wrongItems].slice(-60);
