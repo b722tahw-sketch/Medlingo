@@ -192,6 +192,7 @@ const{useState,useEffect,useCallback,useRef}=React;
 // Constants
 // ═══════════════════════════════════════
 const SAVE_KEY='ml_v45_final';
+const DAILY_XP_GOAL=200; // 每日任務目標 XP（約完成兩個里程碑）
 const SUBJ=[
   {id:'p',name:'藥理學',em:'💊',c:'#7950F2',file:'pharmacology',done:true},
   {id:'ph',name:'生理學',em:'🫀',c:'#339AF0',file:'physiology',done:true},
@@ -229,7 +230,10 @@ const ACHV=[
   {id:'review',em:'📚',name:'複習達人',cond:s=>s.reviewDone>=1},
 ];
 const DEF_SAVE={xp:0,totalQ:0,correctQ:0,mp:{},wrongQ:[],achievements:[],
-  bossAttempts:0,bossWins:0,bossGold:0,hadPerfect:false,reviewDone:0,streak:0};
+  bossAttempts:0,bossWins:0,bossGold:0,hadPerfect:false,reviewDone:0,streak:0,
+  // 每日任務系統（新增，舊用戶自動補預設值）
+  streakDays:0,lastDate:null,lastQuestDate:null,
+  dailyXP:0,dailyQuestDone:false,makeupRequired:false};
 
 // ═══════════════════════════════════════
 // Helpers
@@ -257,6 +261,9 @@ function isUnlocked(mp,subjId,msId){
   if(msId===1)return true;
   const prev=mp[subjId+'_'+(msId-1)];
   return prev&&prev.bossScore>=60;
+}
+function getToday(){
+  return new Date().toISOString().slice(0,10); // YYYY-MM-DD
 }
 function checkNewAchievements(save){
   const newOnes=[];
@@ -332,6 +339,7 @@ function playSound(type) {
       if (type === 'correct') navigator.vibrate([40]);
       else if (type === 'wrong') navigator.vibrate([80, 40, 80]);
       else if (type === 'win') navigator.vibrate([40, 30, 40, 30, 80]);
+      else if (type === 'daily') navigator.vibrate([50,30,50,30,50,30,150]);
     }
   } catch(e) {}
 
@@ -366,6 +374,13 @@ function playSound(type) {
       play(523, 0,    0.12, 0.3);
       play(659, 0.12, 0.12, 0.3);
       play(784, 0.24, 0.3,  0.35);
+    } else if (type === 'daily') {
+      // 每日任務完成：歡慶五音階上升
+      play(523, 0,    0.12, 0.35);
+      play(659, 0.13, 0.12, 0.35);
+      play(784, 0.26, 0.12, 0.35);
+      play(1047,0.39, 0.15, 0.35);
+      play(1319,0.52, 0.4,  0.4);
     }
   } catch(e) {}
 }
@@ -387,20 +402,74 @@ function LevelUpModal({avatar,level,onClose}){
   </div>;
 }
 
+// ── Daily Quest Modal ──
+function DailyQuestModal({streakDays,isMakeup,onClose}){
+  return<div className="modal-bg" onClick={onClose}>
+    <div className="modal" onClick={e=>e.stopPropagation()} style={{textAlign:'center'}}>
+      <div style={{fontSize:72}}>{isMakeup?'💪':'🔥'}</div>
+      <h2 style={{marginTop:8}}>{isMakeup?'補課完成！':'每日任務完成！'}</h2>
+      {isMakeup&&<p style={{color:'#F03E3E',fontWeight:700,marginTop:4}}>連勝成功保住！</p>}
+      <div style={{
+        background:'linear-gradient(135deg,#FF922B,#F76707)',
+        borderRadius:16,padding:'16px 24px',margin:'16px 0',color:'#fff'
+      }}>
+        <div style={{fontSize:13,opacity:.9}}>目前連勝</div>
+        <div style={{fontSize:56,fontWeight:900,lineHeight:1.1}}>{streakDays}</div>
+        <div style={{fontSize:15,fontWeight:700}}>天 🔥</div>
+      </div>
+      <p style={{color:'var(--muted)',fontSize:13,marginBottom:20}}>
+        {streakDays===1?'連勝開始！明天繼續加油！'
+          :streakDays<7?'持續下去，你做得到！'
+          :streakDays<30?`已連續 ${streakDays} 天，太厲害了！`
+          :`${streakDays} 天！你是真正的醫學之星！⭐`}
+      </p>
+      <button className="btn-primary" style={{width:'100%'}} onClick={onClose}>繼續加油！💪</button>
+    </div>
+  </div>;
+}
+
 // ── World Map ──
 function WorldScreen({save,onSelectSubj}){
   const lv=getLevel(save.xp);
   const av=getAvatar(lv);
+  const dailyGoal=save.makeupRequired?DAILY_XP_GOAL*2:DAILY_XP_GOAL;
+  const dailyXP=Math.min(save.dailyXP||0,dailyGoal);
+  const dailyPct=Math.round(dailyXP/dailyGoal*100);
+  const questDone=save.dailyQuestDone;
+  const streakDays=save.streakDays||0;
   return<div className="screen">
     <div className="hdr">
       <span className="hdr-title">🏥 MedLingo</span>
       <span className="xp-badge">⚡ {save.xp} XP</span>
     </div>
     <div style={{background:'linear-gradient(135deg,var(--primary),var(--primary-dark))',
-      borderRadius:20,padding:20,color:'#fff',marginBottom:20,textAlign:'center'}}>
+      borderRadius:20,padding:20,color:'#fff',marginBottom:12,textAlign:'center'}}>
       <span style={{fontSize:48}}>{av.em}</span>
       <div style={{fontWeight:800,fontSize:17,marginTop:6}}>Hydi — Lv.{lv}</div>
       <div style={{opacity:.85,fontSize:13}}>{av.title}</div>
+    </div>
+    {/* 每日任務卡片 */}
+    <div style={{background:'#fff',borderRadius:16,padding:'12px 16px',marginBottom:16,
+      border:`2px solid ${questDone?'#51CF66':save.makeupRequired?'#F03E3E':'#E9ECEF'}`,
+      boxShadow:'0 2px 8px rgba(0,0,0,.06)'}}>
+      <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:questDone?0:8}}>
+        <span style={{fontWeight:700,fontSize:14}}>
+          {questDone?'✅ 今日任務完成！':save.makeupRequired?'⚠️ 補課任務（雙倍）':'📅 每日任務'}
+        </span>
+        <span style={{fontSize:15,color:'#F76707',fontWeight:800}}>
+          🔥 {streakDays} 天
+        </span>
+      </div>
+      {!questDone&&<>
+        <div style={{background:'#F1F3F5',borderRadius:99,height:8,overflow:'hidden'}}>
+          <div style={{background:'linear-gradient(90deg,#F76707,#FF922B)',
+            width:`${dailyPct}%`,height:'100%',borderRadius:99,transition:'width .4s'}}/>
+        </div>
+        <div style={{fontSize:12,color:'var(--muted)',marginTop:4,display:'flex',justifyContent:'space-between'}}>
+          <span>{save.makeupRequired?'補課＋今日任務':'今日進度'}</span>
+          <span>{dailyXP} / {dailyGoal} XP</span>
+        </div>
+      </>}
     </div>
     <div className="section-title">選擇科目</div>
     <div className="subjects-grid">
@@ -637,6 +706,10 @@ function ProfileScreen({save}){
       <div className="stats-card"><div className="sv">{save.bossWins}</div><div className="sk">魔王通關</div></div>
       <div className="stats-card"><div className="sv">{save.bossGold}</div><div className="sk">魔王金牌</div></div>
       <div className="stats-card"><div className="sv">{save.streak}</div><div className="sk">連勝次數</div></div>
+      <div className="stats-card" style={{background:'linear-gradient(135deg,#FFF3E0,#FFE0B2)',border:'1.5px solid #FF922B'}}>
+        <div className="sv" style={{color:'#F76707'}}>🔥{save.streakDays||0}</div>
+        <div className="sk">每日連勝天</div>
+      </div>
     </div>
     <div className="section-title">成就系統</div>
     <div className="ach-grid">
@@ -677,6 +750,7 @@ function App(){
   const[lastResult,setLastResult]=useState(null);
   const[toast,setToast]=useState(null);
   const[levelUpData,setLevelUpData]=useState(null);
+  const[dailyModal,setDailyModal]=useState(null); // {streakDays, isMakeup}
   const toastRef=useRef();
 
   function setSave(fn){
@@ -690,6 +764,35 @@ function App(){
     clearTimeout(toastRef.current);
     toastRef.current=setTimeout(()=>setToast(null),2600);
   }
+
+  // ── 每日任務：每次開啟 App 時檢查日期 ──
+  useEffect(()=>{
+    const today=getToday();
+    setSave(prev=>{
+      const lastDate=prev.lastDate;
+      // 相同日期，不做任何重置
+      if(lastDate===today) return prev;
+      // 計算距上次完成任務的天數
+      const diffQuest=prev.lastQuestDate
+        ?Math.round((new Date(today)-new Date(prev.lastQuestDate))/(864e5))
+        :999;
+      let streakDays=prev.streakDays||0;
+      let makeupRequired=prev.makeupRequired||false;
+      if(diffQuest===1){
+        // 昨天完成任務，今天新的一天，正常重置
+        makeupRequired=false;
+      }else if(diffQuest===2){
+        // 跳過一天（昨天沒完成）→ 需要補課
+        makeupRequired=true;
+      }else if(diffQuest>=3){
+        // 連續兩天以上未完成任務 → 失去連勝
+        streakDays=0;
+        makeupRequired=false;
+      }
+      // 新用戶（從未完成任務），維持預設
+      return{...prev,lastDate:today,dailyXP:0,dailyQuestDone:false,streakDays,makeupRequired};
+    });
+  },[]);// eslint-disable-line
 
   // ── Navigate ──
   const goWorld=()=>{setScr('world');setTab('world');};
@@ -740,9 +843,20 @@ function App(){
       const newBossGold=prev.bossGold+(isBoss&&score===100?1:0);
       const hadPerfect=prev.hadPerfect||score===100;
       const newStreak=(score>=60)?prev.streak+1:0;
+      // ── 每日任務進度 ──
+      const today=getToday();
+      const effectiveGoal=prev.makeupRequired?DAILY_XP_GOAL*2:DAILY_XP_GOAL;
+      const newDailyXP=(prev.dailyXP||0)+xpGain;
+      const justDone=!prev.dailyQuestDone&&newDailyXP>=effectiveGoal;
+      const newStreakDays=justDone?(prev.streakDays||0)+1:(prev.streakDays||0);
       const updated={...prev,xp:newXp,totalQ:newTotalQ,correctQ:newCorrectQ,
         mp,wrongQ:wq,bossAttempts:newBossAttempts,bossWins:newBossWins,
-        bossGold:newBossGold,hadPerfect,streak:newStreak};
+        bossGold:newBossGold,hadPerfect,streak:newStreak,
+        dailyXP:newDailyXP,
+        dailyQuestDone:prev.dailyQuestDone||justDone,
+        streakDays:newStreakDays,
+        lastQuestDate:justDone?today:(prev.lastQuestDate||null),
+        makeupRequired:justDone?false:prev.makeupRequired};
       // Achievements
       const newOnes=checkNewAchievements(updated);
       if(newOnes.length>0){
@@ -754,6 +868,14 @@ function App(){
       if(newLv>oldLv){
         const av=getAvatar(newLv);
         setLevelUpData({avatar:av,level:newLv});
+      }
+      // 每日任務完成
+      if(justDone){
+        const wasMakeup=prev.makeupRequired;
+        setTimeout(()=>{
+          playSound('daily');
+          setDailyModal({streakDays:newStreakDays,isMakeup:wasMakeup});
+        },800);
       }
       newSave=updated;
       return updated;
@@ -812,6 +934,8 @@ function App(){
     {/* Modals */}
     {levelUpData&&<LevelUpModal avatar={levelUpData.avatar} level={levelUpData.level}
       onClose={()=>setLevelUpData(null)}/>}
+    {dailyModal&&<DailyQuestModal streakDays={dailyModal.streakDays}
+      isMakeup={dailyModal.isMakeup} onClose={()=>setDailyModal(null)}/>}
     {toast&&<Toast msg={toast}/>}
 
     {/* PWA Install Prompt (basic) */}
