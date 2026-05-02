@@ -491,6 +491,7 @@ function WorldScreen({save,onSelectSubj}){
 // ── Subject Map ──
 function SubjectMap({subj,subjectData,save,onSelectMS,onBack}){
   const ms=subjectData?.ms||[];
+  const exam=subjectData?.exam||[];
   return<div className="screen">
     <button className="back-btn" onClick={onBack}>← 世界地圖</button>
     <div style={{display:'flex',alignItems:'center',gap:10,marginBottom:20}}>
@@ -519,6 +520,34 @@ function SubjectMap({subj,subjectData,save,onSelectMS,onBack}){
         </div>;
       })}
     </div>
+    {exam.length>0&&<>
+      <div style={{margin:'28px 0 16px',borderRadius:20,padding:'18px 20px',
+        background:'linear-gradient(135deg,#F59E0B 0%,#D97706 100%)',
+        color:'#fff',textAlign:'center',boxShadow:'0 4px 16px rgba(245,158,11,0.35)'}}>
+        <div style={{fontSize:32}}>🎯</div>
+        <div style={{fontWeight:800,fontSize:19,marginTop:4}}>國考大猜題區</div>
+        <div style={{fontSize:13,opacity:.9,marginTop:4}}>10關 × 4單元 × 5題，全科隨機混合出題</div>
+      </div>
+      <div className="ms-path">
+        {exam.map((m)=>{
+          const mp=save.mp[subj.id+'_'+m.id]||{};
+          const scores=m.u.map(u=>mp.u?.[u.id]?.score).filter(s=>s!==undefined);
+          const avg=scores.length>0?Math.round(scores.reduce((a,b)=>a+b,0)/scores.length):undefined;
+          const medal=avg>=100?'🥇':avg>=80?'🥈':avg>=60?'🥉':'';
+          return<div key={m.id} className="ms-node">
+            <div className="ms-circle" style={{background:m.c,borderColor:m.c,cursor:'pointer'}}
+              onClick={()=>onSelectMS({...m,isExam:true})}>
+              {m.em}
+            </div>
+            <div className="ms-info">
+              <h3>{m.title}</h3>
+              <p>猜題挑戰 {avg!==undefined?`· 平均 ${avg}%`:''}</p>
+            </div>
+            <span className="ms-medal">{medal}</span>
+          </div>;
+        })}
+      </div>
+    </>}
   </div>;
 }
 
@@ -530,7 +559,7 @@ function UnitsScreen({subj,ms,save,onSelectUnit,onBack}){
     <div style={{background:ms.c,borderRadius:20,padding:20,color:'#fff',marginBottom:20}}>
       <span style={{fontSize:40}}>{ms.em}</span>
       <div style={{fontWeight:800,fontSize:18,marginTop:8}}>{ms.title}</div>
-      <div style={{opacity:.85,fontSize:13}}>里程碑 {ms.id}</div>
+      <div style={{opacity:.85,fontSize:13}}>{ms.isExam?'🎯 國考大猜題':`里程碑 ${ms.id}`}</div>
     </div>
     <div className="section-title">練習單元</div>
     <div className="unit-list">
@@ -545,15 +574,17 @@ function UnitsScreen({subj,ms,save,onSelectUnit,onBack}){
           <span className="unit-score">{sc!==undefined?sc+'%':'未挑戰'}</span>
         </div>;
       })}
-      <div className="section-title" style={{marginTop:8}}>魔王關卡</div>
-      <div className="unit-btn boss-btn" onClick={()=>onSelectUnit('boss',ms)}>
-        <span className="unit-em">👹</span>
-        <div className="unit-txt">
-          <h4>魔王關卡</h4>
-          <p>{ms.boss?.length||0} 道臨床情境題</p>
+      {!ms.isExam&&<>
+        <div className="section-title" style={{marginTop:8}}>魔王關卡</div>
+        <div className="unit-btn boss-btn" onClick={()=>onSelectUnit('boss',ms)}>
+          <span className="unit-em">👹</span>
+          <div className="unit-txt">
+            <h4>魔王關卡</h4>
+            <p>{ms.boss?.length||0} 道臨床情境題</p>
+          </div>
+          <span className="unit-score">{mp.bossScore!==undefined?mp.bossScore+'%':'未挑戰'}</span>
         </div>
-        <span className="unit-score">{mp.bossScore!==undefined?mp.bossScore+'%':'未挑戰'}</span>
-      </div>
+      </>}
     </div>
   </div>;
 }
