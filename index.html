@@ -565,13 +565,14 @@ function UnitsScreen({subj,ms,save,onSelectUnit,onBack}){
     <div className="unit-list">
       {ms.u.map(u=>{
         const sc=mp.u?.[u.id]?.score;
-        return<div key={u.id} className="unit-btn" onClick={()=>onSelectUnit(u.id,ms)}>
+        const empty=u.qs.length===0;
+        return<div key={u.id} className="unit-btn" style={empty?{opacity:.45,pointerEvents:'none'}:{}} onClick={()=>!empty&&onSelectUnit(u.id,ms)}>
           <span className="unit-em">{u.em}</span>
           <div className="unit-txt">
             <h4>{u.t}</h4>
-            <p>{u.qs.length} 題練習</p>
+            <p>{empty?'題目即將更新':u.qs.length+' 題練習'}</p>
           </div>
-          <span className="unit-score">{sc!==undefined?sc+'%':'未挑戰'}</span>
+          <span className="unit-score">{empty?'—':sc!==undefined?sc+'%':'未挑戰'}</span>
         </div>;
       })}
       {!ms.isExam&&<>
