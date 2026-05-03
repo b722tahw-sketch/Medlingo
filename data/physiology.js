@@ -917,6 +917,20 @@ const exam=[
 ];/* ===== END EXAM ===== */
 
 // Export for MedLingo game engine
-if (typeof window !== 'undefined') window.ML_PH = { id: 'ph', ms: MS, exam };
-if (typeof module !== 'undefined') module.exports = { id: 'ph', ms: MS, exam };
-console.log('[MedLingo] 生理學題庫載入成功！里程碑數：'+MS.length+'，國考猜題波數：'+exam.length);
+/* ===== 國考預測題型區 ===== */
+const predict=[
+{id:"p1",title:"國考預測題型 第一波",em:"🔮",c:"#6366F1",u:u4([],[],[],[])},
+{id:"p2",title:"國考預測題型 第二波",em:"🌙",c:"#8B5CF6",u:u4([],[],[],[])},
+{id:"p3",title:"國考預測題型 第三波",em:"⭐",c:"#EC4899",u:u4([],[],[],[])},
+{id:"p4",title:"國考預測題型 第四波",em:"🔭",c:"#06B6D4",u:u4([],[],[],[])},
+{id:"p5",title:"國考預測題型 第五波",em:"💫",c:"#10B981",u:u4([],[],[],[])},
+{id:"p6",title:"國考預測題型 第六波",em:"🌠",c:"#F97316",u:u4([],[],[],[])},
+{id:"p7",title:"國考預測題型 第七波",em:"🪐",c:"#EF4444",u:u4([],[],[],[])},
+{id:"p8",title:"國考預測題型 第八波",em:"🌌",c:"#3B82F6",u:u4([],[],[],[])},
+{id:"p9",title:"國考預測題型 第九波",em:"✨",c:"#84CC16",u:u4([],[],[],[])},
+{id:"p10",title:"國考預測題型 第十波",em:"👁️",c:"#F59E0B",u:u4([],[],[],[])},
+];/* ===== END PREDICT ===== */
+
+if (typeof window !== 'undefined') window.ML_PH = { id: 'ph', ms: MS, exam, predict };
+if (typeof module !== 'undefined') module.exports = { id: 'ph', ms: MS, exam, predict };
+console.log('[MedLingo] 生理學題庫載入成功！里程碑數：'+MS.length+'，國考猜題波數：'+exam.length+'，預測題型波數：'+predict.length);
