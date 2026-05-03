@@ -901,6 +901,22 @@ const MS = [
 
 ]; // end of MS array
 
+/* ===== 國考大猜題區 ===== */
+const u4=(a,b,c,d)=>[{id:'a',t:'猜題單元一',em:'📝',qs:a},{id:'b',t:'猜題單元二',em:'📝',qs:b},{id:'c',t:'猜題單元三',em:'📝',qs:c},{id:'d',t:'猜題單元四',em:'📝',qs:d}];
+const exam=[
+{id:'e1',title:'國考大猜題 第一波',em:'🎯',c:'#F59E0B',u:u4([],[],[],[])},
+{id:'e2',title:'國考大猜題 第二波',em:'🔥',c:'#EF4444',u:u4([],[],[],[])},
+{id:'e3',title:'國考大猜題 第三波',em:'⚡',c:'#8B5CF6',u:u4([],[],[],[])},
+{id:'e4',title:'國考大猜題 第四波',em:'💎',c:'#06B6D4',u:u4([],[],[],[])},
+{id:'e5',title:'國考大猜題 第五波',em:'🌟',c:'#10B981',u:u4([],[],[],[])},
+{id:'e6',title:'國考大猜題 第六波',em:'🚀',c:'#F97316',u:u4([],[],[],[])},
+{id:'e7',title:'國考大猜題 第七波',em:'🌈',c:'#EC4899',u:u4([],[],[],[])},
+{id:'e8',title:'國考大猜題 第八波',em:'🏆',c:'#3B82F6',u:u4([],[],[],[])},
+{id:'e9',title:'國考大猜題 第九波',em:'🧠',c:'#84CC16',u:u4([],[],[],[])},
+{id:'e10',title:'國考大猜題 第十波',em:'👑',c:'#6366F1',u:u4([],[],[],[])},
+];/* ===== END EXAM ===== */
+
 // Export for MedLingo game engine
-if (typeof window !== 'undefined') window.ML_PH = { id: 'ph', ms: MS };
-if (typeof module !== 'undefined') module.exports = { id: 'ph', ms: MS };
+if (typeof window !== 'undefined') window.ML_PH = { id: 'ph', ms: MS, exam };
+if (typeof module !== 'undefined') module.exports = { id: 'ph', ms: MS, exam };
+console.log('[MedLingo] 生理學題庫載入成功！里程碑數：'+MS.length+'，國考猜題波數：'+exam.length);
