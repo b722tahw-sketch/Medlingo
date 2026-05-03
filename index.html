@@ -340,7 +340,7 @@ function playSound(type) {
       if (type === 'correct') navigator.vibrate([40]);
       else if (type === 'wrong') navigator.vibrate([80, 40, 80]);
       else if (type === 'win') navigator.vibrate([40, 30, 40, 30, 80]);
-      else if (type === 'daily') navigator.vibrate([50,30,50,30,50,30,150]);
+      else if (type === 'daily') navigator.vibrate([50,30,50,30,150]);
     }
   } catch(e) {}
 
@@ -901,6 +901,7 @@ function App(){
       if(newLv>oldLv){
         const av=getAvatar(newLv);
         setLevelUpData({avatar:av,level:newLv});
+        try{if(navigator.vibrate)navigator.vibrate([40,30,40,30,80]);}catch(e){}
       }
       // 每日任務完成
       if(justDone){
@@ -916,6 +917,7 @@ function App(){
     setLastResult({...result,xpGain});
     setScr('result');
     if(score>=80)playSound('win');
+    else if(!isBoss){try{if(navigator.vibrate)navigator.vibrate([40]);}catch(e){}}
   };
 
   const handleStartReview=()=>{
