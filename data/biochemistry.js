@@ -994,16 +994,126 @@ Q('維生素 B12 缺乏導致巨紅血球型貧血，其生化基礎與哪種分
 
 /* ===== 國考預測題型區 ===== */
 const predict=[
-{id:'p1',title:'國考預測題型 第一波',em:'🔮',c:'#6366F1',u:u4([],[],[],[])},
-{id:'p2',title:'國考預測題型 第二波',em:'🌙',c:'#8B5CF6',u:u4([],[],[],[])},
-{id:'p3',title:'國考預測題型 第三波',em:'⭐',c:'#EC4899',u:u4([],[],[],[])},
-{id:'p4',title:'國考預測題型 第四波',em:'🔭',c:'#06B6D4',u:u4([],[],[],[])},
-{id:'p5',title:'國考預測題型 第五波',em:'💫',c:'#10B981',u:u4([],[],[],[])},
-{id:'p6',title:'國考預測題型 第六波',em:'🌠',c:'#F97316',u:u4([],[],[],[])},
-{id:'p7',title:'國考預測題型 第七波',em:'🪐',c:'#EF4444',u:u4([],[],[],[])},
-{id:'p8',title:'國考預測題型 第八波',em:'🌌',c:'#3B82F6',u:u4([],[],[],[])},
-{id:'p9',title:'國考預測題型 第九波',em:'✨',c:'#84CC16',u:u4([],[],[],[])},
-{id:'p10',title:'國考預測題型 第十波',em:'👁️',c:'#F59E0B',u:u4([],[],[],[])},
+{id:'p1',title:'國考預測題型 第一波',em:'🔮',c:'#6366F1',u:u4(
+[Q('電子傳遞鏈中，關於複合體與電子載體的敘述，何者正確？',['輔酶 Q 是含 isoprenoid 的蛋白質電子載體','FMN 是 NADH dehydrogenase 的輔酶，負責接受電子','Cytochrome b 負責將二價鐵氧化為三價鐵','Cytochrome c 緊密結合於粒線體內膜，不參與細胞凋亡'],1,'FMN 確為 NADH dehydrogenase（Complex I）輔酶。輔酶 Q 為非蛋白質；Cyto b 將 Fe³⁺ 還原為 Fe²⁺；Cyto c 可解離內膜並參與細胞凋亡。'),
+Q('關於 Cytochrome a+a3 的特性，下列何者錯誤？',['又稱為 Cytochrome oxidase','含有鍵結的銅原子','氰化物會抑制其活性導致 ATP 合成停止','血基質結構中不含游離配位體'],3,'Cyto a+a3 的血基質含有游離配位體，使其能直接與分子氧（O₂）作用；(A)(B)(C) 均正確。'),
+Q('在鐵氰化物（Ferricyanide）實驗環境下，NADH 的 P/O ratio 為何？',['維持為 3','降低至 1','增加至 4','降為 0，完全停止'],1,'正常生理下 NADH 的 P/O ratio 為 3；鐵氰化物存在時 P/O ratio 降至 1。')],
+[Q('下列何種物質透過關閉質子通道，直接阻止 H⁺ 再進入粒線體基質？',['2,4-dinitrophenol（DNP）','Oligomycin','Atractyloside','Carbon monoxide'],1,'Oligomycin 關閉質子通道，阻止質子回流。DNP 為解偶聯劑；Atractyloside 抑制 ADP/ATP 載體；CO 抑制 Complex IV。'),
+Q('關於 ATP 結構與生物能的敘述，下列何者錯誤？',['水解高能磷酸根的自由能約為 7300 卡/莫耳','分子結構包含 5 個氮原子與 13 個氧原子','是 Histidine 生合成的前驅物之一','胞質中的 NADH 可直接穿過粒線體內膜'],3,'細胞質 NADH 無法直接穿過粒線體內膜，必須透過 Glycerophosphate shuttle 或 Malate-aspartate shuttle 傳遞當量。'),
+Q('cAMP 主要是由 G protein 的哪個成分活化 Adenylate cyclase 而產生的？',['G protein 的 βγ 次單位','G protein 的 α 次單位','Protein kinase A','Phosphodiesterase'],1,'G protein 的 α 次單位活化 Adenylate cyclase，使 ATP 轉變為 cAMP；Phosphodiesterase 則將 cAMP 水解為 5\'-AMP。')],
+[Q('咖啡因使細胞內 cAMP 濃度上升的分子機制為何？',['模擬配位子結合至受體','抑制 Phosphodiesterase 活性','促進 ATP 轉化為 cAMP','活化 Protein phosphatase'],1,'Caffeine 與 Theophylline 均抑制 Phosphodiesterase，使 cAMP 不被水解，濃度維持高值。'),
+Q('鈣磷脂肌醇系統中，IP3 的直接生理作用為何？',['活化內質網上的鈣離子幫浦','誘導內質網釋放 Ca²⁺','直接結合 Troponin C','作為 Protein kinase C 的輔酶'],1,'IP3 誘導內質網釋放 Ca²⁺；活化 Protein kinase C 的主要是 DAG（Diacylglycerol）。')],
+[Q('一氧化氮（NO）在體內催化合成的路徑中，不需要下列哪一種物質？',['L-Arginine','NADPH','O₂','L-Lysine'],3,'NO 由一氧化氮合成酶催化 L-Arginine、NADPH 與 O₂ 作用產生；L-Lysine 不參與此路徑。'),
+Q('在正常動物血液中，下列哪一種胺基酸的濃度最高？',['Glycine','Glutamate','Alanine','Glutamine'],2,'Alanine 在動物血液中濃度最高，主要由肌肉代謝產生並運往肝臟進行糖新生。')]
+)},
+{id:'p2',title:'國考預測題型 第二波',em:'🌙',c:'#8B5CF6',u:u4(
+[Q('關於胺基酸在中性 pH 下的帶電特性，何者正確？',['Lysine 側鏈帶負電荷','Aspartic acid 側鏈帶負電荷','Cysteine 帶正電荷','Tyrosine 帶負電荷'],1,'酸性側鏈的 Aspartic acid 和 Glutamic acid 在中性 pH 下帶負電；Lysine 帶正電；Cys 和 Tyr 不帶電荷。'),
+Q('臨床上以 280nm 波長測量蛋白質濃度，主因蛋白質含有哪種胺基酸？',['Phenylalanine','Tyrosine','Tryptophan','Proline'],2,'蛋白質在 280nm 有高吸光值，主因含有 Tryptophan 的吲哚環結構強烈吸收紫外光。'),
+Q('下列何者不屬於人類必須從食物補充的「必須胺基酸」？',['Phenylalanine','Methionine','Cysteine','Threonine'],2,'Cysteine 可由 Methionine 轉變而來，不屬於必須胺基酸；Phe、Met、Thr 均為必須胺基酸。')],
+[Q('蛋白質生合成後，訊息胜肽（Signal peptide）位於何處？',['N 端','C 端','側鏈中央','雙硫鍵位置'],0,'訊息胜肽（Signal peptide）位於蛋白質胺基酸序列的 N 端，引導蛋白質進入特定胞器。'),
+Q('G protein 與 GDP 結合時，對效應器（Effector）的親和力如何？',['親和力升高','親和力降低','親和力不變','引起效應器磷酸化'],1,'G protein 與 GDP 結合時處於非活化狀態，對效應器的親和力降低；與 GTP 結合時為活化狀態。'),
+Q('下列關於 cGMP 作為第二信使的生理功能，何者正確？',['由 Adenylate cyclase 作用產生','僅參與視覺系統','參與平滑肌鬆弛與血小板凝集','與 GDP 結合後活化 Protein kinase G'],2,'cGMP 由 Guanylate cyclase 產生，參與平滑肌鬆弛、血小板凝集及視覺系統；cGMP 活化 Protein kinase G。')],
+[Q('下列蛋白質雖含有鐵離子，但其鐵離子的主要功能並非電子傳遞？',['Catalase','Cytochrome c','Cytochrome oxidase','Hemoglobin'],3,'Hemoglobin 的鐵離子負責結合與運送氧氣，而非電子傳遞；其餘三者的鐵均參與電子傳遞。'),
+Q('「化學滲透假說」（Chemiosmotic hypothesis）中，何者正確？',['質子由粒線體基質輸向內膜外間隙','質子由內膜外間隙輸向基質以產生梯度','電子傳遞與質子輸送不具偶合關係','基質側的 pH 值低於內膜外間隙'],0,'質子（H⁺）由基質向外輸送至膜間隙，形成電化學梯度，驅動 ATP 合成酶合成 ATP。')],
+[Q('解偶聯劑 DNP（2,4-dinitrophenol）對呼吸鏈最直接的影響為何？',['減慢電子傳遞速率以節省能量','增加質子梯度加速 ATP 合成','加快電子傳遞速率但無法建立質子梯度','抑制 NADH dehydrogenase 的活性'],2,'DNP 使電子傳遞加速運行，但因中和電荷無法建立質子梯度，能量以熱能形式散失。'),
+Q('下列哪一組胺基酸均具有鹼性側鏈？',['Aspartic acid, Glutamic acid','Serine, Threonine','Arginine, Lysine, Histidine','Valine, Leucine, Isoleucine'],2,'鹼性側鏈胺基酸包括 Arginine、Lysine 與 Histidine；Asp/Glu 為酸性；Ser/Thr 含羥基；Val/Leu/Ile 為非極性。')]
+)},
+{id:'p3',title:'國考預測題型 第三波',em:'⭐',c:'#EC4899',u:u4(
+[Q('血基質（Heme）合成路徑的速率限制步驟是由哪種酵素催化？',['Ferrochelatase','ALA synthase','Heme oxygenase','Biliverdin reductase'],1,'ALA synthase 催化 Glycine 與 Succinyl CoA 縮合為 δ-ALA，為血基質合成的速率限制步驟。'),
+Q('ALA synthase 催化反應需要下列何種輔酶？',['Biotin','Thiamine pyrophosphate','Pyridoxal phosphate','FAD'],2,'ALA synthase 需要 Pyridoxal phosphate（維生素 B6）作為輔酶；B6 缺乏會影響血基質合成而導致貧血。'),
+Q('鉛中毒對血基質合成路徑的影響，下列何者正確？',['抑制 ALA synthase 使 ALA 降低','抑制中間步驟酵素使 ALA 濃度升高','鉛取代鐵進入血基質結構','活化 Heme oxygenase 加速降解'],1,'鉛中毒干擾血基質合成的中間步驟，造成 ALA 堆積，濃度升高，並引起貧血。')],
+[Q('成人體內最主要的血紅素型態為何？',['血紅素 F（α₂γ₂）','血紅素 A（α₂β₂）','血紅素 A₂（α₂δ₂）','血紅素 H（β₄）'],1,'成人最主要的血紅素為血紅素 A，由 α₂β₂ 四聚體組成，佔成人血紅素約 96-98%。'),
+Q('2,3-BPG 對血紅素親和力的調控，何者正確？',['濃度升高使氧解離曲線左移','濃度升高降低血紅素對氧的親和力','2,3-BPG 與含氧血紅素緊密結合','胎兒血紅素對 2,3-BPG 親和力高於成人'],1,'2,3-BPG 濃度升高降低血紅素對氧的親和力，使氧解離曲線右移，有利於組織獲得氧氣。'),
+Q('鐮刀型貧血（Sickle cell anemia）的分子基礎為何？',['β 鏈第 6 位 Valine 被 Glutamate 取代','β 鏈第 6 位 Glutamate 被 Valine 取代','α 鏈第 6 位 Glutamate 被 Valine 取代','β 鏈第 14 位 Glutamate 被 Valine 取代'],1,'β 鏈第 6 位的酸性 Glutamate 被疏水性 Valine 取代，導致去氧血紅素聚集形成鐮刀形細胞。')],
+[Q('Bohr effect 描述了 pH 值與 CO₂ 對血紅素的影響，下列何者正確？',['pH 升高促進氧氣釋放','CO₂ 分壓增加促進氧氣釋放','脫氧血紅素對質子的親和力較小','此效應使氧飽和曲線向左移動'],1,'Bohr effect：pH 降低或 CO₂ 增加時促進氧從血紅素釋放；脫氧血紅素對質子的親和力較含氧血紅素大。'),
+Q('膠原蛋白合成中，Prolyl hydroxylase 催化羥基化反應時，需要哪種物質作為輔酶？',['Vitamin B12','Vitamin C','Vitamin K','Biotin'],1,'Prolyl hydroxylase 需要維生素 C（Ascorbic acid）作為輔酶；缺乏 Vit C 導致壞血病，膠原蛋白結構異常。')],
+[Q('關於胜肽鍵（Peptide bond）特性，何者正確？',['通常以順式構形存在','具有單鍵特性可自由旋轉','具有部分雙鍵特性且具極性但無電荷','是 α-胺基與側鏈羧基形成的共價鍵'],2,'胜肽鍵具有部分雙鍵特性，呈反式（Trans）構形，具極性但無電荷，不能自由旋轉。'),
+Q('在蛋白質定序中，Edman\'s reagent（Phenylisothiocyanate）主要標定哪個部分？',['蛋白質的 C 端胺基酸','蛋白質的 N 端胺基酸','內部的 Methionine 殘基','雙硫鍵位置'],1,'Edman\'s reagent 用於逐步決定蛋白質的 N 端胺基酸序列。')]
+)},
+{id:'p4',title:'國考預測題型 第四波',em:'🔭',c:'#06B6D4',u:u4(
+[Q('在 SDS 電泳分析中，加入還原劑（如 β-mercaptoethanol）的作用為何？',['使蛋白質帶正電加速移動','切斷胜肽鍵分解蛋白質','打開雙硫鍵破壞三級結構','防止蛋白質發生變性'],2,'β-mercaptoethanol 打開雙硫鍵，破壞三級結構，使蛋白質解離為單股桿狀構形以利電泳分析。'),
+Q('維持蛋白質次級結構 α-helix 穩定性的主要作用力為何？',['疏水作用力','氫鍵','雙硫鍵','鹽橋'],1,'α-helix 的穩定性由多肽骨架間的氫鍵維持，每圈螺旋約 3.6 個胺基酸殘基。'),
+Q('下列哪一種胺基酸因結構特性，常會破壞 α-helix 的形成？',['Alanine','Valine','Proline','Tryptophan'],2,'Proline 的亞胺基（Imino group）缺乏 N-H，且側鏈環狀結構造成空間限制，會破壞 α-helix 的形成。')],
+[Q('變性血紅素（Methemoglobin）產生的原因為何？',['血基質中 Fe²⁺ 被氧化為 Fe³⁺','血基質中鐵離子被銅離子取代','血紅素與一氧化碳結合','2,3-BPG 濃度過低'],0,'Fe²⁺ 被氧化為 Fe³⁺ 即形成 Methemoglobin，鐵離子無法有效與 O₂ 結合，失去攜氧功能。'),
+Q('關於彈力蛋白（Elastin）與 α1-antitrypsin 的敘述，何者正確？',['彈力蛋白含有大量 Tryptophan','彈力蛋白的交互連結由 Lysine 形成','缺乏 α1-antitrypsin 增強彈力蛋白結構','彈力蛋白合成需要維生素 C 作輔酶'],1,'彈力蛋白交互連結由 Lysine 衍生形成；缺乏 α1-antitrypsin 導致 Elastase 過度分解彈力蛋白，造成肺氣腫。'),
+Q('兒茶酚胺（Catecholamines）如多巴胺及腎上腺素，是由何種胺基酸衍生而來？',['Tryptophan','Histidine','Tyrosine','Arginine'],2,'兒茶酚胺由 Phenylalanine 或 Tyrosine 衍生合成，經過一系列羥化與脫羧反應產生。')],
+[Q('肌酸（Creatine）的合成需要下列哪三種物質？',['Arginine, Glycine, S-adenosylmethionine','Arginine, Lysine, Histidine','Glycine, Glutamate, Aspartate','Tyrosine, Tryptophan, Phenylalanine'],0,'Creatine 由 Arginine、Glycine 與 S-adenosylmethionine（提供甲基）合成，主要在肝臟進行。'),
+Q('血清素（Serotonin）在人體內的分布以何處最多？',['腦神經突觸','腸黏膜細胞','血小板','肝臟細胞'],1,'Serotonin 由 Tryptophan 合成，體內約 90% 分布於腸黏膜細胞，其次才是血小板與腦部。')],
+[Q('血基質（Heme）在單核吞噬細胞系統降解時，產生的第一個代謝產物為何？',['Bilirubin','Biliverdin','Urobilinogen','Stercobilin'],1,'Heme oxygenase 催化血基質降解的第一步，形成 Biliverdin，再由 Biliverdin reductase 還原為 Bilirubin。'),
+Q('關於蛋白質四級結構（Quaternary structure）的描述，何者正確？',['指單一多肽鏈的三度空間重排','次單位間主要以雙硫鍵連結','由兩個以上多肽鏈以非共價鍵聚集而成','所有蛋白質都必須具有四級結構才有活性'],2,'四級結構由兩條以上多肽鏈（次單位）以非共價鍵聚集而成；非所有蛋白質均具四級結構。')]
+)},
+{id:'p5',title:'國考預測題型 第五波',em:'💫',c:'#10B981',u:u4(
+[Q('在 Michaelis-Menten 動力學中，關於 Km 的正確敘述為何？',['Km 值與酵素濃度呈正比','Km 是反應速率達到 1/2 Vmax 時的受質濃度','Km 值越大代表酵素對受質的親和力越高','Km 值在反應達到 Vmax 時決定'],1,'Km 是速率等於 1/2 Vmax 時的受質濃度；Km 不隨酵素濃度改變；Km 越小表示親和力越高。'),
+Q('若某酵素對受質 A 的 Km 為 1mM，對受質 B 的 Km 為 10mM，則：',['酵素對 A 的親和力較高','酵素對 B 的親和力較高','兩者親和力相同','酵素催化 B 的 Vmax 一定較大'],0,'Km 越小，酵素與受質的親和力越高；A 的 Km 為 1mM < B 的 10mM，故對 A 親和力較高。'),
+Q('競爭性抑制劑（Competitive inhibitor）對酵素動力學的影響，何者正確？',['Vmax 降低，Km 增加','Vmax 不變，Km 增加','Vmax 降低，Km 不變','Vmax 不變，Km 降低'],1,'競爭性抑制劑與受質競爭活性位點，增加表觀 Km，但高濃度受質可取代之，故 Vmax 不變。')],
+[Q('Phosphofructokinase-1（PFK-1）最強效的異位活化劑為何？',['ATP','Citrate','Fructose 2,6-bisphosphate','Glucose 6-phosphate'],2,'Fructose 2,6-bisphosphate 是 PFK-1 最強效的異位活化劑；ATP 與 Citrate 則為其抑制劑。'),
+Q('關於肝臟 Glucokinase（Hexokinase IV）的特性，何者正確？',['Km 值極低，有利飢餓時攝取葡萄糖','被 Glucose 6-phosphate 強烈抑制','Km 值高，有利餐後移除高濃度葡萄糖','僅存在於肌肉細胞'],2,'肝臟 Glucokinase Km 值高，餐後高血糖時才大量發揮功效，且不被 Glucose 6-phosphate 抑制。'),
+Q('在無氧性糖解作用下，一分子葡萄糖淨產生多少 ATP？',['2','4','36','38'],0,'無氧糖解中每分子葡萄糖淨產生 2 個 ATP（消耗 2 個、產生 4 個）。')],
+[Q('Pyruvate dehydrogenase complex 催化氧化脫羧時，不需要下列哪一種輔酶？',['NAD⁺','FAD','Biotin','Thiamine pyrophosphate（B1）'],2,'PDH 複合體需要 B1（TPP）、B2（FAD）、B3（NAD⁺）、Lipoic acid 及 CoA；Biotin 是羧化酶所需，不參與 PDH。'),
+Q('糖新生作用的主要前驅物不包括下列何者？',['Lactate','Glycerol','Acetyl CoA','α-keto acids'],2,'Acetyl CoA 在動物體內無法淨轉化為葡萄糖；糖新生前驅物包括乳酸、甘油、α-keto acids 等。')],
+[Q('第一型肝醣儲存疾病（Von Gierke\'s disease）是因為缺乏哪種酵素？',['Glycogen phosphorylase','Glucose 6-phosphatase','Branching enzyme','Acid maltase'],1,'Von Gierke\'s disease 是肝臟缺乏 Glucose 6-phosphatase，導致 G6P 無法水解釋放葡萄糖至血液。'),
+Q('糖新生作用中，Pyruvate 轉化為 Oxaloacetate 的步驟需要哪種輔酶？',['Biotin','Pyridoxal phosphate','Thiamine pyrophosphate','Vitamin B12'],0,'Pyruvate carboxylase 催化此羧化反應，需要 Biotin 作為 CO₂ 的攜帶者。')]
+)},
+{id:'p6',title:'國考預測題型 第六波',em:'🌠',c:'#F97316',u:u4(
+[Q('當受質濃度 [S] 遠大於 Km 時，反應速率與受質濃度的關係為何？',['一級關係（First-order）','零級關係（Zero-order）','反比關係','對數關係'],1,'當 [S] 遠大於 Km，速率趨近 Vmax，與受質濃度無關，為零級動力學。'),
+Q('非競爭性抑制劑對 Lineweaver-Burke 作圖的影響為何？',['X 軸截距改變，Y 軸截距不變','X 軸截距不變，Y 軸截距向上移動','斜率維持不變','使圖形向右平移'],1,'非競爭性抑制不影響 Km（X 軸截距不變），但降低 Vmax（Y 軸截距 1/Vmax 增大，向上移動）。'),
+Q('Triose phosphate isomerase 被稱為「完美酵素」的原因，何者正確？',['Km 值趨近於零','Kcat/Km 值已達擴散限制','不需任何輔酶即可催化','是糖解作用的速率限制步驟'],1,'Triose phosphate isomerase 的 Kcat/Km 值達擴散速率極限，被視為演化上的完美酵素。')],
+[Q('胰島素（Insulin）會誘導下列哪些糖解關鍵酵素的生成？',['Glucokinase, PFK-1, Pyruvate kinase','PEPCK, G6Pase, F-1,6-BPase','Hexokinase, Pyruvate carboxylase','LDH, Enolase'],0,'Insulin 誘導糖解關鍵酶（Glucokinase、PFK-1、Pyruvate kinase）基因表現增加。'),
+Q('糖新生作用主要發生的器官順序為何？',['肝臟 > 腎臟','肌肉 > 肝臟','腎臟 > 心臟','腦 > 肝臟'],0,'糖新生主要在肝臟進行（約 90%），其次為腎臟；肌肉無法進行糖新生。'),
+Q('肌肉細胞無法釋放葡萄糖至血液中，主要生理原因為何？',['肌肉缺乏肝醣合成能力','肌肉缺乏 Glucose 6-phosphatase 的基因表現','肌肉中沒有 Pyruvate kinase','肌肉缺乏乳酸去氫酶'],1,'肌肉無 Glucose 6-phosphatase 基因表現，故無法將 G6P 水解為葡萄糖釋放入血液。')],
+[Q('高濃度的 AMP 對糖新生關鍵酵素 Fructose 1,6-bisphosphatase 的作用為何？',['異位活化','抑制作用','誘導蛋白質降解','無調控作用'],1,'AMP 抑制 Fructose 1,6-bisphosphatase，進而抑制糖新生；與 PFK-1 被 AMP 活化互相呼應。'),
+Q('酵母菌酒精發酵中，Pyruvate decarboxylase 轉化丙酮酸為乙醛需要何種輔酶？',['Biotin','Thiamine pyrophosphate（TPP）','NAD⁺','FMN'],1,'Pyruvate decarboxylase 需要 TPP（維生素 B1）作為輔酶，催化脫羧反應。')],
+[Q('糖解作用中，唯一會產生 NADH 的步驟是由哪種酵素催化？',['Hexokinase','PFK-1','Glyceraldehyde 3-phosphate dehydrogenase','Pyruvate kinase'],2,'Glyceraldehyde 3-phosphate dehydrogenase 催化脫氫反應，將 NAD⁺ 還原為 NADH，是糖解中唯一產生 NADH 的步驟。'),
+Q('白化症（Albinism）的病理機制與下列何者最相關？',['Phenylalanine hydroxylase 缺失','Tyrosinase 缺失','Homogentisate oxidase 缺失','MAO 活性過高'],1,'白化症因 Tyrosinase 缺乏，無法將 Tyrosine 轉化為黑色素（Melanin），導致皮膚、毛髮、眼睛缺乏色素。')]
+)},
+{id:'p7',title:'國考預測題型 第七波',em:'🪐',c:'#EF4444',u:u4(
+[Q('磷酸五碳糖途徑（HMP pathway）在細胞內的主要生理定位為何？',['粒線體基質，產生 ATP','細胞質，產生 NADPH','核糖體，合成蛋白質','內質網，進行糖化'],1,'HMP（磷酸五碳糖）途徑在細胞質中進行，是細胞 NADPH 的主要來源。'),
+Q('HMP 途徑的速率限制酵素為何？',['Transketolase','Glucose 6-phosphate dehydrogenase（G6PD）','6-phosphogluconate dehydrogenase','Hexokinase'],1,'G6PD 是 HMP 途徑的速率限制酵素，NADPH 為其抑制劑（負向回饋調節）。'),
+Q('NADPH 在紅血球中維持細胞完整性的機轉為何？',['提供能量給細胞骨架','供應電子給 Glutathione reductase 以產生還原態 Glutathione','作為糖新生的輔助因子','促進磷脂質雙層的流動性'],1,'NADPH 提供電子給 Glutathione reductase，使 GSSG 還原為 GSH，進而清除自由基 H₂O₂。')],
+[Q('G6PD 缺乏症患者接觸蠶豆或特定藥物時發生溶血，是因為缺乏何種還原當量？',['NADH','NADPH','FADH₂','FMNH₂'],1,'G6PD 缺乏損害 NADPH 的合成，紅血球無法維持 GSH 以對抗氧化壓力而溶血。'),
+Q('檸檬酸循環（TCA cycle）的所有酵素反應均發生於何處？',['細胞質','粒線體基質','粒線體內膜','內質網'],1,'TCA 循環（檸檬酸循環）的所有反應均在粒線體基質（Matrix）中進行。'),
+Q('一分子 Acetyl CoA 進入 TCA 循環完整氧化，共可產生多少 ATP 當量？',['10','12','24','38'],1,'產生 3 NADH（×3=9 ATP）、1 FADH₂（×2=2 ATP）、1 GTP（1 ATP），共 12 ATP 當量。')],
+[Q('TCA 循環中，產生底物水準磷酸化的步驟為何？',['Citrate → Isocitrate','Isocitrate → α-ketoglutarate','Succinyl CoA → Succinate','Fumarate → Malate'],2,'Succinyl CoA synthase 催化 Succinyl CoA→Succinate，產生一分子 GTP（底物水準磷酸化）。'),
+Q('TCA 循環中，唯一與粒線體內膜直接結合的酵素為何？',['Citrate synthase','Succinate dehydrogenase','Malate dehydrogenase','Isocitrate dehydrogenase'],1,'Succinate dehydrogenase（Complex II）吸附於粒線體內膜，同時參與 TCA 循環與電子傳遞鏈。')],
+[Q('關於果糖在熱水中甜度下降的生化原因，何者正確？',['果糖在高溫下發生氧化反應','溫度升高使 Pyranose 構型轉變為 Furanose 構型','高溫抑制舌頭味蕾的親和力','果糖在高溫下自動聚合'],1,'低溫時果糖以甜度較高的 β-D-Pyranose 為主，溫度升高後轉為甜度較低的 Furanose，甜度下降。'),
+Q('半乳糖血症（Galactosemia）最常見的原因是缺乏哪種酵素？',['Galactokinase','Galactose 1-phosphate uridyltransferase','UDP-galactose epimerase','Lactase'],1,'最常見的半乳糖血症缺乏 Galactose 1-phosphate uridyltransferase，導致白內障、肝損傷及精神遲滯。')]
+)},
+{id:'p8',title:'國考預測題型 第八波',em:'🌌',c:'#3B82F6',u:u4(
+[Q('肝醣（Glycogen）合成中，Glycogen synthase 負責形成何種化學鍵？',['α-1,4 糖苷鍵','α-1,6 糖苷鍵','β-1,4 糖苷鍵','胜肽鍵'],0,'Glycogen synthase 負責延長糖鏈，催化形成 α-1,4 糖苷鍵；分支點的 α-1,6 鍵由 Branching enzyme 形成。'),
+Q('肝醣分解的關鍵酵素 Glycogen phosphorylase 需要哪種輔酶？',['Biotin','Pyridoxal phosphate（B6）','Thiamine pyrophosphate（B1）','Cobalamin（B12）'],1,'Glycogen phosphorylase 需要 Pyridoxal phosphate（PLP，維生素 B6）作為輔酶，催化糖鏈磷酸解。'),
+Q('龐貝氏症（Pompe\'s disease）是因為缺乏哪種溶酶體酵素？',['Glucose 6-phosphatase','α-1,4-glucosidase（Acid maltase）','Debranching enzyme','Hexokinase'],1,'Pompe\'s disease（第二型肝醣儲存疾病）缺乏溶酶體內的 Acid maltase，造成肝醣大量堆積。')],
+[Q('當細胞內缺乏肝醣片段時，何種蛋白質可作為肝醣合成的「引子」（Primer）？',['Albumin','Glycogenin','Insulin','Glucagon'],1,'Glycogenin 是自催化蛋白質，作為第一個葡萄糖殘基的接受者，是肝醣合成的引子（Primer）。'),
+Q('關於肝醣分支（Branching）的生理意義，何者正確？',['由 Glycosyl α-4:6 transferase 催化','能顯著增加肝醣的溶解度','增加末端數量以加速合成與分解速率','以上皆正確'],3,'肝醣分支由 α-4:6 轉移酶催化，同時增加溶解度並提供更多末端以加速代謝，三者均正確。'),
+Q('下列何種機制連接了尿素循環（Urea cycle）與 TCA 循環？',['Malate-aspartate shuttle','Aspartate-argininosuccinate shunt','Citrate transport system','Carnitine shuttle'],1,'Aspartate-argininosuccinate shunt 將尿素循環與 TCA 循環連結；Fumarate 可進入 TCA，Aspartate 提供氮源。')],
+[Q('成熟紅血球完全依賴何種路徑獲得能量？',['脂肪酸氧化','葡萄糖糖解','酮體利用','胺基酸降解'],1,'成熟紅血球缺乏粒線體，無法進行氧化磷酸化，完全依賴葡萄糖糖解獲得能量。'),
+Q('HMP 途徑產生的 Ribose 5-phosphate 主要用於何種生物合成？',['脂肪酸','核苷酸與核酸','類固醇','糖蛋白'],1,'Ribose 5-phosphate 是核苷酸（Nucleotide）及核酸生合成的重要碳源。')],
+[Q('體內所有的「羧化反應」（Carboxylation）均需要何種輔酶參與？',['Biotin','Folic acid','Niacin','Vitamin C'],0,'Biotin 是 CO₂ 的攜帶者，參與所有羧化反應，包括 Pyruvate carboxylase、Acetyl CoA carboxylase 等。'),
+Q('在飢餓狀態下，肝臟中的哪種物質會活化 Pyruvate carboxylase 以促進糖新生？',['AMP','Acetyl CoA','Insulin','Fructose 2,6-bisphosphate'],1,'Acetyl CoA 是 Pyruvate carboxylase 的異位活化劑；飢餓時脂肪酸氧化大量產生 Acetyl CoA，促進糖新生。')]
+)},
+{id:'p9',title:'國考預測題型 第九波',em:'✨',c:'#84CC16',u:u4(
+[Q('關於糖胺聚醣（GAG）的敘述，下列何者錯誤？',['是帶有大量正電荷的異質多醣鏈','具有連結大量水分的能力形成膠狀基質','通常含有胺基糖（Amino sugar）','酸基糖常為 Glucuronic acid'],0,'GAG 帶「負電荷」（因含硫酸基或羧基），不是正電荷；其餘特徵（親水性、胺基糖、Glucuronic acid）均正確。'),
+Q('黏多醣症（Mucopolysaccharidoses）的分子病理基礎為何？',['糖蛋白合成過多','缺乏降解 GAG 的溶酶體酵素','脂肪酸生合成受阻','肝醣去分支酵素缺失'],1,'黏多醣症是溶酶體儲積症，因缺乏降解 GAG 的溶酶體酵素，造成 GAG 在細胞內堆積。'),
+Q('在 N-linked 糖蛋白中，糖鏈是連結在蛋白質的哪一種胺基酸殘基上？',['Serine','Threonine','Asparagine','Glutamine'],2,'N-linked 寡糖接在 Asparagine 的酰胺氮（N-H）上；O-linked 則接在 Serine 或 Threonine 的羥基上。')],
+[Q('糖蛋白合成過程中，N-linked 寡糖最初由何種脂質載體轉移至蛋白質？',['Cholesterol','Dolichol','Phosphatidylcholine','Sphingomyelin'],1,'N-linked 寡糖在內質網中先組裝於 Dolichol 磷酸上，再整體轉移至新生蛋白質的 Asparagine。'),
+Q('脂肪酸生合成的速率限制步驟酵素為何？',['Fatty acid synthase','Acetyl CoA carboxylase','HMG CoA reductase','Thiolase'],1,'Acetyl CoA carboxylase 催化 Acetyl CoA→Malonyl CoA，是脂肪酸生合成的速率限制步驟。'),
+Q('關於脂肪酸生合成與 β-氧化的胞器定位，何者正確？',['生合成於細胞質；β-氧化於粒線體','生合成於粒線體；β-氧化於細胞質','生合成與 β-氧化皆在細胞質','生合成與 β-氧化皆在粒線體'],0,'脂肪酸生合成在細胞質（Cytosol）進行；β-氧化（脂肪酸分解）在粒線體基質中進行。')],
+[Q('下列何種物質會抑制 Carnitine acyltransferase I，防止新合成的脂肪酸進入粒線體氧化？',['Acetyl CoA','Malonyl CoA','Palmitoyl CoA','Citrate'],1,'Malonyl CoA 抑制 Carnitine acyltransferase I，阻止長鏈脂肪醯基進入粒線體，防止合成與分解同時發生。'),
+Q('Refsum\'s disease 患者無法適當降解植物酸，是由於何種代謝障礙？',['脂肪酸 β-氧化障礙','支鏈脂肪酸 α-氧化障礙','脂肪酸不飽和化障礙','酮體合成障礙'],1,'Refsum\'s disease 因缺乏 Phytanoyl-CoA hydroxylase，無法進行植物酸（Phytanic acid）的 α-氧化，導致其堆積。')],
+[Q('奇數碳脂肪酸氧化產生的 Propionyl CoA，最終轉化為下列何者進入 TCA 循環？',['Acetyl CoA','Succinyl CoA','Oxaloacetate','Pyruvate'],1,'Propionyl CoA 經 Biotin（Propionyl CoA carboxylase）及 Vit B12（Methylmalonyl CoA mutase）轉化為 Succinyl CoA 進入 TCA。'),
+Q('脂肪酸的不飽和化（Desaturation）反應發生於細胞的哪一構造？',['粒線體','微粒體（內質網）','高基氏體','溶酶體'],1,'脂肪酸去飽和反應由微粒體（Microsome，即滑面內質網）中的去飽和酶複合體催化。')]
+)},
+{id:'p10',title:'國考預測題型 第十波',em:'👁️',c:'#F59E0B',u:u4(
+[Q('泰薩氏症（Tay-Sachs disease）是因為缺乏哪種酵素，導致 Ganglioside GM₂ 堆積？',['Glucocerebrosidase','N-acetyl hexosaminidase A','Sphingomyelinase','Alpha-galactosidase'],1,'Tay-Sachs disease 缺乏 N-acetyl hexosaminidase A，導致 Ganglioside GM₂ 在神經元中堆積，引起進行性神經退化。'),
+Q('膽固醇合成路徑中，受到 Lovastatin 競爭性抑制的酵素為何？',['HMG CoA synthase','HMG CoA reductase','Squalene synthase','Desmolase'],1,'HMG CoA reductase 是膽固醇合成的速率限制步驟，Lovastatin（Statin 類）為其競爭性抑制劑。'),
+Q('關於 Lovastatin 的敘述，下列何者正確？',['結構與 HMG CoA 類似','結構與 Mevalonate 類似','會增加血液中 VLDL 的濃度','主要作用於粒線體內'],1,'Lovastatin 結構與 Mevalonate（甲羥戊酸）類似，競爭性抑制 HMG CoA reductase，降低血液膽固醇。')],
+[Q('下列何種脂蛋白蛋白質比例最高，且能將周邊組織膽固醇運回肝臟？',['乳糜微粒（Chylomicron）','VLDL','LDL','HDL'],3,'HDL 蛋白質比例最高（約 50%），負責膽固醇逆向轉運（Reverse cholesterol transport），運回肝臟代謝。'),
+Q('負責攜帶外源性（膳食中）三醯甘油進入循環系統的脂蛋白為何？',['乳糜微粒（Chylomicron）','VLDL','LDL','HDL'],0,'Chylomicron 由小腸合成，密度最低，主要運送膳食中的外源性三醯甘油（TG）至各組織。'),
+Q('類固醇激素（Steroid hormones）合成的速率限制步驟酵素為何？',['HMG CoA reductase','Desmolase complex（碳鏈酶複合物）','21-alpha-hydroxylase','11-beta-hydroxylase'],1,'Desmolase complex 催化膽固醇→Pregnenolone 的步驟，為類固醇激素合成的速率限制步驟。')],
+[Q('肉鹼（Carnitine）在脂肪酸代謝中的關鍵角色為何？',['促進脂肪酸生合成','運送長鏈脂肪醯基（Fatty acyl-CoA）進入粒線體','作為脂解作用的輔酶','穩定三醯甘油結構'],1,'Carnitine 透過 Carnitine shuttle 將長鏈脂肪醯基從細胞質轉運至粒線體基質進行 β-氧化。'),
+Q('Glucagon 與腎上腺素如何調控脂肪酸生合成？',['促進 Acetyl CoA carboxylase 脫磷酸而活化','促進 Acetyl CoA carboxylase 磷酸化而不活化','誘導 Fatty acid synthase 的基因表現','直接增加 Malonyl CoA 的生成'],1,'Glucagon 與 Epinephrine 透過 PKA 磷酸化 Acetyl CoA carboxylase，使其不活化，抑制脂肪酸生合成。')],
+[Q('關於 LDL 的組成與功能，何者正確？',['主要攜帶三醯甘油','由 Apo A 作為主要蛋白質','攜帶膽固醇含量最高，主要蛋白質為 Apo B100','負責將膽固醇從周邊組織運回肝臟'],2,'LDL 膽固醇含量最高，主要蛋白質為 Apo B-100，負責將膽固醇運送至周邊組織；逆向轉運是 HDL 的功能。'),
+Q('在脂肪酸生合成過程中，所需的還原當量（NADPH）主要來源為何？',['糖解作用','檸檬酸循環','磷酸五碳糖途徑（HMP）','β-氧化作用'],2,'HMP（磷酸五碳糖）途徑是脂肪酸合成所需 NADPH 的主要來源，每分子 G6P 可產生 2 個 NADPH。')]
+)},
 ];/* ===== END PREDICT ===== */
 window.ML_B={id:'b',ms,exam,predict};
 console.log('[MedLingo] 生化學題庫載入成功！里程碑數：'+ms.length+'，國考猜題波數：'+exam.length+'，預測題型波數：'+predict.length);
