@@ -984,16 +984,306 @@ Q('下列常考藥物與其機轉/副作用之配對，何者正確？',['Clonid
 
 /* ===== 國考預測題型區 ===== */
 const predict=[
-{id:'p1',title:'國考預測題型 第一波',em:'🔮',c:'#6366F1',u:u4([],[],[],[])},
-{id:'p2',title:'國考預測題型 第二波',em:'🌙',c:'#8B5CF6',u:u4([],[],[],[])},
-{id:'p3',title:'國考預測題型 第三波',em:'⭐',c:'#EC4899',u:u4([],[],[],[])},
-{id:'p4',title:'國考預測題型 第四波',em:'🔭',c:'#06B6D4',u:u4([],[],[],[])},
-{id:'p5',title:'國考預測題型 第五波',em:'💫',c:'#10B981',u:u4([],[],[],[])},
-{id:'p6',title:'國考預測題型 第六波',em:'🌠',c:'#F97316',u:u4([],[],[],[])},
-{id:'p7',title:'國考預測題型 第七波',em:'🪐',c:'#EF4444',u:u4([],[],[],[])},
-{id:'p8',title:'國考預測題型 第八波',em:'🌌',c:'#3B82F6',u:u4([],[],[],[])},
-{id:'p9',title:'國考預測題型 第九波',em:'✨',c:'#84CC16',u:u4([],[],[],[])},
-{id:'p10',title:'國考預測題型 第十波',em:'👁️',c:'#F59E0B',u:u4([],[],[],[])},
+{id:'p1',title:'國考預測題型 第一波',em:'🔮',c:'#6366F1',u:u4(
+[
+Q('有關自主神經系統M₂受體的作用機轉與生理反應，下列敘述何者正確？',['透過活化Gq路徑，導致細胞內IP₃與DAG增加','作用於心臟SA node，透過Gi路徑導致心跳減慢','主要分佈於血管平滑肌，直接造成血管收縮以升高血壓','活化Adenylate cyclase，增加cAMP濃度以增強心肌收縮力'],1,'M₂受體走Gi路徑，其生理作用是Decelerates SA node，導致心跳減慢。Gq是M₁/M₃/M₅的路徑。'),
+Q('過敏性休克（Anaphylactic shock）發作時，首選的急救藥物及其主要機轉為何？',['Norepinephrine；主要興奮α₁產生強效血管收縮','Dopamine；中小劑量時可維持腎臟血流','Epinephrine；具β₁=β₂>α₁=α₂活性，可強心並擴張支氣管','Isoproterenol；僅具強大的β活性，適合低血壓伴隨心跳過慢者'],2,'Epinephrine是過敏性休克首選，具有β₁=β₂>α₁=α₂的活性，能強心並緩解支氣管痙攣。'),
+Q('關於Benzodiazepines (BZD) 類藥物的藥理特性，下列敘述何者錯誤？',['機轉為增加Cl⁻通道開啟的頻率，加強GABA的作用','具有較大的治療指數（TI），在臨床上較Barbiturates安全','Triazolam屬於短效型藥物，長期使用後突然停藥易產生反彈性失眠','Diazepam代謝後不會產生活性產物，是肝功能不佳病人的首選'],3,'Diazepam是長效型藥物，且會經肝臟代謝成活性產物。不經肝代謝成活性產物的藥物包含Oxazepam、Lorazepam、Estazolam。'),
+Q('有關帕金森氏症藥物Levodopa的臨床考點，下列何者正確？',['為了減少周邊副作用，應併用維生素B6 (Pyridoxine)','常併用Carbidopa以減少Levodopa在周邊被脫羧（Decarboxylation）','屬於D₂受體直接致效劑，對改善震顫效果最佳','由於此藥脂溶性極低，無法通過血腦障壁（BBB）'],1,'Levodopa需與Carbidopa合用以減少周邊代謝。禁與Vit.B6合用，因為B6會促進周邊代謝。'),
+Q('一位高血壓患者合併有腎結石（含鈣結石）病史，下列哪一種利尿劑最適合作為其降壓治療？',['Furosemide','Spironolactone','Hydrochlorothiazide','Acetazolamide'],2,'Thiazide類利尿劑會減少尿鈣排泄（升血鈣），因此可用於預防腎結石。Loop利尿劑（Furosemide）則是增加排鈣。')
+],
+[
+Q('強心劑Digoxin中毒時，下列何種情況最容易誘發心律不整之毒性？',['高血鉀','低血鈣','低血鎂','高生體可用率'],2,'Digoxin在低鉀、高鈣、低鎂或腎功能差時容易中毒。'),
+Q('關於抗生素引起之「紅人症候群 (Red man syndrome)」的敘述，下列何者正確？',['常見於快速注射Gentamicin後所引發','機轉為藥物引起組織胺（Histamine）大量釋放所致','為一種嚴重的第一型過敏反應（IgE mediated）','此症狀與藥物抑制細胞壁轉肽酶（Transpeptidase）有關'],1,'Vancomycin快速注射會引起Red man syndrome，原因是Histamine大量釋放。'),
+Q('下列哪一種抗生素具有「濃度依賴性 (Concentration-dependent)」殺菌效果與顯著的後抗生素效應（PAE）？',['Penicillin G','Gentamicin','Cephalexin','Vancomycin'],1,'Aminoglycosides（如Gentamicin）為Concentration-dependent且具有PAE。選項A、C、D均為Time-dependent。'),
+Q('關於甲狀腺亢進藥物Propylthiouracil (PTU) 的敘述，下列何者錯誤？',['機轉包括抑制過氧化酶（Peroxidase），阻斷碘的氧化與偶合','可抑制周邊組織將T₄轉化為T₃，適合用於甲狀腺風暴','與MMZ相比，PTU的蛋白結合率高，較適合孕婦使用','其藥效極強且半衰期長，通常每日僅需給藥一次'],3,'MMZ（Methimazole）效強且半衰期長。PTU半衰期短（1.5hr），效稍弱。'),
+Q('糖尿病藥物Metformin (Biguanides) 的主要作用機轉為何？',['阻斷ATP依賴型鉀離子通道，促進胰島素釋放','活化PPAR-γ轉錄因子，增加GLUT-4表現','抑制肝臟醣質新生（Gluconeogenesis），增加胰島素敏感度','競爭性抑制α-glucosidase，延緩腸道醣類吸收'],2,'Metformin機轉為抑制肝臟醣質新生，是Type II DM首選。')
+],
+[
+Q('有關抗凝血藥物Warfarin的監測與解毒，下列敘述何者正確？',['臨床監測aPTT數值，解毒劑為Protamine sulfate','其機轉為直接抑制凝血因子Xa，藥效發作極快','監測PT (Prothrombin time)，出血時可補充Vit. K解毒','分子量大不易過胎盤，為懷孕婦女血栓的首選藥物'],2,'Warfarin監測PT，解毒補充Vit. K。它具畸胎性，孕婦禁用。'),
+Q('抗癌藥物Cyclophosphamide常見的「出血性膀胱炎」副作用，是因為何種代謝產物引起？',['Acrolein','Mesna','6-MP','Doxorubicin'],0,'Cyclophosphamide的代謝物Acrolein會刺激膀胱壁造成出血性膀胱炎。'),
+Q('抗癌藥物中，下列何者最容易產生累積劑量限制的「心肌病變 (Cardiotoxicity)」？',['Cisplatin','Bleomycin','Doxorubicin','Vincristine'],2,'Doxorubicin（小紅莓）最具特徵的副作用是心臟毒性/心肌病變。'),
+Q('關於H2-blocker藥物Cimetidine的臨床特性，下列何者正確？',['是此類藥物中藥效最強、副作用最少的一種','不會通過血腦障壁（BBB），完全無中樞副作用','會抑制CYP450酵素與Androgen受體，導致男性女乳症','透過不可逆結合H⁺/K⁺ ATPase來抑制胃酸分泌'],2,'Cimetidine會抑制CYP450與Androgen，造成男性女乳症與陽痿。'),
+Q('引發Stevens-Johnson syndrome (SJS) 的風險與基因HLA-B*1502有強烈相關的藥物為何？',['Allopurinol','Carbamazepine','Abacavir','Dapsone'],1,'Carbamazepine需檢測HLA-B*1502。')
+],
+[
+Q('氰化物 (Cyanide) 中毒的緊急處理，下列哪一種藥物的原理是產生「變性血紅素」以結合氰離子？',['Sodium thiosulfate','Hydroxycobalamin','Sodium nitrite','Oxygen'],2,'Nitrite的解毒原理是產生Methemoglobin（變性血紅素）來結合氰離子。'),
+Q('抗心律不整藥物Amiodarone的副作用極多，下列敘述何者錯誤？',['含有碘（Iodine）結構，可能導致甲狀腺功能異常','容易引起嚴重的Torsade de pointes (TdP)','長期使用可能導致肺纖維化','會在皮膚沉積導致藍皮膚，並具有光敏感性'],1,'Amiodarone不易引起Torsade de pointes。其餘A、C、D均為正確副作用。'),
+Q('有關四環黴素 (Tetracyclines) 的禁忌，下列敘述何者正確？',['為了增加吸收，應與制酸劑（含鋁鎂）同時服用','屬於殺菌型抗生素，適合用於敗血性休克的急救','會影響骨骼與牙齒發育，造成牙齒變色，孕婦小孩禁用','脂溶性低，不與金屬離子產生螯合作用'],2,'Tetracyclines會造成牙齒變色與影響骨骼，故孕婦小孩禁用。'),
+Q('下列哪一種抗精神病藥物最容易引起致命的「顆粒性白血球缺乏 (Agranulocytosis)」？',['Haloperidol','Risperidone','Clozapine','Chlorpromazine'],2,'Clozapine有2%致命性Agranulocytosis副作用。'),
+Q('治療「失神性發作 (Absence seizure)」的首選藥物Ethosuximide，其作用機轉為何？',['阻斷電位敏感型鈉離子通道','抑制GABA轉胺酶（GABA transaminase）','阻斷丘腦神經元上的T-type鈣離子通道','活化突觸後的D₂受體'],2,'Ethosuximide機轉是阻斷T-type Ca2+通道。')
+]
+)},
+{id:'p2',title:'國考預測題型 第二波',em:'🌙',c:'#8B5CF6',u:u4(
+[
+Q('氣喘藥物Theophylline的主要藥理作用為何？',['抑制磷酸二酯酶（PDE）增加cAMP，並阻斷腺苷（Adenosine）受體','穩定肥大細胞膜，防止組織胺釋放','活化M₃受體導致支氣管平滑肌舒張','為一種高效價的白三烯素（Leukotriene）受體拮抗劑'],0,'Theophylline抑制PDE並阻斷Adenosine-1受體。'),
+Q('關於質子幫浦抑制劑 (PPI，如Omeprazole) 的敘述，下列何者正確？',['為可逆性抑制H⁺/K⁺ ATPase，藥效僅維持數小時','在鹼性環境下活性最強，故應於飯後立即服用','是治療胃泌素瘤（Zollinger-Ellison syndrome）的首選','可與制酸劑併服以加強藥效，預防NSAID潰瘍'],2,'PPI是治療Zollinger-Ellison syndrome首選。其為不可逆抑制，且在酸性下作用佳，故不與制酸劑併用。'),
+Q('有關Leuprolide的臨床應用，下列敘述何者正確？',['為GnRH拮抗劑，直接阻斷FSH與LH的分泌','持續給藥（GnRH agonist）會導致負回饋，用於治療前列腺癌','僅能用於治療女性不孕症，以促進排卵','常見副作用為嚴重的肝毒性與出血性膀胱炎'],1,'Leuprolide為GnRH agonist，持續刺激會導致LH/FSH下降，用於前列腺癌與性早熟。'),
+Q('臨床上監測Heparin抗凝血效果的首選指標為何？',['PT (Prothrombin time)','bleeding time','aPTT (activated partial thromboplastin time)','INR (International Normalized Ratio)'],2,'Heparin (HMWH) 需監測aPTT。Warfarin監測PT。'),
+Q('有機磷 (Organophosphates) 農藥中毒時，給予Pralidoxime (2-PAM) 的主要目的為何？',['競爭性阻斷乙醯膽鹼對M受體的作用','活化被磷酸化的乙醯膽鹼酯酶（AChE），使其恢復功能','抑制ACh的釋放，減輕神經肌肉毒性','透過螯合作用移除體內的有機磷分子'],1,'PAM的作用是救回被磷酸化的AChE。')
+],
+[
+Q('關於α₂受體在神經系統中的分佈與功能，下列敘述何者正確？',['位於突觸前末梢時，主要透過增加cAMP來促進神經傳導物質釋放','位於胰臟β細胞時，其致效作用會導致胰島素分泌增加','作用於血小板時會引起凝集作用 (Aggregation)','僅存在於交感神經末梢，對副交感神經無影響'],2,'α₂受體走Gi路徑，在血小板上會引起凝集 (Aggregation)。在突觸前末梢，它是透過「減少」cAMP來「抑制」神經傳導物質的釋放。在胰臟β細胞則是會減少胰島素分泌。'),
+Q('有關強心劑Dobutamine的藥理特性與臨床應用，下列何者正確？',['為專一性β₂致效劑，主要用於治療氣喘急性發作','選擇性作用於β₁受體，用於急性心衰竭且對心跳數影響較小','透過活化Gq路徑增加細胞內鈣離子，進而增強心肌收縮','由於其半衰期極長，是門診慢性心衰竭患者的首選口服藥'],1,'Dobutamine主要作用於β₁受體，臨床用於治療急性心衰竭，且其特點是心肌耗氧量影響小，對心跳速率的增加較少。'),
+Q('關於β-blocker藥物Propranolol的臨床禁忌與副作用，下列何者正確？',['具有高度β₁專一性，對支氣管平滑肌無影響','可促進糖質新生，適合經常發生低血糖的糖尿病患者服用','會引起支氣管收縮，氣喘患者應避免使用','具有內生性擬交感活性 (ISA)，適合心搏過慢者使用'],2,'Propranolol屬於非選擇性β阻斷劑（β₁+β₂），副作用包含引起支氣管收縮，因此氣喘患者須小心或避免使用。'),
+Q('治療嗜鉻細胞瘤 (Pheochromocytoma) 引起的嚴重高血壓時，下列藥物選用何者正確？',['診斷時首選Phenoxybenzamine，因為其作用為可逆性','治療時首選Phentolamine，因其具不可逆性且效期長','治療首選Phenoxybenzamine，因其可不可逆地阻斷α受體','僅需使用β-blocker即可完全控制所有血管收縮症狀'],2,'Phenoxybenzamine為不可逆且效長，用於「治療」嗜鉻細胞瘤。Phentolamine為可逆且效短，用於「診斷」。'),
+Q('阿托平 (Atropine) 中毒導致瞻妄與高燒時，首選的解毒劑及其理由為何？',['Neostigmine；因為它是四級胺，能快速進入中樞','Physostigmine；因為它是三級胺且具脂溶性，可穿過BBB','Edrophonium；因為其藥效極短，適合緩解急性毒性','Pyridostigmine；因為其半衰期最長，能維持穩定解毒效果'],1,'Physostigmine為三級胺，具脂溶性可進入中樞，是解除Atropine中毒及TCA中毒的首選解毒劑。Neostigmine是水溶性四級胺，不可進中樞。')
+],
+[
+Q('關於消化性潰瘍藥物Pirenzepine的敘述，下列何者正確？',['為專一性M₁拮抗劑，可降低胃酸分泌','作用於遠曲小管，藉由排水來緩解壓力性潰瘍','為M₃拮抗劑，副作用為嚴重的尿滯留','機轉為不可逆抑制質子幫浦，藥效可維持數天'],0,'Pirenzepine是Selective M₁antagonist，臨床上透過降低胃酸分泌及腸胃蠕動來治療胃潰瘍。'),
+Q('在使用去極化型肌肉鬆弛劑Succinylcholine後發生的「惡性高溫」，其救治藥物Dantrolene的機轉為何？',['阻斷M₂受體，降低心臟代謝率','結合至GABA受體，增加氯離子內流產生鎮靜','直接抑制骨骼肌內的肌漿網釋放鈣離子','活化乙醯膽鹼酯酶，加速藥物代謝'],2,'Dantrolene為Rynodine Receptor blocker，機轉是直接抑制骨骼肌內Ca²⁺釋出。臨床用於治療由Succinylcholine與Halothane併用誘發的惡性高溫。'),
+Q('關於中樞性肌肉鬆弛劑Baclofen的敘述，下列何者錯誤？',['其作用機轉為GABA_B受體致效劑','會導致神經細胞膜上的鈣通道關閉、鉀通道開啟','臨床上主要用於緩解肌肉痙攣 (Spasticity)','作用於GABA_A受體，促進氯離子進入細胞'],3,'Baclofen是GABA_B agonist，機轉為「關Ca通道，開K通道」。作用於GABA_A增加氯通道頻率的是Diazepam等BZD類藥物。'),
+Q('比較Benzodiazepines (BZD) 與Barbiturates對GABA受體的作用，下列何者正確？',['BZD會增加氯離子通道「開啟的頻率」','Barbiturates僅能輔助GABA，無法直接引發通道開啟','兩者皆與GABA競爭同一個受體結合位點','BZD會延長氯離子通道「開啟的時間」'],0,'BZD結合在α與γ次單元間，增加通道開啟「頻率」。Barbiturates則是延長通道開啟「時間」，且高劑量時可直接引發開啟。'),
+Q('三環抗憂鬱劑 (TCA，如Imipramine) 的多重受體阻斷副作用中，下列對應何者正確？',['抗M作用：造成嚴重腹瀉與流涎','抗H₁作用：導致體重減輕與失眠','抗α₁作用：引起姿勢性低血壓與嗜睡','阻斷鈉通道：縮短QT間期並預防心律不整'],2,'TCA抗α₁受體會導致姿態性低血壓、心搏過速與嗜睡。抗M會造成口乾與尿滯留；抗H₁則會導致增重與鎮靜；阻斷鈉通道則易引起心律不整。')
+],
+[
+Q('下列哪一組抗憂鬱藥物併用時，極易引發致命的「血清素症候群 (Serotonin Syndrome)」？',['Fluoxetine (SSRI) + Phenelzine (MAOI)','Amitriptyline (TCA) + Diazepam (BZD)','Bupropion (NDRI) + Metformin','Venlafaxine (SNRI) + Propranolol'],0,'SSRI禁與MAOI合用，以免產生致命的Serotonin syndrome。'),
+Q('有關情緒安定劑鋰鹽 (Lithium) 的毒性與注意事項，下列何者正確？',['治療指數 (TI) 極大，臨床使用安全性極高','孕婦服用lithium可能造成胎兒心臟異常 (Ebstein\'s anomaly)','主要副作用為高血糖與口乾','透過活化Gq路徑來穩定情緒，不影響IP₃'],1,'鋰鹽副作用包含導致「胎兒心臟異常」。其機轉是抑制IP₃回收，進而「抑制」Gq路徑。鋰鹽TI窄，需監測濃度。'),
+Q('醫師為一位精神分裂症病人處方Clozapine，下列哪項臨床監測最為重要？',['每日監測體重，預防消瘦','定期檢查視力，預防紅綠色盲','每週監測白血球計數 (WBC count)，預防顆粒性白血球缺乏','定期追蹤肝功能指標，預防猛爆性肝炎'],2,'Clozapine具有2%致命性Agranulocytosis副作用，臨床需嚴密監測血容。'),
+Q('典型抗精神病藥物中，下列何者的錐體外症狀 (EPS) 副作用最強？',['Chlorpromazine','Thioridazine','Haloperidol','Quetiapine'],2,'Haloperidol屬於High potency傳統抗精神病藥，其EPS副作用最強。Chlorpromazine與Thioridazine效價較弱，鎮靜較強。Quetiapine為非典型藥物，EPS較少。'),
+Q('關於帕金森氏症藥物Selegiline (Deprenyl) 的敘述，下列何者正確？',['為不可逆性MAO-A抑制劑，主要用於治療憂鬱症','可與Levodopa併用，藉由減少多巴胺在中樞的代謝來增強藥效','會抑制周邊脫羧酶，減少Levodopa在周邊的損耗','具有強烈的抗膽鹼活性，可單獨用於改善靜止性震顫'],1,'Selegiline專一性抑制MAO-B（代謝DA），可與Levodopa併用以減少其副作用並增強療效。抑制周邊脫羧酶的是Carbidopa。')
+]
+)},
+{id:'p3',title:'國考預測題型 第三波',em:'⭐',c:'#EC4899',u:u4(
+[
+Q('有關COMT抑制劑Tolcapone與Entacapone的比較，下列何者正確？',['Entacapone僅在周邊有效，且較無肝毒性，臨床較常取代Tolcapone','Tolcapone因為蛋白結合率極低，故不需要經過肝臟代謝','兩者皆會導致尿液呈現橘紅色，這是因為藥物代謝產物所致','Entacapone主要抑制中樞COMT，對周邊L-dopa代謝無影響'],0,'Entacapone僅在周邊有效且較無肝毒性，因此取代了具肝毒性的Tolcapone。兩者的副作用皆包含使尿液呈現橘色。'),
+Q('抗癲癇藥物Phenytoin (Dilantin) 常見的皮膚與口腔副作用為何？',['嚴重的痤瘡與黑色素沉著','牙齦增厚 (Gingival hyperplasia) 與多毛症 (Hirsutism)','網狀青斑與皮膚變白脫落','永久性牙齒變色與光敏感'],1,'Phenytoin常見副作用包含「牙齦增厚」與「多毛症」。網狀青斑是Amantadine的副作用。牙齒變色是Tetracyclines。'),
+Q('治療孩童「失神性發作 (Absence seizure)」的首選藥物Ethosuximide，其機轉與副作用為何？',['阻斷鈉離子通道；副作用為牙齦增生','抑制GABA轉胺酶；副作用為肝毒性','阻斷T-type鈣離子通道；副作用包含打嗝與腸胃不適','活化K⁺通道；副作用為體重增加'],2,'Ethosuximide機轉為阻斷T-type Ca2+通道，用於治療失神性發作。其副作用包含腸胃症狀與打嗝。'),
+Q('關於類鴉片藥物Meperidine (Demerol) 的敘述，下列何者正確？',['代謝產物Normeperidine蓄積後具有致痙攣 (Seizures) 的風險','具有強大的縮瞳與止咳作用，優於嗎啡','為鴉片受體μ的部分致效劑，不易產生耐受性','臨床主要用於治療氣喘發作引起的胸痛'],0,'Meperidine長期使用經肝代謝成Normeperidine，會導致「痙攣」。它具弱抗M活性，會使瞳孔擴張而非縮瞳。'),
+Q('當病人在急診室出現鴉片急性中毒 (針狀瞳孔、呼吸抑制) 時，應立即給予哪種急救藥物？',['Naltrexone (口服)','Naloxone (注射)','Methadone (口服)','Flumazenil (注射)'],1,'Naloxone為短效μ antagonist，注射給藥用於鴉片急性中毒的緊急解毒。Naltrexone為長效，多作口服戒癮用。Flumazenil是解BZD中毒。')
+],
+[
+Q('有關中樞興奮劑Cocaine與Amphetamine的機轉比較，下列何者正確？',['Cocaine是透過阻斷NE、DA、5-HT的再回收來發揮作用','Amphetamine僅單純抑制MAO，不影響多巴胺釋放','Amphetamine是唯一可經由Gq路徑直接活化受體的藥物','Cocaine具有強大的強心作用，是心搏過速病人的首選麻醉藥'],0,'Cocaine機轉為阻斷DAT、NET、SERT（阻斷回收）。Amphetamine則是促進NE、DA釋放並抑制MAO。'),
+Q('甲醇 (Methanol) 中毒會導致失明，臨床上使用的解毒劑Fomepizole的機轉為何？',['活化乙醛脫氫酶 (ALDH)，加速甲酸代謝','抑制酒精脫氫酶 (ADH)，阻斷毒性代謝物生成','競爭性結合μ受體，減輕中樞抑制','直接與甲醇結合並由尿液排出'],1,'Fomepizole的機轉是「抑制ADH」，防止甲醇轉化為毒性的甲醛與甲酸。'),
+Q('關於吸入性全身麻醉劑的MAC（最低肺泡濃度）之敘述，下列何者正確？',['MAC越大，代表藥物的脂溶性越高、麻醉強度越強','MAC越小，代表麻醉效力越強','Nitrous oxide (N2O) 的MAC最小，是效價最強的麻醉氣體','MAC與藥物的脂溶性成正比'],1,'MAC越小，脂溶性越大，Potency（效價）越強。N2O的MAC>100，是效價最弱的麻醉氣體。'),
+Q('靜脈麻醉誘導藥物Thiopental作用極快，但藥效短暫，其主要原因為何？',['藥物被肝臟酵素極速代謝成無活性產物','藥物從腦部重新分佈 (Redistribution) 到肌肉與脂肪組織','藥物經由肺部快速呼出體外','藥物具有極高的腎臟清除率'],1,'Thiopental作用快是因為高脂溶性進入CNS，藥效短則是因其會「重新分佈 (Redistribution)」到其他組織。'),
+Q('如何簡單區分局部麻醉劑中的「醯胺類 (Amide)」與「酯類 (Ester)」藥物？',['酯類藥物通常含有兩個"i"，如Lidocaine','醯胺類藥物不易引起過敏，藥名通常含有兩個"i"，如Bupivacaine','酯類藥物主要在肝臟進行dealkylation代謝','所有酯類麻醉劑皆不含PABA結構，安全性較高'],1,'藥名有2個"i"的是Amide（如Lidocaine、Bupivacaine），其不易過敏。酯類（Ester，如Procaine）只有1個"i"，易過敏且代謝產物含PABA。')
+],
+[
+Q('關於α₁受體被活化後產生的生理反應，下列何者正確？',['作用於瞳孔括約肌，產生縮瞳作用','透過Gq路徑引發血管平滑肌收縮，升高血壓','抑制腎臟近腎絲球細胞（JGA）釋放腎素','活化突觸前受體，減少神經傳導物質的釋放'],1,'α₁受體走Gq路徑，作用於血管平滑肌會導致收縮使BP上升。它作用於瞳孔「舒張肌」造成「散瞳」；抑制NE釋放是α₂的功能。'),
+Q('有關有機硝酸鹽類（Nitrates）治療心絞痛的敘述，下列何者正確？',['應建議病人每日24小時連續使用貼片，不可中斷','其主要機轉是釋放NO增加cGMP，使肌球蛋白去磷酸化','為了減少首渡效應，口服給藥是Nitroglycerin的首選方式','此類藥物僅擴張小動脈，對靜脈的前負荷（Preload）無影響'],1,'Nitrates機轉為釋放NO增加cGMP導致血管擴張。為了避免Tolerance，每日需停用10-12小時。其主要擴張「靜脈」以降低「Preload」；Nitroglycerin舌下給藥是為了避開首渡效應。'),
+Q('比較Benzodiazepines (BZD) 與Barbiturates對GABA_A受體的作用，下列何者正確？',['BZD會延長氯離子通道開啟的「時間」','Barbiturates會增加氯離子通道開啟的「頻率」','BZD結合在受體的α與γ次單元之間，增加開啟頻率','Barbiturates具有較大的治療指數 (TI)，安全性優於BZD'],2,'BZD結合在α與γ之間，增加開啟「頻率」。Barbiturates則是延長開啟「時間」，且TI小較易中毒。'),
+Q('關於四環黴素 (Tetracyclines) 的藥理特性與禁忌，下列何者正確？',['可與含有鋁、鎂、鈣離子的制酸劑併服以增加吸收','屬於抑菌型抗生素，其機轉為結合核醣體30S次單元','Doxycycline主要由腎臟排泄，故腎衰竭患者應減量使用','此類藥物對革蘭氏陰性菌無效，臨床應用範圍狹窄'],1,'Tetracyclines作用於30S且為「抑菌型」。它會與金屬離子產生螯合 (Chelation)，不可與制酸劑或奶類併服。Doxycycline由「膽汁」排出，腎功能不良者可用。'),
+Q('下列哪一種非典型抗精神病藥物最容易引起心電圖中的QT間期延長 (QT prolongation)？',['Clozapine','Risperidone','Ziprasidone','Aripiprazole'],2,'口訣：「斑馬 (Zipra-) 有四條 (quadra) 很長 (long) 的腿 (thigh)」，意指Ziprasidone會造成QT prolong。')
+],
+[
+Q('關於胰島素（Insulin）製劑的分類與臨床特性，下列何者正確？',['Insulin Lispro屬於長效型，作用時間可維持24小時以上','Regular insulin (RI) 是臨床上唯一可用於靜脈注射（IV）的製劑','NPH是一種超短效製劑，外觀呈現澄清透明狀','Insulin glargine應於餐前立即注射，以控制餐後血糖上升'],1,'Regular insulin (RI) 是唯一可IV給藥者。Lispro為「超短效」；NPH為「中效」且外觀「混濁」；Glargine為「長效」。'),
+Q('強心劑Digoxin的作用機轉及其對心臟電生理的影響，下列何者正確？',['活化Na⁺/K⁺ ATPase，增加細胞內鉀離子濃度','抑制Na⁺/K⁺ ATPase，最終導致胞內鈣離子增加','臨床上會增加交感神經活性，導致心跳加快','具有極大的治療指數 (TI)，安全性高不需監測濃度'],1,'Digoxin機轉為抑制Na⁺/K⁺ ATPase，使胞內Ca²⁺增加。其效果是增加「迷走神經」活性使HR下降，且TI小易中毒。'),
+Q('有關氣喘藥物中白三烯素路徑抑制劑（Leukotriene pathway inhibitor）的比較，何者正確？',['Zileuton為5-Lipoxygenase (LOX) 抑制劑，具肝毒性','Montelukast阻斷CysLT1受體，且對阿斯匹靈誘發氣喘無效','Zafirlukast主要機轉為穩定肥大細胞，防止組織胺釋放','此類藥物僅能經由吸入給藥，不可口服使用'],0,'Zileuton是5-LOX抑制劑且有肝毒性。Montelukast常見於Aspirin-induced asthma。此類藥物皆為「口服」。'),
+Q('下列哪一種頭孢菌素 (Cephalosporins) 因含有MTT group，與酒精併服會產生Disulfiram-like reaction？',['第一代的Cefazoline','第二代的Cefamandole','第三代的Ceftriaxone','第四代的Cefepime'],1,'含MTT group的藥物包含Cefamandole、Cefotetan、Cefmetazole及Cefoperazone，會引起Disulfiram-like reaction。'),
+Q('關於抗癌藥物Cyclophosphamide的敘述，下列何者正確？',['屬於細胞週期特異性藥物 (CCS)，作用於M期','代謝物Acrolein會引起出血性膀胱炎，可用Mesna預防','具有強烈的肺纖維化副作用，需監測肺功能','主要機轉為抑制二氫葉酸還原酶 (DHFR)'],1,'Cyclophosphamide的代謝物Acrolein引起出血性膀胱炎，可用Mesna解毒。其為CCNS類烷化劑。肺纖維化是Busulfan或Bleomycin的特徵。')
+]
+)},
+{id:'p4',title:'國考預測題型 第四波',em:'🔭',c:'#06B6D4',u:u4(
+[
+Q('下列哪一種抗癲癇藥物具有廣效性機轉（阻斷Na⁺、Ca²⁺通道並增強GABA），且可用於預防偏頭痛？',['Phenytoin','Carbamazepine','Valproic acid','Ethosuximide'],2,'Valproic acid為廣效抗癲癇藥，機轉多重，且可用於預防偏頭痛。Ethosuximide僅用於失神性發作。'),
+Q('關於青光眼治療藥物Brimonidine的敘述，下列何者正確？',['為β-blocker，可減少房水生成','為α₂-selective致效劑，可減少房水生成並促進排出','為M₃致效劑，藉由收縮睫狀肌來降低眼壓','透過抑制碳酸酐酶來達到降壓效果'],1,'Brimonidine屬於α₂-selective擬交感藥物，用於治療青光眼。'),
+Q('有關抗凝血藥物Warfarin的描述，下列何者錯誤？',['機轉為抑制Vit.K epoxide reductase','給藥後需等待8-12小時才會產生抗凝血效果','懷孕婦女發生血栓時，Warfarin是首選的安全藥物','臨床監測指標為PT (Prothrombin time)'],2,'Warfarin具有「畸胎性」，孕婦禁用。其作用延遲是因為需消耗庫存凝血因子。'),
+Q('下列哪一類鴉片類藥物產生的生理現象，長期使用後「不會」產生耐受性 (Tolerance)？',['欣快感 (Euphoria)','止痛效果 (Analgesia)','便秘 (Constipation)','呼吸抑制 (Respiratory depression)'],2,'嗎啡長期使用後，「縮瞳」與「便秘」不會產生耐受性。'),
+Q('萬古黴素（Vancomycin）的抗藥性機轉，主要是細菌將細胞壁末端的D-Ala-D-Ala置換成下列何者？',['D-Ala-D-Ser','D-Ala-D-Lactate','D-Ser-D-Ala','D-Lactate-D-Ala'],1,'Vancomycin的抗藥性機轉是將Peptidoglycan末端的D-Ala改用D-Lactate取代。')
+],
+[
+Q('治療甲狀腺亢進時，給予大劑量碘離子（Iodide）會產生暫時抑制甲狀腺素釋放的效果，此現象稱為：',['Rebound effect','First pass effect','Wolff-Chaikoff effect','Gray baby syndrome'],2,'大劑量碘離子產生暫時抑制釋放的作用稱為Wolff-Chaikoff effect。'),
+Q('下列哪一種抗組織胺藥物屬於第二代（Second generation），因難過BBB故較無鎮靜副作用？',['Diphenhydramine','Chlorpheniramine','Cetirizine','Hydroxyzine'],2,'Cetirizine與Loratadine屬於第二代H1 blocker，水溶性高難過BBB，故無鎮靜副作用。'),
+Q('抗心律不整藥物Amiodarone的長期副作用中，不包含下列何者？',['甲狀腺功能低下或亢進','網狀青斑 (Livedo reticularis)','肺纖維化 (Pulmonary fibrosis)','皮膚沉積導致藍灰色皮膚'],1,'網狀青斑是Amantadine的特有副作用。Amiodarone常見副作用包括甲狀腺異常、肺纖維化、藍皮膚及光敏感。'),
+Q('帕金森氏症藥物Levodopa (L-dopa) 臨床上必須併用Carbidopa，其主要目的為何？',['增加L-dopa在中樞神經系統被代謝的速度','抑制周邊的去羧酶 (AADC)，減少周邊副作用並增加進入腦中藥量','拮抗多巴胺受體，預防精神分裂症狀發生','活化MAO-B酵素以加速多巴胺的清除'],1,'併用Carbidopa是為了抑制周邊decarboxylase，使L-dopa在中樞才作用，並減少周邊代謝造成的副作用。'),
+Q('有關前列腺素衍生物Epoprostenol (PGI2) 的臨床應用，下列敘述何者正確？',['主要用於引產及產後大出血的預防','作為血管擴張劑，用於治療原發性肺動脈高壓','透過收縮血管，用於維持新生兒動脈導管開放','臨床上作為青光眼降眼壓的首選用藥'],1,'Epoprostenol (PGI2) 是血管擴張劑，用於預防血栓和原發性肺動脈高壓。')
+],
+[
+Q('抗癌藥物Methotrexate (MTX) 若引起嚴重骨髓抑制，臨床上應優先給予哪種藥物進行救援 (Rescue)？',['Mesna','Leucovorin','Dexrazoxane','Vit. B6'],1,'MTX抑制DHFR，骨髓抑制時需併用Leucovorin（葉酸活化物）降低毒性。'),
+Q('關於選擇性血清素回收抑制劑（SSRI，如Fluoxetine）的副作用，下列敘述何者正確？',['會引起口乾、便秘及嚴重尿滯留','具有顯著的抗α₁作用，導致姿勢性低血壓','可能引起性功能障礙，是常見的副作用','單獨使用極易產生致命的心律不整'],2,'SSRI副作用包含腸胃不適及性功能障礙。它「無」抗M1、H1或α₁的副作用（那是TCA的副作用）。'),
+Q('當氰化物 (Cyanide) 中毒時，給予Nitrite的原理主要是為了將血紅素轉化為：',['碳氧血紅素 (Carboxyhemoglobin)','變性血紅素 (Methemoglobin)','氧合血紅素 (Oxyhemoglobin)','硫血紅素 (Sulfhemoglobin)'],1,'Nitrite能將血紅素氧化為Methemoglobin（變性血紅素），以此競爭結合氰離子。'),
+Q('氨基糖苷類（Aminoglycosides）抗生素所引起的神經肌肉阻斷 (Curare-like effect)，主要與下列何種機轉有關？',['抑制了鈉離子的內流','抑制了乙醯膽鹼 (Ach) 的釋放','阻斷了GABA_A受體','加速了鉀離子的外流'],1,'Aminoglycosides副作用包含神經肌肉阻斷，機轉為抑制Ach釋放。'),
+Q('有關降血糖藥SGLT2抑制劑（如Canagliflozin）的臨床副作用，下列何者正確？',['乳酸中毒與嚴重腹瀉','體重增加及嚴重低血糖','泌尿道感染及體重減輕','男性女乳症與高血鉀'],2,'SGLT2抑制劑透過尿液排糖，易導致泌尿道感染，且具有減重效果。')
+],
+[
+Q('有關副交感神經受體M₃作用於「血管內皮細胞」的敘述，下列何者正確？',['活化Gi路徑，導致血管平滑肌收縮','透過釋放一氧化氮 (NO) 引起血管舒張','作用與交感神經α₁受體產生的生理反應一致','阻斷鈣離子內流，導致血壓下降'],1,'M₃受體雖然通常走Gq路徑使平滑肌收縮，但在「血管內皮」會釋放EDRF（即NO），進而造成血管舒張。'),
+Q('關於兒茶酚胺 (Catecholamines，如Epi、NE) 的藥物動力學特性，下列敘述何者錯誤？',['具有高度水溶性，難以通過血腦障壁 (BBB)','易被體內的COMT與MAO代謝','由於首渡效應極強，臨床上無法以口服給藥','在中樞神經系統中具有強大的興奮作用'],3,'Catecholamine類藥物具有「水溶性」，難進CNS，因此中樞作用弱；且因易被代謝，故均「無法口服」。'),
+Q('下列哪一種擬交感神經藥物為多巴胺D₁受體致效劑，常用於治療術後高血壓或高血壓急症？',['Midodrine','Fenoldopam','Oxymetazoline','Methoxamine'],1,'Fenoldopam為D₁agonist，可增加腎血流，用於治療高血壓急症。Midodrine治姿勢性低血壓；Oxymetazoline治鼻塞。'),
+Q('關於α₁阻斷劑Prazosin的臨床考點，下列敘述何者正確？',['常用於治療氣喘，因具有舒張支氣管作用','第一次服用時可能發生「首劑現象 (First dose syncope)」','不會引起姿勢性低血壓或反射性心搏過速','機轉為不可逆結合，藥效可維持數天'],1,'α₁blocker（如Prazosin）在第一次使用時可能出現First dose syncope（暈厥、頭暈），且常見姿勢性低血壓副作用。'),
+Q('抗高血壓藥物Nebivolol除了阻斷β₁受體外，還具備下列何種獨特的降壓機轉？',['抑制腎素 (Renin) 的合成與釋放','幫助內皮細胞釋放一氧化氮 (NO)','阻斷電位敏感型鈣離子通道','增加胰島素敏感度以降低體重'],1,'Nebivolol具有輔助內皮細胞活化nitric oxide synthase產生NO的作用，有助於舒張血管。')
+]
+)},
+{id:'p5',title:'國考預測題型 第五波',em:'💫',c:'#10B981',u:u4(
+[
+Q('當病人因三環抗憂鬱劑 (TCA) 或阿托平 (Atropine) 中毒時，臨床首選的解毒劑為何？',['Neostigmine','Physostigmine','Edrophonium','Pyridostigmine'],1,'Physostigmine為三級胺，具脂溶性能通過BBB，是解Atropine及TCA中毒的首選。Neostigmine為四級胺不進中樞。'),
+Q('關於去極化型肌肉鬆弛劑Succinylcholine的副作用，下列敘述何者正確？',['與Halothane併用時，極易引發惡性高溫 (Malignant hyperthermia)','常見副作用為嚴重的低血鉀與低血壓','過量中毒時，應給予Neostigmine進行解毒','藥效極慢且持久，主要用於長期呼吸道維持'],0,'Succinylcholine與Halothane併用易引發惡性高溫；其副作用包含「高血鉀」，且「不可用」Neostigmine解毒。'),
+Q('下列哪一種Benzodiazepines (BZD) 藥物為水溶性，但進入體內生理pH值下會變為脂溶性，是唯一可進行肌肉注射 (IM) 的BZD？',['Diazepam','Midazolam','Triazolam','Lorazepam'],1,'Midazolam是唯一可IM的BZD，具備快速onset且常用於術前鎮靜。'),
+Q('有關抗憂鬱劑Trazodone的藥理特性與副作用，下列何者正確？',['具有強烈的抗M₁作用，常見口乾與便秘','可能引起陰莖持續勃起 (Priapism) 之副作用','為SSRI類首選，無性功能障礙副作用','機轉為抑制單胺氧化酶，需避開起司類食物'],1,'Trazodone（SARI類）副作用可能導致陰莖持續勃起。它較無性功能障礙，且具鎮靜作用。'),
+Q('下列哪一種非典型抗精神病藥物在臨床使用時，必須特別監測其引起QT間期延長 (QT prolongation) 的風險？',['Clozapine','Risperidone','Ziprasidone','Olanzapine'],2,'口訣：「斑馬 (Zipra-) 有四條 (quadra) 很長 (long) 的腿 (thigh)」，意指Ziprasidone會造成QT prolong。')
+],
+[
+Q('關於帕金森氏症藥物Entacapone的敘述，下列何者正確？',['專一性抑制中樞與周邊的COMT酵素','相較於Tolcapone，其較無肝毒性且僅在周邊有效','具有強烈的抗膽鹼活性，主要用於改善靜止性震顫','副作用包含誘發嚴重的惡性高溫與高血壓危機'],1,'Entacapone僅周邊有效且「較無肝毒性」，因此常取代Tolcapone。Tolcapone則中樞周邊皆抑制且具肝毒性。'),
+Q('對於「廣效性」抗癲癇藥物Valproic acid (Depakine) 的描述，下列何者正確？',['其機轉單純，僅透過阻斷鈉離子通道來運作','為強烈的P450誘導劑，會降低Warfarin血藥濃度','除了抗癲癇，亦可用於治療躁鬱症與預防偏頭痛','具有顯著的減重效果，適合肥胖病患使用'],2,'Valproic acid為廣效藥，臨床可用於躁鬱、預防偏頭痛。它是P450「抑制劑」，且副作用通常是體重增加而非減輕。'),
+Q('有關類鴉片藥物Meperidine (Demerol) 的臨床風險，下列何者正確？',['對於分娩延遲的影響極大，產科通常禁用','代謝產物Normeperidine具有引發癲癇 (Seizures) 的風險','具有強烈的縮瞳作用，中毒時呈現針狀瞳孔','為長效型藥物，戒斷症狀較Morphine輕微'],1,'Meperidine長期使用產生的代謝物Normeperidine會導致「痙攣」。它具弱抗M，故瞳孔會擴張而非縮瞳。'),
+Q('有關靜脈麻醉劑Ketamine的生理反應，下列何者與其他麻醉劑 (如Propofol) 明顯不同？',['會導致心跳減慢與血壓下降','具有降腦壓效果，適用於腦部外傷患者','為「唯一強心」的麻醉劑，會使BP、HR、ICP皆上升','具有顯著的止吐效果，術後副作用極少'],2,'Ketamine是「唯一強心」的靜脈麻醉劑，會導致BP↑、HR↑、IOP↑、ICP↑。Propofol則會降壓。'),
+Q('一位準備前往高海拔地區旅遊的登山客，為了預防「高山症 (Mountain sickness)」，應處方下列哪種藥物？',['Furosemide','Acetazolamide','Spironolactone','Hydrochlorothiazide'],1,'Acetazolamide（CA抑制劑）臨床用於預防高山症，原理與預防水腫及排出碳酸氫根有關。')
+],
+[
+Q('對於肝硬化合併水腫或腹水的病人，處方Spironolactone主要是為了利用其何種藥理特性？',['抑制近曲小管的鈉離子再吸收','增加體內白蛋白的生成速度','拮抗醛固酮 (Aldosterone)，阻斷RAAS的惡性循環','直接擴張門脈血管以降低壓力'],2,'Spironolactone為醛固酮拮抗劑，可用於治療肝硬化病人水腫，抑制Aldosterone並阻斷RAAS。'),
+Q('藥物Sacubitril在心衰竭治療中的角色為何？',['阻斷血管收縮素AT1受體，直接舒張血管','抑制Neprilysin，增加體內ANP與BNP的濃度','活化磷酸二酯酶 (PDE)，增強心肌收縮力','阻斷SA node的Funny current，減緩心跳'],1,'Sacubitril抑制Neprilysin使ANP、BNP上升，導致血管舒張。臨床常與ARB併用（ARNI）。'),
+Q('關於降血脂藥物Statins (如Atorvastatin) 的禁忌與副作用，下列何者正確？',['為預防血栓首選，懷孕婦女可安心服用','主要副作用為導致嚴重的泌尿道感染','具有致畸胎性，孕婦絕對禁用','透過與膽酸結合排泄，會影響脂溶性維生素吸收'],2,'Statins具有「畸胎性」，孕婦禁用。其最嚴重副作用為肌肉病變（橫紋肌溶解）。'),
+Q('生長激素類似物Octreotide在臨床急症中，常用於處理下列哪一種狀況？',['嚴重的低血壓性休克','食道靜脈曲張急性出血','支氣管哮喘急性發作','糖尿病引起的酮酸中毒'],1,'Octreotide為Somatostatin analog，除了治肢端肥大症，亦用於處理食道靜脈曲張急性出血。'),
+Q('關於甲狀腺藥物PTU與MMZ的敘述，下列何者錯誤？',['PTU除了抑制合成，還具備抑制周邊T₄→T₃的作用','MMZ的蛋白結合率較低且半衰期長，藥效較強','PTU因為蛋白結合多且不易過胎盤，為孕婦首選','兩者皆會導致血鉀上升與嚴重的高血壓'],3,'兩者最嚴重副作用均為Agranulocytosis（白血球缺乏）。PTU因蛋白結合多故「孕婦OK」。')
+],
+[
+Q('糖尿病藥物Acarbose (α-glucosidase inhibitor) 的主要臨床特點為何？',['增加肝臟對胰島素的敏感度，降低空腹血糖','抑制腸道分解雙醣與寡醣，主要降低「餐後」血糖','促進β細胞大量釋放胰島素，極易發生低血糖','副作用包含水腫、心衰竭惡化以及體重增加'],1,'Acarbose抑制腸道酵素，延緩醣類吸收，主要降低「餐後血糖」，且不易產生低血糖。副作用為腸脹氣。'),
+Q('抗癌藥物Cisplatin (順鉑) 最受限制的器官毒性為何，臨床上需給予大量水分預防？',['肺纖維化','腎毒性 (Nephrotoxicity)','心肌病變','出血性膀胱炎'],1,'Cisplatin最顯著的副作用是「腎毒性」與神經毒性。肺纖維化是Bleomycin；心肌病變是Doxorubicin。'),
+Q('在使用Cyclophosphamide進行化療時，併用藥物Mesna的目的是什麼？',['減少藥物引起的嚴重嘔吐感','提供-SH基團以預防出血性膀胱炎','活化二氫葉酸還原酶，進行正常細胞救援','增加腫瘤細胞對烷化劑的敏感度'],1,'Cyclophosphamide的代謝物Acrolein致出血性膀胱炎，需併用Mesna（提供-SH group）進行解毒。'),
+Q('抗生素Clindamycin臨床上最常被提及的嚴重副作用為何？',['引起「紅人症候群」','導致牙齒變色與骨骼畸形','誘發偽膜性大腸炎 (C. difficile腸炎)','導致永久性的聽力損傷（耳毒性）'],2,'Clindamycin副作用為偽膜性大腸炎。紅人症是Vancomycin；牙齒變色是Tetracyclines。'),
+Q('關於重金屬或放射性同位素中毒與其解毒劑的配對，下列何者正確？',['鐵 (Iron)：Prussian blue','銅 (Copper)：EDTA','銫、鉈 (Cesium, Thallium)：Prussian blue','鉛 (Lead)：Deferoxamine'],2,'「普魯士藍 (Prussian blue)」用於解「銫、鉈」中毒。鐵用Deferoxamine；銅用Penicillamine；鉛首選EDTA。')
+]
+)},
+{id:'p6',title:'國考預測題型 第六波',em:'🌠',c:'#F97316',u:u4(
+[
+Q('止吐藥Ondansetron的主要作用機轉為何？',['阻斷多巴胺D₂受體，抑制嘔吐中樞','阻斷5-HT₃受體，減少迷走神經末梢的嘔吐信號','活化組織胺H₁受體，改善動暈症','阻斷M受體，減少腸胃道平滑肌收縮'],1,'Ondansetron屬於5-HT₃拮抗劑，阻斷末梢與CTZ的5-HT₃受體以止吐，常用於化療後噁心嘔吐。'),
+Q('H2-blocker中的Cimetidine，具有哪一個其他同類藥物（如Ranitidine）所不具備的副作用？',['引起嚴重的腎毒性與血尿','抑制CYP450並阻斷Androgen受體，造成男性女乳症','導致QT間期延長與心律不整','引起致命性顆粒性白血球缺乏'],1,'Cimetidine會抑制CYP450和Androgen receptor，造成男性女乳症。Ranitidine無此副作用。'),
+Q('有關質子幫浦抑制劑（PPI，如Omeprazole）的敘述，下列何者錯誤？',['為不可逆的H⁺/K⁺ ATPase抑制劑','在酸性環境下活化，應餐前30分鐘服用','可與H2-blocker同時使用以加強抑酸效果','是治療Zollinger-Ellison syndrome的首選藥物'],2,'PPI與H2-blocker不可同時使用，因PPI需酸性環境才能活化，H2-blocker會使胃酸減少，反而降低PPI活化。'),
+Q('Aspirin引起的「Reye syndrome」最常見於哪類族群？',['老年慢性心臟病患者','感染病毒（如水痘、流感）的孩童','懷孕婦女使用後的胎兒','腎功能不全的成年患者'],1,'Reye syndrome：兒童感染病毒後使用Aspirin，引起肝衰竭與腦病。故孩童發燒禁用Aspirin。'),
+Q('Misoprostol（PGE1類似物）在臨床上孕婦禁忌的原因為何？',['會誘發嚴重過敏反應，危及孕婦生命','能刺激子宮收縮，具有墮胎風險','會導致胎兒腎發育不全','具有強烈的致畸胎性，造成肢體缺損'],1,'Misoprostol（PGE1 analog）可促進子宮收縮，孕婦禁用，否則可能引起流產。')
+],
+[
+Q('Glucocorticoids（如Dexamethasone）對白血球的影響，下列何者正確？',['使嗜中性白血球（Neutrophil）減少，淋巴球增加','使嗜中性白血球增加（Neutrophilia），淋巴球與嗜酸性球減少','對白血球數量無明顯影響','選擇性增加肥大細胞數量'],1,'Glucocorticoids使Neutrophil增加（從骨髓釋放），同時使Lymphocyte、Eosinophil、Monocyte減少。'),
+Q('Allopurinol引起嚴重皮膚副作用（Stevens-Johnson syndrome, SJS）的高風險基因為何？',['HLA-B*1502','HLA-B*5801','HLA-B*5701','HLA-A*3101'],1,'Allopurinol與HLA-B*5801有強烈相關，此基因在台灣漢族較常見，須在使用前篩查。'),
+Q('Colchicine治療急性痛風的機轉為何？',['競爭性抑制黃嘌呤氧化酶，減少尿酸合成','結合Tubulin（微管蛋白）抑制細胞分裂及嗜中性球遷移','促進腎臟排泄尿酸，降低血清尿酸濃度','阻斷COX-1/2酵素，減少前列腺素合成以止痛'],1,'Colchicine與Tubulin結合，抑制嗜中性球遷移至痛風部位，從而減輕急性發作的炎症。'),
+Q('Fluconazole在臨床上主要適用於治療哪類真菌感染？',['毛癬菌引起的甲癬（甲板真菌感染）','隱球菌腦膜炎（Cryptococcal meningitis）的鞏固維持期','毛黴菌引起的致命性感染','Aspergillus引起的肺部感染'],1,'Fluconazole（azole類）對隱球菌有效，常用於鞏固維持期。毛黴菌用Amphotericin B；Aspergillus首選Voriconazole。'),
+Q('Amphotericin B治療深部真菌感染的機轉為何？',['抑制真菌細胞壁的β-glucan合成','與真菌細胞膜的Ergosterol結合，打洞造成離子外漏','抑制真菌的Lanosterol demethylase','抑制真菌的squalene epoxidase'],1,'Amphotericin B與Ergosterol結合，在細胞膜上形成孔洞，使K⁺等離子外漏而殺菌。')
+],
+[
+Q('抗HIV藥物AZT（Zidovudine）最主要的嚴重副作用為何？',['腎結石與腎毒性','骨髓抑制（Myelosuppression），導致貧血','心肌病變（Cardiotoxicity）','嚴重肝纖維化'],1,'AZT（NRTI類）最顯著副作用為「骨髓抑制」，導致嚴重貧血，需定期監測血球。'),
+Q('抗HIV藥物Maraviroc的作用機轉為何？',['抑制HIV的逆轉錄酶（Reverse transcriptase）','阻斷CCR5共受體，使HIV無法進入CD4⁺ T細胞','抑制整合酶（Integrase），阻止病毒DNA整合','抑制蛋白酶（Protease），阻止病毒成熟'],1,'Maraviroc是CCR5 antagonist（Entry inhibitor），阻止HIV利用CCR5共受體進入細胞。'),
+Q('抗HIV藥物Ritonavir在「鷄尾酒療法」中除了直接抗病毒外，還常被當作哪種角色使用？',['作為整合酶抑制劑的前驅藥物','強效CYP3A4抑制劑（Booster），提高其他PI類藥物濃度','作為NRTI類逆轉錄酶的競爭性抑制劑','作為CCR5拮抗劑阻止病毒入侵'],1,'Ritonavir低劑量時作為CYP3A4 inhibitor（Booster），用來提高其他Protease inhibitor的血中濃度。'),
+Q('抗流感藥物Amantadine的抗病毒機轉及其局限性為何？',['抑制RNA聚合酶，廣效對抗A型與B型流感','阻斷M2離子通道，僅對A型流感有效，且易產生抗藥性','抑制神經胺酸酶（Neuraminidase），阻止病毒釋出','阻斷細胞表面的受體，防止流感病毒吸附'],1,'Amantadine阻斷M2離子通道，僅對「A型流感」有效，且因易產生抗藥性，現已少用。'),
+Q('低分子量肝素（LMWH，如Enoxaparin）相較於傳統肝素（HMWH）的優點為何？',['需要每日監測aPTT，以確保抗凝血效果','生體可用率低，必須靜脈注射給藥','不需監測aPTT，可皮下注射，半衰期較長','副作用較多，易引起HIT（肝素誘發血小板減少症）'],2,'LMWH（如Enoxaparin）不需監測aPTT，可皮下注射，且引起HIT的風險低於傳統Heparin。')
+],
+[
+Q('Rifampin（抗結核藥物）因是強效CYP450誘導劑，對同時服用下列哪種藥物影響最大？',['Oral contraceptives（口服避孕藥），降低其濃度，導致避孕失敗','Isoniazid，使其毒性增強，導致肝炎','Pyrazinamide，導致尿酸大量累積','Ethambutol，引起嚴重的視神經炎'],0,'Rifampin誘導CYP450，會降低許多藥物（如口服避孕藥、Warfarin等）的血中濃度，導致治療失敗。'),
+Q('抗癌單株抗體Trastuzumab（Herceptin）的適用對象與機轉為何？',['適用於K-ras突變的大腸癌，阻斷VEGF信號','適用於HER2過度表現的乳癌，阻斷HER2受體的信號傳遞','適用於Philadelphia染色體陽性的CML，抑制Bcr-Abl','適用於PD-L1陽性的肺癌，阻斷免疫抑制'],1,'Trastuzumab靶向HER2（ErbB2），用於HER2陽性乳癌。副作用為心臟毒性（需監測心功能）。'),
+Q('抗癌單株抗體Bevacizumab的靶點及其主要臨床應用為何？',['靶向EGFR，用於頭頸癌','靶向VEGF，阻斷腫瘤血管新生','靶向CD20，用於B細胞淋巴瘤','靶向PD-1，提升T細胞抗腫瘤能力'],1,'Bevacizumab為anti-VEGF抗體，阻斷腫瘤血管新生，常用於大腸癌、肺癌等。'),
+Q('免疫查核點抑制劑Nivolumab的作用機轉為何？',['阻斷CTLA-4，解除T細胞初始活化的抑制','阻斷PD-1，解除T細胞在腫瘤微環境中的抑制','靶向PD-L1，阻斷腫瘤細胞逃避免疫辨識','活化CD28共刺激信號，強化T細胞活化'],1,'Nivolumab為anti-PD-1抗體，阻斷PD-1與PD-L1的結合，恢復T細胞活性以攻擊腫瘤。'),
+Q('免疫抑制劑Cyclosporine最具特徵性的副作用組合為何？',['骨髓抑制、出血性膀胱炎','高血壓、腎毒性、牙齦增生、多毛症','嚴重腹瀉、低血壓、顆粒性白血球缺乏','肺纖維化、甲狀腺功能異常'],1,'Cyclosporine副作用口訣：高血壓、腎毒、牙齦增生（Gingival hyperplasia）、多毛症（Hirsutism）。')
+]
+)},
+{id:'p7',title:'國考預測題型 第七波',em:'🪐',c:'#EF4444',u:u4(
+[
+Q('抗過敏單株抗體Omalizumab的作用機轉為何？',['阻斷IL-5，抑制嗜酸性球的活化','結合游離IgE（Anti-IgE），阻止其與肥大細胞結合','阻斷IL-4/IL-13，抑制Th2免疫反應','阻斷IgG Fc受體，防止免疫複合物沉積'],1,'Omalizumab是anti-IgE單株抗體，阻止IgE與肥大細胞結合，用於嚴重過敏性氣喘。'),
+Q('Lactulose用於治療「肝性腦病（Hepatic encephalopathy）」的機轉為何？',['直接補充肝臟所缺乏的支鏈胺基酸','酸化腸道，使NH₃轉為NH₄⁺留在腸腔，減少氨吸收','抑制腸道菌合成細菌毒素','作為滲透性瀉劑，加速腸道排空以排除毒素'],1,'Lactulose在腸道被細菌分解產生酸，使NH₃→NH₄⁺（不易吸收），從而降低血氨改善肝性腦病。'),
+Q('Chloramphenicol的「Gray baby syndrome」主要是因為什麼原因導致的？',['嬰兒腎功能未成熟，藥物無法排出','嬰兒缺乏UDP-glucuronyl transferase，無法代謝藥物造成蓄積','藥物阻斷胎兒血紅素合成，造成嚴重溶血','藥物抑制粒線體核醣體，使心肌細胞死亡'],1,'嬰兒肝臟缺乏UDP-glucuronyl transferase，無法代謝Chloramphenicol，造成蓄積中毒出現Gray baby syndrome。'),
+Q('Stevens-Johnson syndrome（SJS）與HLA-B*5801基因強烈相關的藥物為何？',['Carbamazepine','Abacavir','Allopurinol','Dapsone'],2,'Allopurinol→HLA-B*5801（台灣漢族高風險）；Carbamazepine→HLA-B*1502；Abacavir→HLA-B*5701。'),
+Q('Levodopa在藥理學上屬於哪一類型的前驅藥物（Prodrug）？',['Type I Prodrug：在腸道被代謝為活性藥物後再吸收','Type II Prodrug：吸收後在體內（腦中）被轉化為活性的Dopamine','需要兩步驟代謝，在肝腎分別活化','直接在神經末梢被MAO代謝為活性物質'],1,'Levodopa是Type II Prodrug，穿過BBB後在腦中被AADC（脫羧酶）代謝為有活性的Dopamine。')
+],
+[
+Q('非典型抗精神病藥物中，Ziprasidone最需注意的心臟副作用為何？',['引起致命性的Torsade de pointes（TdP）','選擇性抑制竇房結，導致嚴重心搏過慢','阻斷鈉離子通道，延長QRS波','引起心肌肥大與不可逆性心臟衰竭'],0,'Ziprasidone會延長QT間期，嚴重時可引發Torsade de pointes（TdP）的致命心律不整。'),
+Q('抗結核藥物Ethambutol最具代表性的副作用為何？',['聽神經毒性（第八對腦神經損傷）','肝毒性，需定期監測肝功能','球後視神經炎，導致視力模糊與色盲','腎毒性，需監測肌酸酐'],2,'Ethambutol副作用為球後視神經炎（Retrobulbar neuritis），表現為視力模糊、紅綠色盲，需定期眼科追蹤。'),
+Q('SGLT2抑制劑（如Empagliflozin）在腎臟的作用位置為何？',['作用於亨利氏環（Loop of Henle），抑制Na-K-2Cl同向輸送體','作用於近曲小管（PCT），抑制鈉-葡萄糖共同輸送體SGLT2','作用於遠曲小管（DCT），阻斷鈉氯共同輸送體','作用於集尿管，拮抗醛固酮受體'],1,'SGLT2抑制劑作用於近曲小管（PCT），阻斷SGLT2使葡萄糖隨尿液排出，達到降血糖效果。'),
+Q('抗癌藥物MTX（Methotrexate）引起骨髓抑制時，Leucovorin救援的機轉為何？',['競爭性拮抗MTX與DHFR的結合','提供已還原的葉酸形式（THF），繞過被MTX抑制的DHFR步驟','直接刺激骨髓造血幹細胞增殖','活化Thymidylate synthase，補充DNA合成原料'],1,'Leucovorin（甲醯四氫葉酸）可直接提供活化型葉酸，繞過被MTX阻斷的DHFR，為正常細胞提供保護。'),
+Q('Spironolactone的抗醛固酮作用，在哪個腎小管節段發揮作用？',['近曲小管（PCT）','亨利氏環上升段（Ascending limb）','遠曲小管與集尿管（DCT/Collecting duct）','腎絲球（Glomerulus）'],2,'Spironolactone作用於遠曲小管與集尿管，競爭性拮抗Aldosterone受體，阻斷鈉的再吸收及鉀的排出。')
+],
+[
+Q('Ritonavir作為「藥物動力學增強劑（Booster）」使用時，其機轉為何？',['誘導CYP3A4，加速其他藥物代謝，使藥效更快產生','抑制CYP3A4，減少其他PI類藥物的代謝，提高其血中濃度','阻斷P-glycoprotein，增加藥物的腸道吸收','抑制UDP-glucuronidase，延長藥物的半衰期'],1,'Ritonavir強效抑制CYP3A4，與其他Protease inhibitors合用時可提高後者的血中濃度（Pharmacokinetic booster）。'),
+Q('氨基糖苷類（Aminoglycosides）抗生素引起「神經肌肉阻斷」的機轉為何？',['競爭性阻斷NM接合處的nAChR受體','抑制乙醯膽鹼（ACh）從神經末梢釋放','促進乙醯膽鹼酯酶的活性，加速ACh分解','阻斷突觸後的鈉離子內流，抑制動作電位'],1,'Aminoglycosides透過抑制ACh從運動神經末梢釋放，引起Curare-like effect（神經肌肉阻斷）。'),
+Q('M₃受體在「血管內皮細胞」上活化後，其傳遞路徑為何？',['走Gi路徑，直接抑制腺苷酸環化酶，使血管收縮','走Gq路徑，最終釋放NO（EDRF）導致血管舒張','走Gs路徑，增加cAMP使平滑肌鬆弛','直接阻斷鈣離子通道，使平滑肌無法收縮'],1,'M₃在血管內皮走Gq路徑，活化NOS釋放EDRF（NO），NO進入平滑肌增加cGMP導致舒張。注意：平滑肌本身無M₃，是內皮細胞間接舒張。'),
+Q('Barbiturates中毒的解毒處置，為何要「鹼化尿液」？',['弱酸性藥物在鹼性尿液中離子化增加，腎小管再吸收減少，加速排泄','弱鹼性藥物在鹼性尿液中不易離子化，排泄加速','鹼性環境可直接中和Barbiturates','鹼化尿液可促進肝臟酵素代謝Barbiturates'],0,'Barbiturates為弱酸性藥物（pKa≈7.4），鹼化尿液使其游離度增加，腎小管再吸收減少，從而加速排出體外。'),
+Q('Amiodarone造成甲狀腺功能異常的原因為何？',['誘導甲狀腺過氧化酶（Peroxidase），過度合成甲狀腺素','藥物結構含有大量碘（Iodine），影響甲狀腺的碘代謝平衡','阻斷TSH受體，使甲狀腺失去促激素的調控','抑制腎上腺素的分泌，間接影響甲狀腺'],1,'Amiodarone含有大量碘（每粒含37% iodine），可引起甲狀腺功能亢進或低下，為重要副作用。')
+],
+[
+Q('Metoclopramide（胃腸動力藥）除了促進腸胃蠕動外，還有哪個常見的神經副作用？',['周邊神經病變，引起手腳麻木','錐體外症狀（EPS），如遲發性動作障礙','中樞性鎮靜，且不可逆','顆粒性白血球缺乏'],1,'Metoclopramide為D₂阻斷劑，長期使用可引起錐體外症狀（EPS），與典型抗精神病藥物相似。'),
+Q('有機磷農藥中毒時，Atropine與Pralidoxime（2-PAM）各自的治療目標為何？',['Atropine：解除菸鹼樣症狀（肌肉震顫）；PAM：解除蕈毒樣症狀（腺體分泌）','Atropine：阻斷M受體解除蕈毒樣症狀；PAM：重活化AChE解除菸鹼樣症狀','Atropine與PAM皆是競爭性阻斷乙醯膽鹼受體','Atropine：解除菸鹼症狀；PAM：解除中樞症狀'],1,'Atropine阻斷M受體（蕈毒樣症狀如腺體分泌、支氣管痙攣）；PAM重活化AChE，解除N受體症狀（肌肉無力）。'),
+Q('抗癌藥物Vincristine的機轉及其最具特色的副作用為何？',['抑制微管蛋白聚合（Tubulin polymerization），副作用為周邊神經病變','促進微管蛋白解聚，副作用為心臟毒性','與DNA烷化，副作用為出血性膀胱炎','抑制Topoisomerase II，副作用為繼發性白血病'],0,'Vincristine結合Tubulin，「抑制微管蛋白聚合」（不同於Paclitaxel的抑制解聚），最具代表副作用是「周邊神經病變」。'),
+Q('肝素（Heparin）過量引起嚴重出血時，應使用何種藥物進行解毒？',['Vit. K','Protamine sulfate','Leucovorin','Fresh frozen plasma (FFP)'],1,'Protamine sulfate（帶正電）與Heparin（帶負電）結合，形成無活性複合物，是Heparin的特效解毒劑。'),
+Q('免疫抑制劑Cyclosporine的副作用中，「牙齦增生（Gingival hyperplasia）」與「多毛症（Hirsutism）」也常見於哪個抗癲癇藥物？',['Valproic acid','Ethosuximide','Phenytoin','Carbamazepine'],2,'牙齦增生＋多毛症可見於：Cyclosporine（免疫抑制）及Phenytoin（抗癲癇）。這兩個藥物是國考最常出現的對應考點。')
+]
+)},
+{id:'p8',title:'國考預測題型 第八波',em:'🌌',c:'#3B82F6',u:u4(
+[
+Q('Fluconazole治療隱球菌腦膜炎（Cryptococcal meningitis）主要適合用於哪個階段？',['急性初始誘導期（Induction），取代Amphotericin B','鞏固維持期（Consolidation/Maintenance），長期口服預防復發','僅適合免疫正常患者的第一線治療','與Amphotericin B同時使用於初始治療'],1,'隱球菌腦膜炎治療：誘導期用Amphotericin B（+Flucytosine），鞏固維持期改用Fluconazole長期口服。'),
+Q('Theophylline為何不適合與β₂致效劑（如Albuterol）同時使用作為氣喘治療的說明，下列何者正確？',['Theophylline會不活化β₂受體，導致β₂致效劑無效','兩者皆透過增加cAMP達到支氣管舒張，但Theophylline另具腺苷（Adenosine）阻斷的中樞興奮毒性','Theophylline會抑制β₂受體的mRNA表現','Theophylline與β₂致效劑產生拮抗作用，互相抵消療效'],1,'Theophylline透過抑制PDE增加cAMP（與β₂作用位點不同），但其安全範圍窄且具有腺苷阻斷的副作用（心律不整、癲癇），合用需謹慎監測。'),
+Q('Reye syndrome最常出現在哪種情況下？',['成人感染細菌後使用Amoxicillin','孩童感染水痘或流感後服用Aspirin','老年人長期服用NSAIDs導致消化道出血','孕婦服用Naproxen引起胎兒腎功能異常'],1,'Reye syndrome：兒童感染病毒（水痘、流感）後使用Aspirin，引起肝衰竭和腦病，是Aspirin在兒童的絕對禁忌。'),
+Q('抗HER2單株抗體Trastuzumab最主要的心臟毒性表現為何？',['QT間期延長，引發Torsade de pointes','心肌病變（Cardiomyopathy），導致左心室功能下降','心包膜炎與心包積液','心房顫動（Atrial fibrillation）'],1,'Trastuzumab副作用為心肌病變，可能導致左心室射出分數（LVEF）下降，使用前須評估心功能。'),
+Q('甲狀腺風暴（Thyroid storm）中，使用PTU優於MMZ的原因為何？',['PTU的半衰期更長，一天服藥一次即可','PTU除了抑制甲狀腺素合成，還可抑制周邊T₄→T₃的轉換','PTU引起Agranulocytosis的風險遠低於MMZ','PTU不具有任何肝毒性，安全性更高'],1,'PTU在甲狀腺風暴中優於MMZ，因為它「額外」抑制周邊脫碘酶，阻止T₄轉換為活性更高的T₃。')
+],
+[
+Q('Allopurinol在台灣漢族使用前需篩查哪個HLA基因？',['HLA-B*1502','HLA-B*5801','HLA-B*5701','HLA-A*0201'],1,'台灣FDA建議：亞洲漢族使用Allopurinol前須篩查HLA-B*5801，陽性者高風險發生SJS/TEN。'),
+Q('Levodopa作為Type II Prodrug的意義為何？',['口服後在腸道直接代謝為Dopamine再吸收入血','口服後原型穿越BBB，在腦中被AADC轉化為活性Dopamine','在肝臟完全代謝為活性物質後才有療效','需經過腎臟活化，才具有多巴胺的生物活性'],1,'Levodopa為Type II Prodrug：藥物原型穿越BBB後，在腦中被AADC（脫羧酶）代謝為Dopamine發揮作用，而非在腸道代謝。'),
+Q('Primaquine治療間日瘧（P. vivax）肝內潛伏期時，為何需要先篩查G6PD？',['Primaquine是腎毒性藥物，G6PD缺乏者腎功能更差','Primaquine的代謝產物會引起氧化性溶血，G6PD缺乏者無法清除活性氧','Primaquine會抑制肝臟G6PD酵素，加重肝毒性','G6PD缺乏者的紅血球對Primaquine更具抵抗性'],1,'G6PD缺乏的患者缺乏保護紅血球的NADPH，使用Primaquine後易引起氧化性溶血（Hemolytic anemia）。'),
+Q('免疫查核點抑制劑Nivolumab（anti-PD-1）的作用機轉為何？',['結合T細胞上的CTLA-4，解除T細胞早期活化的抑制','阻斷T細胞上的PD-1受體，恢復腫瘤微環境中T細胞的殺傷功能','靶向腫瘤細胞的PD-L1，阻止PD-L1與T細胞PD-1結合','活化NK細胞，促進天然免疫殺傷腫瘤'],1,'Nivolumab（anti-PD-1）與Pembrolizumab同為anti-PD-1；Atezolizumab為anti-PD-L1；Ipilimumab為anti-CTLA-4。'),
+Q('Chloramphenicol引起「Gray baby syndrome」的機轉為何？',['嬰兒腎臟缺乏排泄Chloramphenicol的轉運蛋白','新生兒缺乏肝臟UDP-glucuronyl transferase，無法代謝Chloramphenicol導致蓄積中毒','藥物直接抑制嬰兒骨髓，導致嚴重再生不良性貧血','藥物阻斷嬰兒的粒線體呼吸鏈，導致心肌衰竭'],1,'新生兒（尤其早產兒）缺乏UDP-glucuronyl transferase，Chloramphenicol無法代謝而蓄積，引起Gray baby syndrome（腹脹、灰色皮膚、循環衰竭）。')
+],
+[
+Q('Physostigmine用於Atropine中毒解毒的原因，與Neostigmine的主要差異為何？',['Physostigmine的AChE抑制作用更強且不可逆','Physostigmine為三級胺（脂溶性），可穿越BBB進入中樞解毒；Neostigmine為四級胺（水溶性），不進CNS','Physostigmine的半衰期更長，給藥頻率可降低','Physostigmine不會引起膽鹼激性副作用'],1,'Physostigmine（三級胺、脂溶性）可穿越BBB，是解除Atropine及TCA引起「中樞」症狀（譫妄、高燒）的首選。'),
+Q('肝功能不佳的病人需要使用BZD類藥物時，下列哪些藥物因「不需經肝臟代謝成活性產物」而相對安全？',['Diazepam、Flurazepam','Lorazepam、Oxazepam、Temazepam','Triazolam、Alprazolam','Midazolam、Chlordiazepoxide'],1,'口訣LOT：Lorazepam、Oxazepam、Temazepam（也可加Estazolam），這些藥物直接進行葡萄醣醛酸化（glucuronidation），不產生活性代謝物，肝功能不佳者較安全。'),
+Q('Thiazide利尿劑治療高血壓合併「腎結石（草酸鈣結石）」的機轉為何？',['增加尿鈣排泄，降低血鈣，預防結石形成','減少尿鈣排泄（保鈣作用），降低尿中鈣離子濃度，預防結石','促進尿液酸化，使鈣鹽在酸性環境中不易沉澱','抑制碳酸酐酶，減少碳酸氫根的排泄'],1,'Thiazide具有「保鈣」（減少尿鈣排出）的特殊作用，可降低尿液中鈣離子濃度，預防含鈣腎結石的復發。'),
+Q('重組BNP藥物Nesiritide的作用機轉為何？',['抑制Neprilysin，使內源性BNP不被分解','結合NPR-A受體，增加cGMP，導致血管舒張與利尿，用於急性失代償心衰竭','阻斷Aldosterone受體，減少鈉水滯留','抑制ACE，降低Angiotensin II生成'],1,'Nesiritide（重組hBNP）結合Natriuretic peptide receptor，增加cGMP，產生血管舒張與利尿效果，用於急性失代償心衰竭的短期治療。'),
+Q('偏頭痛急性發作首選藥物Sumatriptan的機轉與受體為何？',['阻斷5-HT₂A受體，預防皮質擴散性抑制','作用於5-HT₁D/1B受體，收縮顱內血管並抑制疼痛物質釋放','阻斷CGRP受體，阻止神經性炎症','作用於多巴胺D₂受體，止嘔並減輕頭痛'],1,'Sumatriptan（Triptan類）為5-HT₁D/1B agonist，可收縮顱內擴張的血管，並抑制三叉神經末梢釋放P物質，用於偏頭痛急性發作。')
+],
+[
+Q('為什麼臨床上PPI（質子幫浦抑制劑）與H2-blocker不可同時使用？',['兩者皆抑制相同的酵素，合用無法增加療效且增加副作用','PPI需在酸性環境中活化，H2-blocker升高胃pH值會抑制PPI的活化','H2-blocker會加速PPI的肝臟代謝，使藥效降低','兩者合用會引起Rebound hyperacidity（反彈性高胃酸）'],1,'PPI（如Omeprazole）需在酸性環境下轉化為活性磺醯胺，若同時用H2-blocker使胃pH上升，會導致PPI無法活化，療效大打折扣。'),
+Q('放射性碘（I-131）用於甲狀腺癌或亢進治療時，孕婦絕對禁用的原因為何？',['I-131會引起孕婦嚴重的骨髓抑制','I-131可通過胎盤，被胎兒甲狀腺攝取，破壞胎兒的甲狀腺功能','I-131具強烈的致畸胎性，引起肢體缺損','I-131的輻射會直接損傷卵巢，使母親永久不孕'],1,'胎兒甲狀腺在妊娠12週後即可攝取碘，I-131會破壞胎兒甲狀腺，導致永久性甲狀腺功能低下，故孕婦絕對禁用。'),
+Q('噻唑烷二酮類（TZD，如Pioglitazone）降血糖的機轉為何？',['阻斷ATP-sensitive K⁺通道，促進胰島素釋放','活化PPAR-γ轉錄因子，增加GLUT-4表現，提高周邊胰島素敏感性','抑制肝臟醣質新生（Gluconeogenesis）','抑制腸道α-glucosidase，延緩醣類吸收'],1,'TZD（Thiazolidinediones）活化核受體PPAR-γ，增加GLUT-4的表現，使肌肉及脂肪組織對胰島素更敏感。'),
+Q('抗癌化療藥物Doxorubicin（小紅莓）外滲（Extravasation）時，正確的緊急處理為何？',['立即熱敷，促進血管擴張讓藥物擴散','立即冰敷，局部給予Dexrazoxane以減少組織損傷','立即熱敷並注射Hyaluronidase促進吸收','外滲部位直接切除即可，不需藥物處理'],1,'Doxorubicin外滲處理：冰敷（止痛並減少局部血流）+ Dexrazoxane（鐵螯合劑，防止自由基損傷組織）。'),
+Q('抗EGFR單株抗體Cetuximab在大腸癌中療效的預測因子為何？',['HER2基因過度表現者有效','K-ras基因突變者有效（優先推薦）','K-ras突變者無效；只有K-ras野生型（wild-type）者才有效','BRAF V600E突變者療效最佳'],2,'Cetuximab（anti-EGFR）用於大腸癌：「K-ras突變者完全無效」，只有K-ras wild-type才能使用。')
+]
+)},
+{id:'p9',title:'國考預測題型 第九波',em:'✨',c:'#84CC16',u:u4(
+[
+Q('抗生素Bacitracin的作用機轉為何？',['抑制細菌50S核醣體，阻止蛋白質合成','結合C55-PP（Undecaprenyl phosphate），阻斷細胞壁肽聚糖的運輸合成','阻斷細菌細胞膜上的Ergosterol合成','抑制細菌的RNA聚合酶，阻止轉錄'],1,'Bacitracin結合C55-PP（Bactoprenol），阻止肽聚糖前驅物轉運至細胞壁，是外用的革蘭氏陽性菌抗生素。'),
+Q('氨基糖苷類（Aminoglycosides）抗生素在核醣體的作用機轉為何？',['結合23S rRNA，抑制50S核醣體的肽基轉移酶活性','結合30S次單元的16S rRNA，引起密碼子誤讀（Misreading）','抑制30S核醣體，阻止tRNA與mRNA的結合','插入DNA雙鏈中，阻斷轉錄模板'],1,'Aminoglycosides作用於30S次單元，與16S rRNA結合，引起密碼子誤讀（Misreading），合成錯誤蛋白質並造成細菌細胞膜損傷。'),
+Q('Erythromycin estolate（丙酸紅黴素酯）的特殊副作用為何？',['腎毒性，引起腎小管壞死','膽汁鬱積性肝炎（Cholestatic hepatitis）','引起類似Disulfiram的反應','耳毒性，導致永久性聽力喪失'],1,'Erythromycin estolate（酯化劑型）具有特殊肝毒性，可引起膽汁鬱積性肝炎，孕婦禁用此劑型。'),
+Q('Fluoroquinolones（喹諾酮類）在兒童及孕婦禁用的主要原因為何？',['抑制造血，導致骨髓抑制','可能影響成長中軟骨（Cartilage）的正常發育，導致關節病變','具有強烈的致畸胎性，引起肢體缺損','引起肌肉溶解，損傷骨骼肌'],1,'Fluoroquinolones會抑制軟骨中的DNA旋轉酶，影響軟骨發育，故兒童及孕婦禁用。此為「關節病變（Arthropathy）」副作用。'),
+Q('Rifampin（利福平）與結核病治療中其他藥物的相互作用，最重要的為何？',['抑制CYP450，使INH的毒性大幅增強','是強效CYP450誘導劑，會降低Warfarin、口服避孕藥等多種藥物的血中濃度','增強Ethambutol的視神經毒性','與Pyrazinamide合用會引起致命性腎衰竭'],1,'Rifampin是最強效的CYP450誘導劑之一，會誘導多個CYP亞型，顯著降低許多同服藥物的濃度，包含避孕藥、Warfarin、HIV藥物等。')
+],
+[
+Q('Maraviroc（CCR5拮抗劑）使用前需要做什麼篩查？',['確認患者的HLA-B*5701基因型','確認患者的HIV病毒使用CCR5（R5-tropic）而非CXCR4作為共受體','確認患者的腎功能是否足夠','確認患者是否有G6PD缺乏症'],1,'Maraviroc只對使用CCR5共受體的HIV（R5-tropic）有效；若病毒使用CXCR4或兩者皆用（Dual-tropic），則無效，需先做tropism test。'),
+Q('抗真菌藥Terbinafine的機轉與適應症為何？',['抑制Lanosterol demethylase（CYP51），口服治療甲癬','抑制Squalene epoxidase，使Squalene蓄積而殺菌，用於皮膚真菌感染','結合Ergosterol，打洞殺菌，用於深部真菌感染','抑制β-glucan synthase，用於曲黴菌（Aspergillus）感染'],1,'Terbinafine抑制Squalene epoxidase，阻礙Ergosterol合成且使Squalene蓄積（毒性），用於皮膚及甲板真菌感染。'),
+Q('抗血小板藥物Abciximab的作用靶點為何？',['阻斷ADP的P2Y12受體，抑制血小板活化','抑制COX-1，減少TXA₂合成','阻斷血小板GP IIb/IIIa受體，直接阻止纖維蛋白原交聯','抑制磷酸二酯酶（PDE），增加血小板cAMP'],2,'Abciximab（-ximab）為GP IIb/IIIa拮抗劑，阻斷血小板聚集的最終共同路徑，用於急性冠症候群。'),
+Q('Aspirin對尿酸代謝的影響，下列敘述何者正確？',['高劑量與低劑量Aspirin均可促進尿酸排泄','低劑量Aspirin（如心臟保護劑量81mg/d）會「減少」尿酸排泄，使血尿酸升高','所有劑量的Aspirin均無助於尿酸代謝','高劑量Aspirin會促進尿酸再吸收，使痛風惡化'],1,'Aspirin的劑量效應：低劑量（<2g/day）抑制尿酸排泄（尿酸升高）；高劑量（>3g/day）則促進尿酸排泄。'),
+Q('6-MP（6-Mercaptopurine）與Allopurinol合併使用時，為何需要將6-MP劑量減至1/4？',['Allopurinol增強6-MP的腸道吸收，使生體可用率大幅提高','Allopurinol抑制黃嘌呤氧化酶（XO），而XO也負責代謝6-MP，造成6-MP蓄積中毒','Allopurinol誘導CYP450，將6-MP轉化為毒性更強的代謝物','Allopurinol直接抑制嘌呤的合成，與6-MP產生協同毒性'],1,'Allopurinol抑制XO（黃嘌呤氧化酶），而6-MP也需XO代謝，合用會使6-MP蓄積至毒性濃度，故需將6-MP劑量減為1/4。')
+],
+[
+Q('氰化物（Cyanide）中毒時，為何以Fe³⁺（Methemoglobin）作為解毒機轉？',['Fe³⁺可直接氧化CN⁻使其無毒化','CN⁻與Fe³⁺的親和力高於與細胞色素c氧化酶中Fe³⁺的結合，可競爭性搶奪CN⁻','Fe³⁺可活化粒線體的替代呼吸鏈','Fe³⁺能將CN⁻轉換為SCN⁻排出（此為Thiosulfate的功能）'],1,'CN⁻對Fe³⁺（Methemoglobin）的親和力更高，人為生成Methemoglobin後，CN⁻從粒線體細胞色素c氧化酶上被競爭搶奪，恢復粒線體功能。'),
+Q('下列關於Codeine的敘述，何者正確？',['Codeine為μ受體完全激動劑，鎮痛效果強於Morphine','Codeine作用於κ（kappa）受體，其鎮靜及便秘作用最強','Codeine是Morphine的前驅藥（Prodrug），需在肝臟被CYP2D6代謝為Morphine才有效','Codeine無法引起呼吸抑制，是最安全的鴉片類止咳藥'],2,'Codeine是Morphine的Prodrug，需被CYP2D6代謝為Morphine（約10%轉化）。CYP2D6 Poor metabolizer患者幾乎無鎮痛效果，Ultra-rapid metabolizer則有中毒風險。'),
+Q('典型抗精神病藥物Haloperidol主要作用於哪個神經路徑產生錐體外症狀（EPS）？',['中腦邊緣系統（Mesolimbic）D₂阻斷，改善幻覺','中腦皮質系統（Mesocortical）D₂阻斷，改善陰性症狀','黑質紋狀體系統（Nigrostriatal）D₂阻斷，導致EPS','漏斗結節系統（Tuberoinfundibular）D₂阻斷，引起高催乳素血症'],2,'Nigrostriatal pathway的D₂阻斷是導致EPS（錐體外症狀：顫抖、遲發性動作障礙）的原因；Mesolimbic D₂阻斷才是抗精神病療效所在。'),
+Q('具有內在擬交感活性（ISA，Intrinsic Sympathomimetic Activity）的β-blocker，最適合用於哪種特殊情況？',['嚴重心臟衰竭，取代Carvedilol','心搏過慢的高血壓患者，以避免進一步減慢心跳','急性心肌梗塞，取代Metoprolol','懷孕合併高血壓，以避免胎兒缺氧'],1,'具有ISA的β-blocker（如Pindolol、Acebutolol）在靜止狀態下有微弱β興奮作用，不會過度降低心跳，適合有心搏過慢傾向的高血壓患者。'),
+Q('Clonidine（α₂agonist）突然停藥後可能出現的最嚴重反應為何？',['低血壓與心跳過慢','反彈性高血壓危象（Rebound hypertension）','嚴重的支氣管痙攣','甲狀腺風暴樣的高代謝狀態'],1,'Clonidine長期使用後突然停藥會出現「反彈性高血壓危象」，伴隨交感神經過度活化（心悸、出汗、頭痛），需逐步停藥。')
+],
+[
+Q('抗生素Imipenem的臨床處方中，為何需要與Cilastatin合用？',['Cilastatin可增強Imipenem對抗MRSA的效力','Cilastatin抑制腎臟中的DHP-I酶，防止Imipenem被代謝為腎毒性產物','Cilastatin擴大Imipenem的抗菌譜，覆蓋厭氧菌','Cilastatin防止Imipenem引起中樞神經的癲癇副作用'],1,'Imipenem在腎小管會被DHP-I（Dehydropeptidase I）分解為腎毒性代謝物，Cilastatin抑制DHP-I以保護腎臟並維持Imipenem的有效濃度。'),
+Q('Memantine治療中重度阿茲海默症的機轉為何？',['抑制乙醯膽鹼酯酶（AChE），增加突觸間隙ACh濃度','阻斷NMDA型麩胺酸受體，減少慢性低程度麩胺酸興奮毒性','活化M₁受體，增強膽鹼能神經傳導','選擇性抑制MAO-B，增加多巴胺的利用率'],1,'Memantine為低親和力的NMDA拮抗劑，用於中重度阿茲海默症。它阻斷過度激活的NMDA受體，減少興奮毒性，但不影響正常的學習記憶相關NMDA活動。'),
+Q('以下哪些β-blocker被證實可降低心衰竭死亡率而獲得FDA核准？',['Atenolol、Propranolol、Timolol','Bisoprolol、Carvedilol、Metoprolol succinate（Toprol-XL）、Nebivolol','Esmolol、Labetalol、Sotalol','Nadolol、Pindolol、Acebutolol'],1,'心衰竭有死亡率證據的β-blockers：Carvedilol（α₁+β阻斷）、Bisoprolol（高度β₁選擇）、Metoprolol succinate（β₁選擇）、Nebivolol（β₁+NO釋放）。'),
+Q('Paclitaxel與Vincristine在微管（Microtubule）作用機轉上的最大差異為何？',['兩者皆抑制微管蛋白聚合（Polymerization），但作用位點不同','Paclitaxel抑制微管蛋白解聚（促進聚合/穩定），Vincristine抑制微管蛋白聚合（抑制形成）','Paclitaxel抑制聚合，Vincristine抑制解聚，兩者效果相反','Paclitaxel作用於S期，Vincristine作用於G₂期'],1,'Paclitaxel「穩定微管（抑制解聚）」→細胞無法完成有絲分裂；Vincristine「抑制微管聚合」→阻止紡錘絲形成。兩者皆阻斷M期。'),
+Q('局部麻醉劑（Local anesthetics）阻斷不同神經纖維的順序，下列何者正確？',['最先阻斷有髓鞘的大直徑運動神經，最後阻斷無髓鞘細神經','最先阻斷小直徑無髓鞘（C纖維）及細有髓鞘（Aδ）神經，最後阻斷大直徑運動神經','大小神經纖維同步被阻斷，無順序差異','先阻斷觸覺，再阻斷溫度覺，最後阻斷痛覺'],1,'局麻劑阻斷順序（由易至難）：無髓鞘小纖維（C）→細有髓鞘（Aδ）→大有髓鞘運動神經。臨床上痛覺（C、Aδ）最先消失，運動最後受影響。')
+]
+)},
+{id:'p10',title:'國考預測題型 第十波',em:'👁️',c:'#F59E0B',u:u4(
+[
+Q('選擇性雌激素受體調節劑（SERM）Raloxifene在子宮內膜的作用與Tamoxifen的差異為何？',['Raloxifene在子宮內膜為拮抗作用，不增加子宮內膜癌風險；Tamoxifen在子宮內膜為致效作用，長期使用增加子宮內膜癌風險','兩者皆對子宮內膜有雌激素致效作用，均增加內膜癌風險','Raloxifene在子宮為致效作用，Tamoxifen為拮抗作用','兩者皆對子宮無任何效應'],0,'Raloxifene：骨骼（致效）＋乳房（拮抗）＋子宮（拮抗），故無子宮內膜癌風險。Tamoxifen：子宮（致效），長期用增加內膜癌風險。'),
+Q('腎上腺皮質激素合成抑制劑Metyrapone的作用機轉為何？',['抑制膽固醇側鏈裂解酶，阻止固醇類荷爾蒙合成的第一步','抑制11β-hydroxylase，使皮質醇（Cortisol）合成減少，診斷下視丘-垂體軸功能','抑制17α-hydroxylase，用於治療前列腺癌','抑制21-hydroxylase，引起先天性腎上腺增生'],1,'Metyrapone抑制11β-hydroxylase，使Cortisol無法合成，可用於診斷HPA軸功能（正常反應是ACTH升高）或治療Cushing syndrome。'),
+Q('Aztreonam（單環β-lactam）的臨床應用價值為何？',['廣效抗生素，同時覆蓋革蘭氏陽性菌與革蘭氏陰性菌','專一性對抗革蘭氏陰性需氧菌，且與Penicillin無交叉過敏，可用於Penicillin過敏患者','廣效抗厭氧菌，用於腹腔感染的首選','主要用於MRSA感染的替代治療'],1,'Aztreonam（Monobactam）僅對革蘭氏陰性需氧菌有效，且與Penicillin的化學結構差異大，對Penicillin過敏者可安全使用（需排除Ceftazidime交叉過敏）。'),
+Q('抗真菌藥Caspofungin的機轉與其他抗真菌藥物的最大差異為何？',['抑制Ergosterol合成（14α-demethylase），與Azole類相同但效果更強','抑制β-(1,3)-D-glucan synthase，破壞真菌細胞壁合成，哺乳動物無此酵素故選擇性高','與Ergosterol直接結合打洞，與Amphotericin B機轉相同','抑制Squalene epoxidase，阻斷Ergosterol前驅物合成'],1,'Caspofungin（Echinocandin類）抑制β-(1,3)-D-glucan synthase，破壞真菌細胞壁。因哺乳類無此酵素，毒性低。適用於Aspergillus及Candida感染。'),
+Q('Modafinil（莫達非尼）用於治療嗜睡症（Narcolepsy）的機轉為何？',['強效抑制MAO，大幅增加多巴胺、NE濃度','抑制突觸前NE和DA的再回收，提升覺醒神經傳導物質濃度','強效活化GABA受體，改善睡眠結構','直接興奮腎上腺髓質，大量釋放腎上腺素'],1,'Modafinil抑制NE和DA的再回收，提升覺醒相關神經傳導物質濃度，促進清醒。其副作用及濫用潛力較傳統中樞興奮劑（Amphetamine）小。')
+],
+[
+Q('Linezolid（Oxazolidinone類）與SSRI合用時，需要特別警惕哪種藥物交互作用？',['兩者合用會引起嚴重的腎毒性','Linezolid具有MAO抑制活性，與SSRI合用可能引發「血清素症候群」','Linezolid誘導CYP3A4，降低SSRI的血中濃度','兩者合用加重骨髓抑制，引起致命性貧血'],1,'Linezolid是弱效MAO抑制劑，與SSRI合用會導致5-HT大量蓄積，引發致命的「Serotonin syndrome（血清素症候群）」。'),
+Q('血栓溶解劑Alteplase（t-PA）相較於Streptokinase的優點為何？',['Alteplase比Streptokinase的出血風險更低','Alteplase具有Fibrin選擇性（Fibrin-selective），優先活化血栓部位的Plasminogen，減少系統性溶栓效應','Alteplase可口服給藥，使用更方便','Alteplase可抑制凝血酶（Thrombin）活性，具雙重抗栓效果'],1,'Alteplase（t-PA）為Fibrin-selective plasminogen activator，優先在血栓局部活化Plasminogen，減少系統性纖維蛋白溶解及出血風險。'),
+Q('減重藥Orlistat的機轉及其特殊副作用為何？',['抑制中樞食慾，副作用為高血壓與心律不整','抑制胰臟與腸道脂肪酶（Lipase），阻止三酸甘油酯吸收，副作用為油脂性腹瀉','活化GLP-1受體，延遲胃排空，副作用為惡心嘔吐','阻斷5-HT₂C受體，減少食慾，副作用為情緒障礙'],1,'Orlistat抑制Lipase，使膳食脂肪無法消化吸收，副作用為「油脂性糞便（Steatorrhea）」及脂溶性維生素吸收不良。'),
+Q('急性鐵中毒的特效解毒劑Deferoxamine的機轉為何？',['將Fe³⁺還原為Fe²⁺，使其排出體外','與Fe³⁺螯合形成Ferrioxamine複合物，由尿液排出','直接中和腸道中的游離鐵，防止其吸收','活化肝臟的儲鐵機制，將鐵存入Ferritin'],1,'Deferoxamine為鐵螯合劑，與Fe³⁺形成Ferrioxamine複合物，無毒且水溶性高，可由腎臟排出（尿液呈現紅棕色）。'),
+Q('標靶藥物Imatinib（Gleevec）的機轉及主要適應症為何？',['抑制HER2酪胺酸激酶，用於HER2陽性乳癌','抑制Bcr-Abl酪胺酸激酶（CML致病基因），用於慢性骨髓性白血病（CML）','抑制VEGF受體，用於腎細胞癌','阻斷EGFR，用於非小細胞肺癌'],1,'Imatinib靶向Bcr-Abl tyrosine kinase（t(9;22) Philadelphia chromosome的產物），是CML的革命性標靶治療。同時也用於GIST（c-Kit突變）。')
+],
+[
+Q('直接抗病毒藥物（DAA）中，藥名以「-buvir」結尾者（如Sofosbuvir）的共同作用靶點為何？',['NS3/4A蛋白酶（Protease）','NS5A蛋白（複製複合體調節蛋白）','NS5B RNA依賴性RNA聚合酶（RdRp）','NS2/3自動裂解蛋白酶'],2,'"-buvir"（如Sofosbuvir）→ NS5B RdRp抑制劑；"-previr"→ NS3/4A Protease抑制劑；"-dasvir"→ NS5A抑制劑。'),
+Q('Aspirin與Warfarin合用時，增加出血風險的主要機轉為何？',['Aspirin誘導CYP2C9，加速Warfarin代謝為更強活性的代謝物','Aspirin抑制血小板TXA₂合成（不可逆），加上Warfarin的抗凝效果，雙重增加出血風險；Aspirin也可直接刺激胃黏膜出血','兩者合用引起「血清素症候群」，導致血管通透性增加','Aspirin取代Warfarin與血漿蛋白的結合，使Warfarin游離濃度急劇上升'],1,'Aspirin（抗血小板）＋Warfarin（抗凝血）雙重作用增加出血風險；Aspirin還直接損傷胃黏膜，加重消化道出血。注意：Aspirin+Warfarin不引起血清素症候群。'),
+Q('抗心律不整藥物Quinidine（Class IA）引起「Cinchonism」時，最典型的症狀為何？',['嚴重腎衰竭與電解質異常','耳鳴（Tinnitus）、視力模糊、頭痛與腸胃不適','嚴重骨髓抑制，導致Agranulocytosis','嚴重的支氣管痙攣與過敏性休克'],1,'Cinchonism（奎尼定毒性）：耳鳴（Tinnitus）、視力模糊、頭痛、腸胃不適，為金雞納樹鹼（Cinchona）類藥物的特有副作用。'),
+Q('Furosemide（Loop利尿劑）作用於腎小管的哪個位置及哪個轉運體？',['近曲小管的碳酸酐酶（CA）','遠曲小管的NCC（Na-Cl co-transporter）','亨利氏環上升段的NKCC2（Na-K-2Cl co-transporter）','集尿管的ENaC（Epithelial Na⁺ channel）'],2,'Furosemide（及其他Loop利尿劑）作用於亨利氏環上升段的NKCC2，抑制鈉鉀氯的再吸收，是利尿效果最強的利尿劑。'),
+Q('有機硝酸鹽（Nitrates）如Nitroglycerin的保存方式為何？為什麼要特別注意？',['需冷藏保存，溫度過高會分解為有毒代謝物','需用玻璃瓶保存、避光，因為塑料容器會吸附Nitroglycerin，且光照、熱氣會加速分解','需用鋁箔袋真空保存，防止氧化','直接曝露於空氣即可穩定保存，無特殊需求'],1,'Nitroglycerin易揮發、易被塑料吸附，需使用「深色玻璃瓶」保存，並避光避熱。每隔3-6個月需更換新藥。')
+],
+[
+Q('Ivabradine（伊伐布雷定）治療心衰竭的機轉為何？',['阻斷β₁受體，減少心肌氧耗','抑制竇房結的Funny current（If電流），選擇性降低心跳速率','抑制Neprilysin，增加BNP的血中濃度','阻斷鈣離子通道，減少心肌收縮力'],1,'Ivabradine選擇性抑制竇房結的HCN通道（Funny current，If），降低心跳速率而不影響心肌收縮力，用於心衰竭合併心跳過快的患者。'),
+Q('免疫查核點抑制劑Ipilimumab的作用靶點與Nivolumab的差異為何？',['Ipilimumab：anti-PD-1；Nivolumab：anti-CTLA-4','Ipilimumab：anti-CTLA-4，阻斷T細胞初始活化的煞車；Nivolumab：anti-PD-1，解除腫瘤微環境中T細胞的抑制','兩者皆為anti-PD-L1，作用靶點相同','Ipilimumab：anti-PD-L1；Nivolumab：anti-CTLA-4'],1,'Ipilimumab→anti-CTLA-4（解除淋巴結T細胞早期活化的抑制）；Nivolumab/Pembrolizumab→anti-PD-1（解除腫瘤微環境中T細胞的後期抑制）。'),
+Q('維生素D₃（Cholecalciferol）在體內需經哪兩個器官的代謝才能成為活性形式？',['腎臟（25-羥化）→肝臟（1,25-二羥化）','皮膚合成→腸道活化','肝臟（25-羥化）→腎臟（1α-羥化），最終成為1,25-(OH)₂D₃（Calcitriol）','肝臟（25-羥化）→肺臟（1α-羥化）'],2,'D₃在肝臟被hydroxylase代謝為25-(OH)D₃，再在腎臟被1α-hydroxylase代謝為活性的1,25-(OH)₂D₃（Calcitriol）。'),
+Q('脂肽類抗生素Daptomycin用於革蘭氏陽性菌感染，但不適合治療肺炎，原因為何？',['Daptomycin無法到達肺部組織，生體可用率極低','肺泡表面活性劑（Surfactant）會使Daptomycin失活，使其對肺炎無效','Daptomycin會引起嚴重肺毒性，肺炎患者禁用','Daptomycin對革蘭氏陰性菌有效，而肺炎多為革蘭氏陰性菌'],1,'Daptomycin的作用機轉類似「surfactant」，肺部的Pulmonary surfactant（表面活性劑）會與Daptomycin結合並使其失活，故不適用於肺炎。'),
+Q('藥物Azithromycin屬於哪類CYP450調節劑？而Verapamil對CYP3A4的影響為何？',['Azithromycin：CYP3A4誘導劑；Verapamil：CYP3A4抑制劑','Azithromycin：CYP3A4「抑制劑」；Verapamil：CYP3A4「抑制劑」——兩者均會抑制CYP3A4','Azithromycin：CYP3A4誘導劑；Verapamil：CYP3A4誘導劑','Azithromycin：無CYP影響；Verapamil：CYP3A4誘導劑'],1,'Azithromycin（大環內酯類）是CYP3A4「抑制劑」（而非誘導劑）；Verapamil也是CYP3A4「抑制劑」（Rifampin才是誘導劑）。常見考題錯誤選項是把Azithromycin或Verapamil誤認為誘導劑。')
+]
+)},
 ];/* ===== END PREDICT ===== */
 
 window.ML_P = { id:'p', ms, exam, predict };
